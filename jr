@@ -1,0 +1,7 @@
+#!/bin/bash
+
+NAM=$( basename "$1" .java  )
+
+javac "$1"
+
+java $NAM

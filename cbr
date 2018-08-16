@@ -1,0 +1,9 @@
+#!/bin/bash
+
+NAM=$( basename "$1" .c )
+
+gcc "$1" -o $NAM
+
+chmod +x $NAM
+
+./$NAM
