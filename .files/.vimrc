@@ -76,6 +76,7 @@ if has("gui_running")
 endif
 
 set noshowmode
+set showcmd
 set shortmess+=I
 
 "  java complete

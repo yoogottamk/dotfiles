@@ -131,3 +131,4 @@ export TERM="screen-256color"
 # . /home/yog/.local/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
 
 alias tmux="tmux -u"
+alias openvpn="sudo openvpn"
