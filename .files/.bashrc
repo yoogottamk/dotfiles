@@ -132,3 +132,4 @@ export TERM="screen-256color"
 
 alias tmux="tmux -u"
 alias openvpn="sudo openvpn"
+alias i="sudo apt install"
