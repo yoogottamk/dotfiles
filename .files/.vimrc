@@ -1,4 +1,4 @@
-set nocompatible
+set nocp
 
 "  vundle stuff
 
@@ -85,6 +85,10 @@ autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 "  netrw
 let g:netrw_banner=0
 
+"  NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
 "  maps
 nmap <F6> :setlocal spell spelllang=en<CR>
 
@@ -99,7 +103,9 @@ map <leader>l gt
 imap <C-s> <Esc>:w<CR>a
 nmap <C-s> :w<CR>
 
-map <leader>nt :NERDTree<CR>
+nmap <leader>nt :NERDTree<CR>
+
+nmap <leader>tq :tabclose<CR>
 
 "  custom
 let g:airline#extensions#ale#enabled=1
@@ -108,4 +114,5 @@ set laststatus=2
 
 " airline stuff
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
 let g:airline_powerline_fonts = 1
