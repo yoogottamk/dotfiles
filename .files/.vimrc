@@ -10,7 +10,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/NERDTree'
@@ -78,9 +77,6 @@ endif
 set noshowmode
 set showcmd
 set shortmess+=I
-
-"  java complete
-autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
 "  netrw
 let g:netrw_banner=0
