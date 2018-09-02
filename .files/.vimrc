@@ -23,7 +23,7 @@ call vundle#end()
 
 filetype plugin indent on
 syntax enable
-set nu
+set nu rnu
 
 let mapleader=","
 
