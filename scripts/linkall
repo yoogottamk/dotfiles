@@ -1,0 +1,28 @@
+cd
+\rm -rf dotfiles
+git clone https://github.com/YoogottamK/dotfiles.git
+
+# \rm -rf ~/dotfiles/.files ~/dotfiles/scripts ~/dotfiles/vim_ftplugin
+mkdir .files scripts vim_ftplugin
+
+cd
+
+ln .bashrc dotfiles/.files/.bashrc
+ln .zshrc dotfiles/.files/.zshrc
+ln .dircolors dotfiles/.files/.dircolors
+ln .inputrc dotfiles/.files/.inputrc
+ln .tmux.conf dotfiles/.files/.tmux.conf
+ln .vimrc dotfiles/.files/.vimrc
+ln .zshrc dotfiles/.files/.zshrc
+
+ln bin/br dotfiles/scripts/br
+ln bin/cbr dotfiles/scripts/cbr
+ln bin/jr dotfiles/scripts/jr
+ln bin/linkall dotfiles/scripts/linkall
+ln bin/up dotfiles/scripts/up
+ln bin/vim-install dotfiles/scripts/vim-install
+
+ln .vim/ftplugin/c.vim dotfiles/vim_ftplugin/c.vim
+ln .vim/ftplugin/cpp.vim dotfiles/vim_ftplugin/cpp.vim
+ln .vim/ftplugin/py.vim dotfiles/vim_ftplugin/py.vim
+ln .vim/ftplugin/ruby.vim dotfiles/vim_ftplugin/ruby.vim
