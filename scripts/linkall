@@ -2,7 +2,7 @@ cd
 \rm -rf dotfiles
 git clone https://github.com/YoogottamK/dotfiles.git
 
-# \rm -rf ~/dotfiles/.files ~/dotfiles/scripts ~/dotfiles/vim_ftplugin
+\rm -rf ~/dotfiles/.files ~/dotfiles/scripts ~/dotfiles/vim_ftplugin
 mkdir .files scripts vim_ftplugin
 
 cd
