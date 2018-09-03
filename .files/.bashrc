@@ -121,7 +121,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source /usr/local/bin/virtualenvwrapper.sh
 
-export PATH="$PATH:~/Android/Sdk/platform-tools:~/flutter/bin:~/julia"
+export PATH="$PATH:~/Android/Sdk/platform-tools:~/flutter/bin:~/julia:/usr/local/whatsapp-linux"
 
 export TERM="screen-256color"
 
