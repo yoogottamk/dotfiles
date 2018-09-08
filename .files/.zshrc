@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.rvm/bin:~/Android/Sdk/platform-tools:~/flutter/bin:~/julia:/usr/local/whatsapp-linux:/usr/local/gmail-linux:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/yog/.oh-my-zsh"
@@ -98,6 +98,7 @@ export LANG=en_US.UTF-8
 
 alias tmux="tmux -u"
 alias gc="git checkout"
+alias i="sudo apt install"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
