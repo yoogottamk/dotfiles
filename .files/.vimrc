@@ -16,6 +16,7 @@ Plugin 'scrooloose/NERDTree'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
+Plugin 'mattn/emmet-vim'
 
 call vundle#end()
 
@@ -108,7 +109,12 @@ let g:airline#extensions#ale#enabled=1
 let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
 set laststatus=2
 
-" airline stuff
+"  airline stuff
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline_powerline_fonts = 1
+
+"  emmet
+let g:user_emmet_install_global = 0
+autocmd FileType html,css  EmmetInstall
+autocmd FileType html,css imap <TAB> <plug>(emmet-expand-abbr)
