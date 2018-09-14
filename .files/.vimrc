@@ -118,3 +118,10 @@ let g:airline_powerline_fonts = 1
 let g:user_emmet_install_global = 0
 autocmd FileType html,css  EmmetInstall
 autocmd FileType html,css imap <TAB> <plug>(emmet-expand-abbr)
+
+"  YCM
+
+let g:ycm_filetype_blacklist = {
+    \ 'html': 1,
+    \ 'css': 1
+    \ }
