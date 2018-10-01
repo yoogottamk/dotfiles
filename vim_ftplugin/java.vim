@@ -1,7 +1,3 @@
-nmap <leader>ai <Plug>(JavaComplete-Imports-AddMissing)
-
-nmap <leader>ri <Plug>(JavaComplete-Imports-RemoveUnused)
-
 nmap <F5> :w<CR>:vert bo term jr %<CR>
 imap <F5> <Esc>:w<CR>:vert bo term jr %<CR>
 
