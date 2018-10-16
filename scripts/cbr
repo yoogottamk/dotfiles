@@ -2,7 +2,7 @@
 
 NAM=$( basename "$1" .c )
 
-gcc "$1" -o $NAM -g -lm
+gcc "$1" -o $NAM -g -lm -Wall
 
 chmod +x $NAM
 

@@ -99,6 +99,7 @@ export LANG=en_US.UTF-8
 alias tmux="tmux -u"
 alias gc="git checkout"
 alias i="sudo apt install"
+alias gup="git checkout master; git fetch upstream; git merge upstream/master; git push origin master"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
