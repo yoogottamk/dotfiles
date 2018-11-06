@@ -121,7 +121,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source /usr/local/bin/virtualenvwrapper.sh
 
-export PATH="$PATH:~/Android/Sdk/platform-tools:~/flutter/bin:~/julia:/usr/local/whatsapp-linux:/usr/local/gmail-linux"
+export PATH="$PATH:~/Android/Sdk/platform-tools:~/flutter/bin:~/julia:/usr/local/whatsapp-linux:/usr/local/gmail-linux:/usr/local/texlive/2018/bin/x86_64-linux"
 
 export TERM="screen-256color"
 
@@ -144,3 +144,6 @@ function mkcd() {
     mkdir -p "$1"
     cd "$1"
 }
+
+\tmux -u
+exit
