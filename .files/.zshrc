@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.rvm/bin:~/Android/Sdk/platform-tools:~/flutter/bin:~/julia:/usr/local/whatsapp-linux:/usr/local/gmail-linux:$PATH
+export PATH="$HOME/bin:/usr/local/bin:$HOME/.rvm/bin:~/flutter/bin:~/julia:/usr/local/whatsapp-linux:/usr/local/gmail-linux:/usr/local/texlive/2018/bin/x86_64-linux:$HOME/Android/Sdk/platform-tools:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/yog/.oh-my-zsh"
@@ -103,3 +103,8 @@ alias gup="git checkout master; git fetch upstream; git merge upstream/master; g
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# mkdir and cd
+function mkcd() {
+    mkdir "$1" && cd "$1"
+}
