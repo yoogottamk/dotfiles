@@ -145,5 +145,6 @@ function mkcd() {
     cd "$1"
 }
 
-\tmux -u
+\tmux -u new -s tmx
+\tmux kill-session -t tmx
 exit
