@@ -62,7 +62,7 @@ CASE_SENSITIVE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git zsh-syntax-highlighting vi-mode zsh-autosuggestions
+    zsh-syntax-highlighting vi-mode zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -100,6 +100,10 @@ alias tmux="tmux -u"
 alias gc="git checkout"
 alias i="sudo apt install"
 alias gup="git checkout master; git fetch upstream; git merge upstream/master; git push origin master"
+alias octave="octave --no-gui"
+
+# add all aliases
+source ~/.bash_aliases
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
