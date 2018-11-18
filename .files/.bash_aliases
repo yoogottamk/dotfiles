@@ -141,3 +141,8 @@ alias gc="git checkout"
 alias i="sudo apt install"
 alias gup="git checkout master; git fetch upstream; git merge upstream/master; git push origin master"
 alias octave="octave --no-gui"
+
+# made a function instead of alias since too many quotes
+rmspace() {
+    ls | awk '{printf("\"%s\"\n", $0)}' | sed 'p; s/\ /_/g' | xargs -n2 mv
+}
