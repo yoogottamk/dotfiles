@@ -130,11 +130,10 @@ export TERM="screen-256color"
 # POWERLINE_BASH_SELECT=1
 # . /home/yog/.local/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
 
-alias tmux="tmux -u"
-alias openvpn="sudo openvpn"
-alias i="sudo apt install"
-
 source ~/.bash_profile
+
+# all aliases
+source ~/.bash_aliases
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"

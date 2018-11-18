@@ -96,12 +96,6 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias tmux="tmux -u"
-alias gc="git checkout"
-alias i="sudo apt install"
-alias gup="git checkout master; git fetch upstream; git merge upstream/master; git push origin master"
-alias octave="octave --no-gui"
-
 # add all aliases
 source ~/.bash_aliases
 
