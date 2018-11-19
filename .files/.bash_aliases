@@ -146,3 +146,6 @@ alias octave="octave --no-gui"
 rmspace() {
     ls | awk '{printf("\"%s\"\n", $0)}' | sed 'p; s/\ /_/g' | xargs -n2 mv
 }
+
+# easy way out
+alias x='exit'
