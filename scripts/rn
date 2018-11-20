@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# WARNING
+# Don't use this if your file name contains the `~` character
+
+# store the old file name in a file
+ls | awk '{printf("\"%s\"\n", $0)}' > .__f_old
+
+# remove characters like `-`, `|` and trim multiple spaces
+ls | tr -d '-' | tr -d '|' | tr -s ' ' | awk '{ printf("\"%s\"\n", $0) }' | sed 's/\ /_/g' > .__f_new
+
+# display the change that is going to take place
+paste .__f_old .__f_new -d"~" | sed 's:~:  -->  :g'
+
+# rename the file.. with a backup so that no files get deleted
+paste .__f_old .__f_new -d "\n" | xargs -n2 mv --backup=t
+
+# remove my generated files
+rm .__f_old .__f_new
