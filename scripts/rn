@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # command line argument parsing
-# if arg exists:
+# if arg1 exists:
 if [ ! -z "$1" ]
 then
     # if arg is neither -t nor -h; exit with error code 1
@@ -21,14 +21,18 @@ fi
 ls | awk '{printf("\"%s\"\n", $0)}' > .__f_old
 
 # trim multiple spaces and remove `|` character
-ls | tr -d '|' | tr -s ' ' | awk '{ printf("\"%s\"\n", $0) }' | sed 's/\ /_/g; s/-/_/g' | tr -s '_' > .__f_new
+# also, substitute ` ` and `-` with `_`
+ls | tr -d '|' | tr -s ' ' | awk '{ printf("\"%s\"\n", $0) }' | sed 's/[\ -]/_/g' | tr -s '_' > .__f_new
 
 # display the change that is going to take place
 paste .__f_old .__f_new -d"\n" | sed -n 'h;n;H;x; s:\n: --> :; p'
 
 # rename the file.. with a backup so that no files get deleted
 # if files are same, don't show the err output `mv: file1 and file1 are same`
-paste .__f_old .__f_new -d "\n" | xargs -n2 mv --backup=t &> /dev/null
+if [ -z "$1" ]
+then
+    paste .__f_old .__f_new -d "\n" | xargs -n2 mv --backup=t &> /dev/null
+fi
 
 # remove my generated files
 rm .__f_old .__f_new
