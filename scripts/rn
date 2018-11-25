@@ -1,7 +1,21 @@
 #!/bin/bash
 
-# WARNING
-# Don't use this if your file name contains the `~` character
+# command line argument parsing
+# if arg exists:
+if [ ! -z "$1" ]
+then
+    # if arg is neither -t nor -h; exit with error code 1
+    if [ "$1" != "-t" ] && [ "$1" != "-h" ]
+    then
+        echo -e "Syntax: rn [ -th ]\n\t-t: test, don't actually rename\n\t-h: display this help message"
+        exit 1
+    # if arg was -h; exit with error code 0
+    elif [ "$1" == "-h" ]
+    then
+        echo -e "Syntax: rn [ -th ]\n\t-t: test, don't actually rename\n\t-h: display this help message"
+        exit 0
+    fi
+fi
 
 # store the old file name in a file
 ls | awk '{printf("\"%s\"\n", $0)}' > .__f_old
@@ -13,7 +27,8 @@ ls | tr -d '|' | tr -s ' ' | awk '{ printf("\"%s\"\n", $0) }' | sed 's/\ /_/g; s
 paste .__f_old .__f_new -d"\n" | sed -n 'h;n;H;x; s:\n: --> :; p'
 
 # rename the file.. with a backup so that no files get deleted
-paste .__f_old .__f_new -d "\n" | xargs -n2 mv --backup=t
+# if files are same, don't show the err output `mv: file1 and file1 are same`
+paste .__f_old .__f_new -d "\n" | xargs -n2 mv --backup=t &> /dev/null
 
 # remove my generated files
 rm .__f_old .__f_new
