@@ -7,7 +7,7 @@
 ls | awk '{printf("\"%s\"\n", $0)}' > .__f_old
 
 # trim multiple spaces and remove `|` character
-ls | tr -d '|' | tr -s ' ' | awk '{ printf("\"%s\"\n", $0) }' | sed 's/\ /_/g; s/-/_/g' > .__f_new
+ls | tr -d '|' | tr -s ' ' | awk '{ printf("\"%s\"\n", $0) }' | sed 's/\ /_/g; s/-/_/g' | tr -s '_' > .__f_new
 
 # display the change that is going to take place
 paste .__f_old .__f_new -d"\n" | sed -n 'h;n;H;x; s:\n: --> :; p'
