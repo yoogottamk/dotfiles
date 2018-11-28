@@ -31,7 +31,7 @@ paste .__f_old .__f_new -d"\n" | sed -n 'h;n;H;x; s:\n: --> :; p'
 # if files are same, don't show the err output `mv: file1 and file1 are same`
 if [ -z "$1" ]
 then
-    paste .__f_old .__f_new -d "\n" | xargs -n2 mv --backup=t &> /dev/null
+    paste .__f_old .__f_new -d"\n" | xargs -n2 mv --backup=t &> /dev/null
 fi
 
 # remove my generated files
