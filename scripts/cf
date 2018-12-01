@@ -6,10 +6,16 @@ import re
 import bs4 as bs
 import requests
 
+# name of the file
 name = sys.argv[1]
+
+# full path to the fle
 f_name = sys.argv[2]
 
+# name of the executable
 exec_name = ".run"
+
+# compiler settings
 prog_name = "g"
 
 if name[-1] == 'c':
@@ -17,8 +23,10 @@ if name[-1] == 'c':
 else:
     prog_name += "++"
 
+# compiling with all the necessary flags
 os.system(prog_name + " " + f_name + " -o " + exec_name + " -Wall -g")
 
+# getting the problem number and code
 s = re.search('_', name)
 e = re.search('\.', name)
 
@@ -28,14 +36,19 @@ prob = prob[:-1]
 
 url = "https://codeforces.com/problemset/problem/" + prob + "/" + code
 
+# getting the page source code
 src = requests.get(url).text
 
 soup = bs.BeautifulSoup(src, 'html.parser')
 
+# div containing all the sample test cases
 sample_test = soup.find('div', {'class': 'sample-test'})
+
+# getting test input and output
 tests_in = sample_test.find_all('div', {'class': 'input'})
 tests_out = sample_test.find_all('div', {'class': 'output'})
 
+# saving input files
 inp_count = 0
 
 for _in in tests_in:
@@ -43,7 +56,7 @@ for _in in tests_in:
 
     for line in _in.find('pre').contents:
         if not re.search('<', str(line)):
-            _file.write(str(line))
+            _file.write(str(line) + '\n')
 
     _file.close()
 
@@ -54,12 +67,13 @@ for _in in tests_in:
 
 out_count = 0
 
+# saving output files
 for _in in tests_out:
     _file = open(".__out_file" + str(out_count), "w")
 
     for line in _in.find('pre').contents:
         if not re.search('<', str(line)):
-            _file.write(str(line))
+            _file.write(str(line) + '\n')
 
     _file.close()
 
@@ -68,8 +82,9 @@ for _in in tests_out:
 
     out_count += 1
 
+# executing my code and comparing outputs
 for i in range(inp_count):
-    command = exec_name + " < .__in_file" + str(i) + " > .__out" + str(i)
+    command = "./" + exec_name + " < .__in_file" + str(i) + " > .__out" + str(i)
 
     os.system(command)
 
@@ -103,6 +118,7 @@ for i in range(inp_count):
     else:
         print("Passed test " + str(i + 1))
 
+# cleanup
 os.system("rm .run")
 for i in range(inp_count):
     os.system("rm .__in_file" + str(i))
