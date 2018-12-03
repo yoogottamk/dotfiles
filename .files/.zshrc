@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH="$HOME/bin:/usr/local/bin:$HOME/.rvm/bin:~/julia:/usr/local/whatsapp-linux:/usr/local/gmail-linux:/usr/local/texlive/2018/bin/x86_64-linux:$HOME/Android/Sdk/platform-tools:$HOME/flutter/bin:$PATH"
+export PATH="$HOME/bin:/usr/local/bin:$HOME/.rvm/bin:~/julia:/usr/local/whatsapp-linux:/usr/local/gmail-linux:/usr/local/saavn-linux:/usr/local/texlive/2018/bin/x86_64-linux:$HOME/Android/Sdk/platform-tools:$HOME/flutter/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/yog/.oh-my-zsh"
