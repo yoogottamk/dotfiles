@@ -121,7 +121,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source /usr/local/bin/virtualenvwrapper.sh
 
-export PATH="$PATH:~/Android/Sdk/platform-tools:~/flutter/bin:~/julia:/usr/local/whatsapp-linux:/usr/local/gmail-linux:/usr/local/texlive/2018/bin/x86_64-linux"
+export PATH="$PATH:~/Android/Sdk/platform-tools:~/flutter/bin:~/julia:/usr/local/whatsapp-linux:/usr/local/gmail-linux:/usr/local/saavn-linux:/usr/local/texlive/2018/bin/x86_64-linux"
 
 export TERM="screen-256color"
 
@@ -131,9 +131,6 @@ export TERM="screen-256color"
 # . /home/yog/.local/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
 
 source ~/.bash_profile
-
-# all aliases
-source ~/.bash_aliases
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
