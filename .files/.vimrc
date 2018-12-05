@@ -89,6 +89,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 "  maps
 nmap <F6> :setlocal spell spelllang=en<CR>
+nmap <F7> :set nospell<CR>
 
 map <C-j> <C-w>j
 map <C-k> <C-w>k
@@ -104,6 +105,10 @@ nmap <C-s> :w<CR>
 nmap <leader>nt :NERDTree<CR>
 
 nmap <leader>tq :tabclose<CR>
+
+nmap <leader>q :q<CR>
+nmap <leader>x :x<CR>
+nmap <leader>w :w<CR>
 
 "  custom
 let g:airline#extensions#ale#enabled=1
@@ -121,7 +126,6 @@ autocmd FileType html,css  EmmetInstall
 autocmd FileType html,css imap <TAB> <plug>(emmet-expand-abbr)
 
 "  YCM
-
 let g:ycm_filetype_blacklist = {
     \ 'html': 1,
     \ 'css': 1
