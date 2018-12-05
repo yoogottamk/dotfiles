@@ -1,0 +1,2 @@
+export PATH="$PATH:~/Android/Sdk/platform-tools:~/flutter/bin:~/julia:/usr/local/whatsapp-linux:/usr/local/gmail-linux:/usr/local/saavn-linux:/usr/local/facebook-linux:/usr/local/texlive/2018/bin/x86_64-linux"
+
