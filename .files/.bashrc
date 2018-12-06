@@ -141,3 +141,7 @@ function mkcd() {
     mkdir -p "$1"
     cd "$1"
 }
+
+\tmux -u new -s tmx
+\tmux kill-session -t tmx
+exit
