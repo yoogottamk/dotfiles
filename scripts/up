@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#   Script for updating, upgrading and removing packages that are no longer required
+
 sudo apt update
 sudo apt upgrade
 sudo apt autoremove --purge

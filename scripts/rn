@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#   Script for renaming all the files/folders present in $PWD
+#   Replaces spaces, hyphens in the filename with `_`
+
 # command line argument parsing
 # if arg1 exists:
 if [ ! -z "$1" ]

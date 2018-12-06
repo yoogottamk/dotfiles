@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#   Script to automatically compile and exec a c++ file once a .cpp file is given to it
+#   Works best with vim
+
 NAM=$( basename "$1" .cpp )
 
 g++ "$1" -o $NAM -g -Wall

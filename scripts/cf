@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 
+#   Script to automatically 
+#   1. get the test cases visible in codeforces
+#   2. save my code, compile and run it against the mentioned test cases
+#   3. compare my code's output with the one provided and report,
+#   given the 
+#       - name of the file[Acc to my convention, CF_probCode.c<pp>]
+#       - full path of the .c<pp> file
+#   Works best with vim
+
 import sys
 import os
 import re

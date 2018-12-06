@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#   Script to automatically compile and exec a java file once a .java file is given to it
+#   Works best with vim
+
 NAM=$( basename "$1" .java  )
 
 javac "$1"

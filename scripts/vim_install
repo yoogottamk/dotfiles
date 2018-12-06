@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#   Script for updating vim
+#   Gets the latest source code, builds it, installs it
+
 sudo apt remove --purge vim vim-runtime vim-gnome vim-tiny vim-gui-common -y
 sudo dpkg -r vim
 

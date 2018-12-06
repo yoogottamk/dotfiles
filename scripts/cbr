@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#   Script to automatically compile and exec a c file once a .c file is given to it
+#   Works best with vim
+
 NAM=$( basename "$1" .c )
 
 gcc "$1" -o $NAM -g -lm -Wall
