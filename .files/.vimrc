@@ -17,7 +17,6 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
 Plugin 'mattn/emmet-vim'
-Plugin 'kien/ctrlp.vim'
 
 call vundle#end()
 
@@ -64,7 +63,6 @@ set t_Co=256
 colo desert
 
 let g:airline_theme='cool'
-let g:ale_set_highlights=0
 
 if has("gui_running")
     set bg=dark
@@ -78,7 +76,6 @@ endif
 
 set noshowmode
 set showcmd
-set shortmess+=I
 
 "  netrw
 let g:netrw_banner=0
@@ -111,14 +108,15 @@ nmap <leader>x :x<CR>
 nmap <leader>w :w<CR>
 
 "  custom
-let g:airline#extensions#ale#enabled=1
-let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
 set laststatus=2
+set shortmess+=I
+let g:ale_set_highlights=0
 
 "  airline stuff
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#ale#enabled=1
 
 "  emmet
 let g:user_emmet_install_global = 0
@@ -126,6 +124,7 @@ autocmd FileType html,css  EmmetInstall
 autocmd FileType html,css imap <TAB> <plug>(emmet-expand-abbr)
 
 "  YCM
+let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
 let g:ycm_filetype_blacklist = {
     \ 'html': 1,
     \ 'css': 1
