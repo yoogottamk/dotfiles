@@ -130,7 +130,7 @@ export TERM="screen-256color"
 
 source ~/.bash_profile
 
-# All changes to PATH in signle file
+# All changes to PATH in single file
 source ~/.path_dirs
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
