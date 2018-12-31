@@ -1,3 +1,6 @@
 # PATHs
-export PATH="$PATH:$HOME/Android/Sdk/platform-tools:$HOME/flutter/bin:$HOME/julia:/usr/local/whatsapp-linux:/usr/local/gmail-linux:/usr/local/saavn-linux:/usr/local/facebook-linux:/usr/local/texlive/2018/bin/x86_64-linux"
+export PATH="$PATH:$HOME/flutter/bin:$HOME/julia:/usr/local/whatsapp-linux:/usr/local/gmail-linux:/usr/local/saavn-linux:/usr/local/facebook-linux:/usr/local/texlive/2018/bin/x86_64-linux"
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
