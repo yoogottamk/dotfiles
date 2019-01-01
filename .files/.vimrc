@@ -1,6 +1,6 @@
-set nocp
+"  Vundle stuff --- {{{
 
-"  vundle stuff
+set nocp
 
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -20,13 +20,20 @@ Plugin 'mattn/emmet-vim'
 
 call vundle#end()
 
-"  vundle stuff ends
+"  }}}
+
+"  Basic vim settings {{{
 
 filetype plugin indent on
 syntax enable
 set nu rnu
 
 let mapleader=","
+
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup end
 
 set backspace=indent,eol,start
 set autoread
@@ -77,55 +84,108 @@ endif
 set noshowmode
 set showcmd
 
+"  }}}
+
 "  netrw
 let g:netrw_banner=0
 
-"  NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"  NERDTree {{{
+
+augroup nerdtree_clear
+    autocmd!
+    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup end
+
+nnoremap <leader>nt :NERDTree<CR>
+
+"  }}}
+
+"  maps {{{
+
+" for spellings
+nnoremap <F6> :setlocal spell spelllang=en<CR>
+nnoremap <F7> :set nospell<CR>
+
+" for split navigation
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" for tab navigation
+nnoremap <leader>h gT
+nnoremap <leader>l gt
+
+nnoremap <leader>tq :tabclose<CR>
+
+" for saving files normally
+inoremap <C-s> <Esc>:w<CR>a
+nnoremap <C-s> :w<CR>
+
+" for quitting faster
+nnoremap <leader>q :q<CR>
+nnoremap <leader>x :x<CR>
 
 
-"  maps
-nmap <F6> :setlocal spell spelllang=en<CR>
-nmap <F7> :set nospell<CR>
+" Moves current line ine line below
+nnoremap - O<esc>cc<Esc>j
 
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-h> <C-w>h
-map <C-l> <C-w>l
+" Moves current line one line above
+nnoremap _ o<esc>k
 
-map <leader>h gT
-map <leader>l gt
+" C-d to delete line in insert mode
+inoremap <C-d> <esc>dda
 
-imap <C-s> <Esc>:w<CR>a
-nmap <C-s> :w<CR>
+" edit .vimrc
+nnoremap <leader>ev :vs ~/.vimrc<cr>
 
-nmap <leader>nt :NERDTree<CR>
+" src .vimrc
+nnoremap <leader>sv :so ~/.vimrc<cr>
 
-nmap <leader>tq :tabclose<CR>
+" useful surrounds
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+nnoremap <leader>( viw<esc>a(<esc>bi)<esc>lel
+nnoremap <leader>[ viw<esc>a[<esc>bi]<esc>lel
 
-nmap <leader>q :q<CR>
-nmap <leader>x :x<CR>
-nmap <leader>w :w<CR>
+vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>l
+vnoremap <leader>' <esc>`<i'<esc>`>a'<esc>l
+vnoremap <leader>( <esc>`<i(<esc>`>a)<esc>l
+vnoremap <leader>[ <esc>`<i[<esc>`>a]<esc>l
+
+" }}}
 
 "  custom
 set laststatus=2
 set shortmess+=I
 let g:ale_set_highlights=0
 
-"  airline stuff
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline_powerline_fonts = 1
+"  AirLine stuff {{{
+
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#show_buffers=0
+let g:airline_powerline_fonts=1
 let g:airline#extensions#ale#enabled=1
 
-"  emmet
-let g:user_emmet_install_global = 0
-autocmd FileType html,css  EmmetInstall
-autocmd FileType html,css imap <TAB> <plug>(emmet-expand-abbr)
+"  }}}
 
-"  YCM
+"  Emmet {{{
+
+let g:user_emmet_install_global=0
+
+augroup emmet_enable
+    autocmd!
+    autocmd FileType html,css  EmmetInstall
+augroup end
+
+let g:user_emmet_leader_key=','
+
+"  }}}
+
+"  YCM  {{{
 let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
 let g:ycm_filetype_blacklist = {
-    \ 'html': 1,
-    \ 'css': 1
-    \ }
+            \ 'html': 1,
+            \ 'css': 1
+            \ }
+"  }}}
