@@ -35,3 +35,6 @@ alias x='exit'
 function hcc() {
     gcc -m32 -fno-stack-protector -z execstack -mpreferred-stack-boundary=2 -g "$1" -o $( echo "$1" | cut -d. -f1 )
 }
+
+# easier opening
+alias o="xdg-open"
