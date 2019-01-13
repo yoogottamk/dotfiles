@@ -175,7 +175,7 @@ let g:user_emmet_install_global=0
 
 augroup emmet_enable
     autocmd!
-    autocmd FileType html,css  EmmetInstall
+    autocmd FileType html,css,php  EmmetInstall
 augroup end
 
 let g:user_emmet_leader_key=','
@@ -184,8 +184,4 @@ let g:user_emmet_leader_key=','
 
 "  YCM  {{{
 let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
-let g:ycm_filetype_blacklist = {
-            \ 'html': 1,
-            \ 'css': 1
-            \ }
 "  }}}
