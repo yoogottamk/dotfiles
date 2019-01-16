@@ -126,12 +126,9 @@ nnoremap <C-s> :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>x :x<CR>
 
-
-" Moves current line ine line below
-nnoremap - O<esc>cc<Esc>j
-
-" Moves current line one line above
-nnoremap _ o<esc>k
+" Useful
+nnoremap H ^
+nnoremap L $
 
 " C-d to delete line in insert mode
 inoremap <C-d> <esc>dda
@@ -147,11 +144,6 @@ nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
 nnoremap <leader>( viw<esc>a(<esc>bi)<esc>lel
 nnoremap <leader>[ viw<esc>a[<esc>bi]<esc>lel
-
-vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>l
-vnoremap <leader>' <esc>`<i'<esc>`>a'<esc>l
-vnoremap <leader>( <esc>`<i(<esc>`>a)<esc>l
-vnoremap <leader>[ <esc>`<i[<esc>`>a]<esc>l
 
 " }}}
 
