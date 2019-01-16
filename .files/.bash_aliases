@@ -38,3 +38,8 @@ function hcc() {
 
 # easier opening
 alias o="xdg-open"
+
+# what i always do anyways
+function cl() {
+    cd "$@" && ls
+}
