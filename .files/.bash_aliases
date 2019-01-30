@@ -43,3 +43,7 @@ alias o="xdg-open"
 function cl() {
     cd "$@" && ls
 }
+
+alias gdb="gdb -q"
+
+alias mx="chmod +x"
