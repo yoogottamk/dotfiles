@@ -17,6 +17,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
 Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()
 
@@ -130,6 +131,28 @@ nnoremap <leader>x :x<CR>
 nnoremap H ^
 nnoremap L $
 
+noremap <unique> <M-1> 1gt
+noremap <unique> <M-2> 2gt
+noremap <unique> <M-3> 3gt
+noremap <unique> <M-4> 4gt
+noremap <unique> <M-5> 5gt
+noremap <unique> <M-6> 6gt
+noremap <unique> <M-7> 7gt
+noremap <unique> <M-8> 8gt
+noremap <unique> <M-9> 9gt
+noremap <unique> <M-0> 10gt
+
+inoremap <unique> <M-1> <C-O>1gt
+inoremap <unique> <M-2> <C-O>2gt
+inoremap <unique> <M-3> <C-O>3gt
+inoremap <unique> <M-4> <C-O>4gt
+inoremap <unique> <M-5> <C-O>5gt
+inoremap <unique> <M-6> <C-O>6gt
+inoremap <unique> <M-7> <C-O>7gt
+inoremap <unique> <M-8> <C-O>8gt
+inoremap <unique> <M-9> <C-O>9gt
+inoremap <unique> <M-0> <C-O>10gt
+
 " C-d to delete line in insert mode
 inoremap <C-d> <esc>dda
 
@@ -139,11 +162,8 @@ nnoremap <leader>ev :vs ~/.vimrc<cr>
 " src .vimrc
 nnoremap <leader>sv :so ~/.vimrc<cr>
 
-" useful surrounds
-nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
-nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
-nnoremap <leader>( viw<esc>a(<esc>bi)<esc>lel
-nnoremap <leader>[ viw<esc>a[<esc>bi]<esc>lel
+" easier on code folding
+nnoremap <space><space> za
 
 " }}}
 
