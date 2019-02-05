@@ -94,7 +94,7 @@ let g:netrw_banner=0
 
 augroup nerdtree_clear
     autocmd!
-    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | bd | endif
 augroup end
 
 nnoremap <leader>nt :NERDTree<CR>
@@ -114,8 +114,8 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " for tab navigation
-nnoremap <leader>h gT
-nnoremap <leader>l gt
+nnoremap <leader>h :bp!<CR>
+nnoremap <leader>l :bn!<CR>
 
 nnoremap <leader>tq :tabclose<CR>
 
@@ -175,7 +175,6 @@ let g:ale_set_highlights=0
 "  AirLine stuff {{{
 
 let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#show_buffers=0
 let g:airline_powerline_fonts=1
 let g:airline#extensions#ale#enabled=1
 
@@ -197,3 +196,4 @@ let g:user_emmet_leader_key=','
 "  YCM  {{{
 let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
 "  }}}
+
