@@ -117,19 +117,19 @@ nnoremap <C-l> <C-w>l
 nnoremap <leader>h :bp!<CR>
 nnoremap <leader>l :bn!<CR>
 
-nnoremap <leader>tq :tabclose<CR>
-
 " for saving files normally
 inoremap <C-s> <Esc>:w<CR>a
 nnoremap <C-s> :w<CR>
 
 " for quitting faster
-nnoremap <leader>q :q<CR>
+nnoremap <leader>q :bd<CR>
 nnoremap <leader>x :x<CR>
 
 " Useful
 nnoremap H ^
 nnoremap L $
+
+nnoremap <F2> :ls<CR>:b
 
 noremap <unique> <M-1> 1gt
 noremap <unique> <M-2> 2gt
