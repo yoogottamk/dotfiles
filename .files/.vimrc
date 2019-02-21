@@ -18,6 +18,8 @@ Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
+Plugin 'SirVer/ultisnips'
+Plugin 'ervandew/supertab'
 
 call vundle#end()
 
@@ -50,16 +52,15 @@ set nobackup
 set noswapfile
 set nowb
 
-set autoindent
-set smartindent
+set ai si
 
-set expandtab
+set et
 set smarttab
-set shiftwidth=4
-set tabstop=4
+set sw=4
+set ts=4
 
-set hlsearch
-set incsearch
+set hls
+set is
 set ignorecase
 set smartcase
 
@@ -76,7 +77,7 @@ if has("gui_running")
     set bg=dark
     colo solarized
     set lines=999 columns=999
-    set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 14
+    set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 16
     let g:airline_theme='deus'
     let g:ale_set_highlights=1
     set cursorline
@@ -153,9 +154,6 @@ inoremap <unique> <M-8> <C-O>8gt
 inoremap <unique> <M-9> <C-O>9gt
 inoremap <unique> <M-0> <C-O>10gt
 
-" C-d to delete line in insert mode
-inoremap <C-d> <esc>dda
-
 " edit .vimrc
 nnoremap <leader>ev :vs ~/.vimrc<cr>
 
@@ -195,5 +193,20 @@ let g:user_emmet_leader_key=','
 
 "  YCM  {{{
 let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
+let g:ycm_enable_diagnostic_signs=0
+let g:ycm_enable_diagnostic_highlighting=0
 "  }}}
+
+" YCM + UltiSnips {{{
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" }}}
+
+" UltiSnips
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
