@@ -207,6 +207,8 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " }}}
 
-" UltiSnips
+" UltiSnips {{{
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
+let g:UltiSnipsEditSplit="vertical"
+" }}}
