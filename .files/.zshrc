@@ -102,8 +102,7 @@ source ~/.path_dirs
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-# mkdir and cd
-function mkcd() {
-    mkdir "$1" && cd "$1"
-}
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+eval "$(fasd --init auto)"
+

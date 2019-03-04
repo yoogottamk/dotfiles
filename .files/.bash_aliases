@@ -36,14 +36,19 @@ function hcc() {
     gcc -m32 -fno-stack-protector -z execstack -mpreferred-stack-boundary=2 -g "$1" -o $( echo "$1" | cut -d. -f1 )
 }
 
-# easier opening
-alias o="xdg-open"
-
 # what i always do anyways
 function cl() {
     cd "$@" && ls
 }
 
+function mkcd() {
+    mkdir "$1" && cd "$1"
+}
+
 alias gdb="gdb -q"
 
 alias mx="chmod +x"
+
+alias v='f -e vim'
+alias o='a -e xdg-open'
+
