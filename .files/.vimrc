@@ -132,28 +132,6 @@ nnoremap L $
 
 nnoremap <F2> :ls<CR>:b
 
-noremap <unique> <M-1> 1gt
-noremap <unique> <M-2> 2gt
-noremap <unique> <M-3> 3gt
-noremap <unique> <M-4> 4gt
-noremap <unique> <M-5> 5gt
-noremap <unique> <M-6> 6gt
-noremap <unique> <M-7> 7gt
-noremap <unique> <M-8> 8gt
-noremap <unique> <M-9> 9gt
-noremap <unique> <M-0> 10gt
-
-inoremap <unique> <M-1> <C-O>1gt
-inoremap <unique> <M-2> <C-O>2gt
-inoremap <unique> <M-3> <C-O>3gt
-inoremap <unique> <M-4> <C-O>4gt
-inoremap <unique> <M-5> <C-O>5gt
-inoremap <unique> <M-6> <C-O>6gt
-inoremap <unique> <M-7> <C-O>7gt
-inoremap <unique> <M-8> <C-O>8gt
-inoremap <unique> <M-9> <C-O>9gt
-inoremap <unique> <M-0> <C-O>10gt
-
 " edit .vimrc
 nnoremap <leader>ev :vs ~/.vimrc<cr>
 
@@ -195,6 +173,8 @@ let g:user_emmet_leader_key=','
 let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
 let g:ycm_enable_diagnostic_signs=0
 let g:ycm_enable_diagnostic_highlighting=0
+let g:ycm_server_python_interpreter='/usr/bin/python3'
+
 "  }}}
 
 " YCM + UltiSnips {{{
@@ -212,3 +192,8 @@ let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
 let g:UltiSnipsEditSplit="vertical"
 " }}}
+
+" My own commenter {{{
+so ~/.vim/bundle/vim-commenter/vim-commenter.vim
+" }}}
+

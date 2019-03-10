@@ -10,3 +10,6 @@ nnoremap <leader>c maI//  <esc>`a4l
 nnoremap <leader>u ma^4x`a4h
 
 let b:ale_linters=['gcc', 'clang']
+
+let b:comment_leader = "//"
+
