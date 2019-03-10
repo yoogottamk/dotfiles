@@ -133,3 +133,4 @@ for i in range(inp_count):
     os.system("rm .__in_file" + str(i))
     os.system("rm .__out_file" + str(i))
     os.system("rm .__out" + str(i))
+
