@@ -86,6 +86,9 @@ endif
 set noshowmode
 set showcmd
 
+set spr
+set sb
+
 "  }}}
 
 "  netrw
