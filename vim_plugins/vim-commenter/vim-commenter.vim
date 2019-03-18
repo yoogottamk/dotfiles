@@ -7,7 +7,13 @@ fu! s:ToggleComment()
     if l:line =~ '\s\?' . b:comment_leader
         " line is already commented
         let l:comment_index = stridx(l:line, b:comment_leader)
-        let l:indentation = l:line[0:l:comment_index - 1]
+
+        if l:comment_index == 0
+            let l:indentation = ''
+        else
+            let l:indentation = l:line[0:l:comment_index - 1]
+        endif
+
         let l:without_comment = l:line[l:comment_index + len(b:comment_leader):]
         call setline('.', l:indentation . trim(l:without_comment))
     else
