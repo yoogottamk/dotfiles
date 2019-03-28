@@ -16,10 +16,12 @@ Plugin 'scrooloose/NERDTree'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
-Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
+Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mattn/emmet-vim'
 
 call vundle#end()
 
@@ -89,10 +91,15 @@ set showcmd
 set spr
 set sb
 
+set viminfo='100,<1000,s100,h
+
 "  }}}
 
 "  netrw
 let g:netrw_banner=0
+
+" ale
+let g:ale_sign_error="▶"
 
 "  NERDTree {{{
 
@@ -121,13 +128,10 @@ nnoremap <C-l> <C-w>l
 nnoremap <leader>h :bp!<CR>
 nnoremap <leader>l :bn!<CR>
 
-" for saving files normally
-inoremap <C-s> <Esc>:w<CR>a
-nnoremap <C-s> :w<CR>
-
-" for quitting faster
+" for doing some things faster
 nnoremap <leader>q :bd<CR>
 nnoremap <leader>x :x<CR>
+nnoremap <leader>w :w<CR>
 
 " Useful
 nnoremap H ^
@@ -144,12 +148,21 @@ nnoremap <leader>sv :so ~/.vimrc<cr>
 " easier on code folding
 nnoremap <space><space> za
 
+inoremap <F8> <esc>:cd %:p:h<cr>
+nnoremap <F8> :cd %:p:h<cr>
+
+nnoremap <silent> <A-j> :m .+1<CR>==
+nnoremap <silent> <A-k> :m .-2<CR>==
+inoremap <silent> <A-j> <Esc>:m .+1<CR>==gi
+inoremap <silent> <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <silent> <A-j> :m '>+1<CR>gv=gv
+vnoremap <silent> <A-k> :m '<-2<CR>gv=gv
+
 " }}}
 
 "  custom
 set laststatus=2
 set shortmess+=I
-let g:ale_set_highlights=0
 
 "  AirLine stuff {{{
 
@@ -161,23 +174,27 @@ let g:airline#extensions#ale#enabled=1
 
 "  Emmet {{{
 
-let g:user_emmet_install_global=0
+let g:user_emmet_leader_key=','
+let g:user_emmet_install_global = 0
+
+let g:user_emmet_settings = {
+\  'javascript.jsx' : {
+\      'extends' : 'jsx',
+\  },
+\}
 
 augroup emmet_enable
     autocmd!
-    autocmd FileType html,css,php  EmmetInstall
+    autocmd FileType html,css,php,javascript.jsx  EmmetInstall
 augroup end
-
-let g:user_emmet_leader_key=','
 
 "  }}}
 
 "  YCM  {{{
 let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
-let g:ycm_enable_diagnostic_signs=0
-let g:ycm_enable_diagnostic_highlighting=0
+" let g:ycm_enable_diagnostic_signs=0
+" let g:ycm_enable_diagnostic_highlighting=0
 let g:ycm_server_python_interpreter='/usr/bin/python3'
-
 "  }}}
 
 " YCM + UltiSnips {{{
