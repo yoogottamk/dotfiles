@@ -22,6 +22,7 @@ Plugin 'ervandew/supertab'
 Plugin 'mxw/vim-jsx'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mattn/emmet-vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 call vundle#end()
 
@@ -93,6 +94,8 @@ set sb
 
 set viminfo='100,<1000,s100,h
 
+set cc=80
+
 "  }}}
 
 "  netrw
@@ -151,12 +154,12 @@ nnoremap <space><space> za
 inoremap <F8> <esc>:cd %:p:h<cr>
 nnoremap <F8> :cd %:p:h<cr>
 
-nnoremap <silent> <A-j> :m .+1<CR>==
-nnoremap <silent> <A-k> :m .-2<CR>==
+nnoremap <silent> + :m .+1<CR>==
+nnoremap <silent> - :m .-2<CR>==
 inoremap <silent> <A-j> <Esc>:m .+1<CR>==gi
 inoremap <silent> <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <silent> <A-j> :m '>+1<CR>gv=gv
-vnoremap <silent> <A-k> :m '<-2<CR>gv=gv
+vnoremap <silent> + :m '>+1<CR>gv=gv
+vnoremap <silent> - :m '<-2<CR>gv=gv
 
 " }}}
 
