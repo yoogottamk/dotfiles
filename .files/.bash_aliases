@@ -53,4 +53,4 @@ alias v='f -e vim'
 alias o='a -e xdg-open'
 
 alias xo='xdg-open'
-alias plz='sudo'
+

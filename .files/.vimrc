@@ -74,13 +74,13 @@ set background=dark
 set t_Co=256
 colo desert
 
-let g:airline_theme='cool'
+let g:airline_theme='dark'
 
 if has("gui_running")
     set bg=dark
     colo solarized
     set lines=999 columns=999
-    set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 16
+    set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 14
     let g:airline_theme='deus'
     let g:ale_set_highlights=1
     set cursorline
@@ -93,8 +93,6 @@ set spr
 set sb
 
 set viminfo='100,<1000,s100,h
-
-set cc=80
 
 "  }}}
 

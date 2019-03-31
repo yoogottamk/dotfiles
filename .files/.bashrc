@@ -137,7 +137,3 @@ source ~/.path_dirs
 export PATH="$PATH:$HOME/.rvm/bin"
 source ~/.rvm/scripts/rvm
 
-function mkcd() {
-    mkdir -p "$1"
-    cd "$1"
-}

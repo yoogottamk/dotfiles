@@ -106,3 +106,5 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 eval "$(fasd --init auto)"
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
+
