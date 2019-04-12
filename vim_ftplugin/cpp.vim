@@ -1,7 +1,7 @@
 nnoremap <F5> :w<CR>:vert bo term br %<CR>
 inoremap <F5> <Esc>:w<CR>:vert bo term br %<CR>
 
-nnoremap <leader>t ggdG:0r ~/.vim/skeleton/skel.cpp<CR>16jo
+nnoremap <leader>t ggdG:0r ~/.vim/skeleton/skel.cpp<CR>gg/main<CR>3j:noh<CR>o
 
 nnoremap <F9> :w<CR>:vert bo term cf % %:p<CR>
 inoremap <F9> <Esc>:w<CR>:vert bo term cf % %:p<CR>
