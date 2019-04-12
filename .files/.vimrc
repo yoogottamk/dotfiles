@@ -128,6 +128,8 @@ nnoremap <C-l> <C-w>l
 " for buffer navigation
 nnoremap <C-tab> :bn!<CR>
 nnoremap <C-S-tab> :bp!<CR>
+nnoremap <leader>l :bn!<CR>
+nnoremap <leader>h :bp!<CR>
 
 " for doing some things faster
 nnoremap <leader>q :bd<CR>
