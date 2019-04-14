@@ -1,0 +1,4 @@
+e asm.syntax=att
+e asm.cmt.right=true
+eco solarized
+e scr.utf8=true
