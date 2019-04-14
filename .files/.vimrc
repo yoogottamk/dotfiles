@@ -74,7 +74,7 @@ set background=dark
 set t_Co=256
 colo desert
 
-let g:airline_theme='dark'
+let g:airline_theme='solarized_flood'
 
 if has("gui_running")
     set bg=dark
