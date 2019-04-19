@@ -140,7 +140,7 @@ nnoremap <leader>w :w<CR>
 nnoremap H ^
 nnoremap L $
 
-nnoremap <F2> :ls<CR>:b
+nnoremap <F2> :ls<CR>:b 
 
 " edit .vimrc
 nnoremap <leader>ev :vs ~/.vimrc<cr>
