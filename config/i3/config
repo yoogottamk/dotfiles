@@ -176,14 +176,9 @@ exec /home/yog/Downloads/cerebro.AppImage
 font pango:Ubuntu 14
 
 # get volume controls
-# Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
-
-# Sreen brightness controls [ DOESNT WORK ]
-# bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-# bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # get media controls
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -191,8 +186,17 @@ bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+# control brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
 # locking
 bindsym $mod+Control+Shift+l exec i3lock_cool
 
 # set wallpaper
 exec feh --bg-fill ~/Pictures/img10.jpg
+
+# screenshot!
+bindsym --release Print exec scrot -s '/home/yog/Pictures/Screenshot_%d-%m-%Y_%H:%M:%S.png'
+bindsym --release Shift+Print exec scrot '/home/yog/Pictures/Screenshot_%d-%m-%Y_%H:%M:%S.png'
+
