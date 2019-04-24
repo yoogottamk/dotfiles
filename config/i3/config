@@ -200,3 +200,28 @@ exec feh --bg-fill ~/Pictures/img10.jpg
 bindsym --release Print exec scrot -s '/home/yog/Pictures/Screenshot_%d-%m-%Y_%H:%M:%S.png'
 bindsym --release Shift+Print exec scrot '/home/yog/Pictures/Screenshot_%d-%m-%Y_%H:%M:%S.png'
 
+# media control mode
+mode "media" {
+    # These bindings trigger as soon as you enter the media mode
+
+    bindsym space exec playerctl play-pause
+
+    bindsym Control+h exec playerctl previous
+    bindsym Control+Left exec playerctl previous
+
+    bindsym Control+l exec playerctl next
+    bindsym Control+Right exec playerctl next
+
+    bindsym Control+k exec --no-startup-id pactl -- set-sink-volume 0 +5%
+    bindsym Control+Up exec --no-startup-id pactl -- set-sink-volume 0 +5%
+
+    bindsym Control+j exec --no-startup-id pactl -- set-sink-volume 0 -5%
+    bindsym Control+Down exec --no-startup-id pactl -- set-sink-volume 0 -5%
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym Control+m mode "media"
+
