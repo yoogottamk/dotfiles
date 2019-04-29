@@ -117,6 +117,10 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+# move between workspaces
+bindsym $mod+Tab workspace next_on_output
+bindsym $mod+Shift+Tab workspace prev_on_output
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -158,8 +162,8 @@ bar {
 }
 
 # Natural scrolling!!
-exec synclient VertScrollDelta=-111
-exec synclient HorizScrollDelta=-111
+exec_always synclient VertScrollDelta=-111
+exec_always synclient HorizScrollDelta=-111
 
 # swap escape and capslock
 exec setxkbmap -option caps:swapescape -option keypad:pointerkeys
@@ -167,8 +171,11 @@ exec xkbset ma 60 10 10 5 2
 
 # guake!!
 exec guake
+
 # managing networks
 exec nm-applet
+exec blueman-applet
+
 # start cerebro
 exec /home/yog/Downloads/cerebro.AppImage
 
@@ -191,7 +198,8 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 # locking
-bindsym $mod+Control+Shift+l exec i3lock_cool
+bindsym $mod+Control+l exec i3lock_cool
+exec xautolock -time 15 -locker '~/bin/i3lock_cool' &
 
 # set wallpaper
 exec feh --bg-fill ~/Pictures/img10.jpg
@@ -223,5 +231,5 @@ mode "media" {
     bindsym Escape mode "default"
 }
 
-bindsym Control+m mode "media"
+bindsym $mod+Ctrl+m mode "media"
 
