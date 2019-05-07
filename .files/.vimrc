@@ -151,6 +151,9 @@ nnoremap <leader>sv :so ~/.vimrc<cr>
 " easier on code folding
 nnoremap <space><space> za
 
+" easier noh
+nnoremap <leader>n :noh<CR>
+
 inoremap <F8> <esc>:cd %:p:h<cr>
 nnoremap <F8> :cd %:p:h<cr>
 
