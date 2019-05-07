@@ -166,7 +166,7 @@ exec_always synclient VertScrollDelta=-111
 exec_always synclient HorizScrollDelta=-111
 
 # swap escape and capslock
-exec setxkbmap -option caps:swapescape -option keypad:pointerkeys
+exec_always setxkbmap -option caps:swapescape -option keypad:pointerkeys
 exec xkbset ma 60 10 10 5 2
 
 # guake!!

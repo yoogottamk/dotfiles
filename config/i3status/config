@@ -40,7 +40,8 @@ battery all {
         format = "%status %percentage(%remaining)"
         status_bat = "🔋"
         status_chr = "⚡"
-        status_full = "🔋"
+        status_full = "🙂"
+        status_unk = "🙃"
         integer_battery_capacity = true
         low_threshold = 20
 }
