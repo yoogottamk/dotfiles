@@ -10,23 +10,19 @@ alias gcb='git checkout -b'
 alias gcm='git checkout master'
 alias gcmsg='git commit -m'
 alias gd='git diff'
-alias gf='git fetch'
-alias gfo='git fetch origin'
 alias gl='git log'
 alias glo='git log --oneline --decorate'
 alias gm='git merge'
 alias gmom='git merge origin/master'
 alias gpom='git pull origin master'
-alias gp='git push'
 alias gr='git remote'
 alias gst='git status'
-alias gup='git checkout master; git fetch upstream; git merge upstream/master; git push origin master'
 
 # end git aliases
 
 alias tmux="tmux -u"
 alias i="sudo apt install"
-alias octave="octave --no-gui"
+alias octave="octave --no-gui -q"
 
 # easy way out
 alias x='exit'
