@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# 1 param => only build/compile/_ and run
+# 2 params => build/compile/_, run, input from file
+
+# arg1: path to file
+# arg2[?]: path to input file
+
+# languages: py, c, cpp, ...
+
+name="$( echo "$1" | rev | cut -d. -f2- | rev )"
+ext="$( echo "$1" | rev | cut -d. -f1 | rev )"
+
+case "$ext" in
+    c)
+        tool="gcc -Wall -lm"
+        file="$1"
+        out="$name"
+
+        comp="$tool $file -o $out"
+        $comp
+
+        cmd="$out"
+        ;;
+    cpp)
+        tool="g++ -Wall"
+        file="$1"
+        out="$name"
+
+        comp="$tool $file -o $out"
+        $comp
+
+        cmd="$out"
+        ;;
+    py)
+        tool="python3"
+        file="$1"
+
+        cmd="$tool $file"
+        ;;
+    *)
+        (>&2 echo "This script isn't supposed to handle these types of files")
+        exit 1
+
+        ;;
+esac
+
+[ ! -z "$2"  -a -f "$2" ] && cmd="$cmd < $2"
+
+eval "$cmd"
+
