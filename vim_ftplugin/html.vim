@@ -1,2 +1,3 @@
-imap <F5> <Esc>:w<cr>:!google-chrome % &<cr>
-nmap <F5> :w<cr>:!google-chrome % &<cr>
+inoremap <F5> <Esc>:w<cr>:!firefox % &<cr>
+nnoremap <F5> :w<cr>:!firefox % &<cr>
+
