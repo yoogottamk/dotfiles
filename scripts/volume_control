@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# When I connect to bluetooth headphones, the default audio device changes
+# So, the controls I set up in i3 don't work [since they default to device 0]
+# This script selects bluetooth headphone if present and increases it's volume
+#
+# The change in volume is passed as a parameter, if mute-toggle, 'm' is passed
+
+# if change in volume is not passed, quit
+[ -z "$1" ] && exit
+
+# if change in volume is not change in volume, quit
+regex='^[+-]\d+\%$'
+
+if ! [[ "$1" = "m" || "$( echo "$1" | grep -P "$regex" )" ]]; then
+    exit
+fi
+
+sink="$( pactl list sinks | grep "^\S" | cut -d'#' -f2 | tail -1 )"
+
+if [[ "$1" = "m" ]]; then
+    # toggle mute
+    pactl set-sink-mute "$sink" toggle
+else
+    # change volume
+    pactl set-sink-volume "$sink" "$1"
+fi
+
