@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# This script is used to display a progress bar
+# arg1: progress [finished]
+# arg2: total
+# arg3: char to represent finished
+# arg4: char to represent left
+
+[ "$#" -ne 4 ] && exit
+
+regex='^[0-9]+$'
+
+if ! [[ "$1" =~ $regex && "$2" =~ $regex ]]; then
+    exit
+fi
+
+finished="$1"
+total="$2"
+
+if (( finished > total )); then
+    finished="$total"
+fi
+
+# this normalizes total to 10 so that too many characters aren't displayed
+factor="$( echo "$total"'/10' | bc -l )"
+
+# rounding off finished
+finished="$( echo "$finished/$factor+0.5" | bc -l | awk '{ printf("%d", $1) }' )"
+left="$( echo "10-$finished" | bc )"
+
+output_done="$( perl -E "say '$3' x $finished" )"
+output_left="$( perl -E "say '$4' x $left" )"
+
+echo -n "${output_done}${output_left}"
+

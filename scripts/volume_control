@@ -26,3 +26,14 @@ else
     pactl set-sink-volume "$sink" "$1"
 fi
 
+current_volume="$( pactl list sinks | grep "^\sVolume:" | tail -1 | tr -d ' ' | cut -d'/' -f2 | cut -d'%' -f1 )"
+mute="$( pactl list sinks | grep "^\sMute:" | tail -1 | tr -d ' ' | cut -d':' -f2 )"
+
+msg_id="999999"
+
+if [[ "$current_volume" = 0 || "$mute" = "yes" ]]; then
+    notify-send.py -r "$msg_id" -a "Volume" -u low "Volume muted"
+else
+    notify-send.py -r "$msg_id" -a "Volume" -u low "${current_volume}%" "$( /home/yog/bin/make_progress_bar "$current_volume" 100 "⚫" "⚪" )"
+fi
+
