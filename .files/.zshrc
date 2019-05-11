@@ -103,7 +103,7 @@ source ~/.path_dirs
 export PATH="$PATH:$HOME/.rvm/bin"
 
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export VISUAL=gvim
+export VISUAL=vim
 export EDITOR=vim
 
 eval "$(fasd --init auto)"
