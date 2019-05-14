@@ -188,8 +188,8 @@ bar {
         inactive_workspace #586e75 #586e75 #002b36
         active_workspace   #586e75 #586e75 #002b36
 
-        statusline #839496
-        separator  #586e75
+        statusline #fdf6e3
+        separator  #fdf6e3
 
         urgent_workspace #dc322f #dc322f #fdf6e3
     }
