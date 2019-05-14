@@ -89,11 +89,14 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
+# focus the child container
+bindsym $mod+z focus child
 
 # focus the child container
 #bindsym $mod+d focus child
 
 set $w1 "1 "
+set $w2 "2 "
 set $w3 "3 "
 set $w4 "4 "
 set $w5 "5 "
@@ -101,7 +104,7 @@ set $w5 "5 "
 
 # switch to workspace
 bindsym $mod+1 workspace $w1
-bindsym $mod+2 workspace 2
+bindsym $mod+2 workspace $w2
 bindsym $mod+3 workspace $w3
 bindsym $mod+4 workspace $w4
 bindsym $mod+5 workspace $w5
@@ -113,7 +116,7 @@ bindsym $mod+0 workspace 10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $w1
-bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+2 move container to workspace $w2
 bindsym $mod+Shift+3 move container to workspace $w3
 bindsym $mod+Shift+4 move container to workspace $w4
 bindsym $mod+Shift+5 move container to workspace $w5
@@ -124,9 +127,15 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # open apps on default workspaces
+assign [class="Gvim"] workspace $w2
+
 assign [class="Firefox"] workspace $w3
-assign [class="Spotify"] workspace $w5
+
 assign [class="whatsapp-linux"] workspace $w4
+assign [class="TelegramDesktop"] workspace $w4
+assign [class="discord"] workspace $w4
+
+assign [class="Spotify"] workspace $w5
 
 # move between workspaces
 bindsym $mod+Tab workspace next_on_output
@@ -170,6 +179,20 @@ bindsym $mod+r mode "resize"
 bar {
     font pango:Droid Sans Mono for Powerline Regular 14
     status_command i3status
+
+    # inspired from solarized dark theme
+    colors {
+        background #073642
+
+        focused_workspace #002b36 #002b36 #2aa198
+        inactive_workspace #586e75 #586e75 #002b36
+        active_workspace   #586e75 #586e75 #002b36
+
+        statusline #839496
+        separator  #586e75
+
+        urgent_workspace #dc322f #dc322f #fdf6e3
+    }
 }
 
 # Natural scrolling!!
