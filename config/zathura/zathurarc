@@ -10,51 +10,47 @@ set scroll-page-aware true
 set font "Source Code Pro for Powerline 16"
 
 # zathurarc-dark
-set notification-error-bg       "#586e75" # base01
-set notification-error-fg       "#dc322f" # red
-set notification-warning-bg     "#586e75" # base01
-set notification-warning-fg     "#dc322f" # red
-set notification-bg             "#586e75" # base01
-set notification-fg             "#b58900" # yellow
+set notification-error-bg       "#586e75"
+set notification-error-fg       "#dc322f"
+set notification-warning-bg     "#586e75"
+set notification-warning-fg     "#dc322f"
+set notification-bg             "#002b36"
+set notification-fg             "#b58900"
 
-set completion-group-bg         "#002b36" # base03
-set completion-group-fg         "#839496" # base0
-set completion-bg               "#073642" # base02
-set completion-fg               "#93a1a1" # base1
-set completion-highlight-bg     "#586e75" # base01
-set completion-highlight-fg     "#eee8d5" # base2
+set completion-group-bg         "#002b36"
+set completion-group-fg         "#839496"
+set completion-bg               "#073642"
+set completion-fg               "#93a1a1"
+set completion-highlight-bg     "#586e75"
+set completion-highlight-fg     "#eee8d5"
 
 # Define the color in index mode
-set index-bg                    "#073642" # base02
-set index-fg                    "#93a1a1" # base1
-set index-active-bg             "#586e75" # base01
-set index-active-fg             "#eee8d5" # base2
+set index-bg                    "#073642"
+set index-fg                    "#93a1a1"
+set index-active-bg             "#586e75"
+set index-active-fg             "#eee8d5"
 
-set inputbar-bg                 "#586e75" # base01
-set inputbar-fg                 "#eee8d5" # base2
+set inputbar-bg                 "#002b36"
+set inputbar-fg                 "#eee8d5"
 
-set statusbar-bg                "#073642" # base02
-set statusbar-fg                "#93a1a1" # base1
+set statusbar-bg                "#073642"
+set statusbar-fg                "#93a1a1"
 
-set highlight-color             "#657b83" # base00
-set highlight-active-color      "#268bd2" # blue
+set highlight-color             "#657b83"
+set highlight-active-color      "#268bd2"
 
-set default-bg                  "#002b36" # base03
-set default-fg                  "#93a1a1" # base1
+set default-bg                  "#073642"
+set default-fg                  "#93a1a1"
 
 # Recolor book content's color
 set recolor                     true
-set recolor-lightcolor          "#073642" # base02
-set recolor-darkcolor           "#fdf6e3" # base3
+set recolor-lightcolor          "#002b36"
+set recolor-darkcolor           "#fdf6e3"
 
 # my maps
 
 # add a toggle so that can see actual colors if I want to
 map <C-i> recolor toggle
-
-# normal vim behaviour
-map h navigate previous
-map l navigate next
 
 # normal
 map <C-+> zoom in

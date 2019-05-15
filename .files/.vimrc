@@ -23,6 +23,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mattn/emmet-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'lervag/vimtex'
 
 call vundle#end()
 
@@ -217,6 +218,11 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
 let g:UltiSnipsEditSplit="vertical"
+" }}}
+
+" vimtex {{{
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
 " }}}
 
 " My own commenter {{{
