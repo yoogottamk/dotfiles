@@ -11,6 +11,12 @@
 name="$( echo "$1" | rev | cut -d. -f2- | rev )"
 ext="$( echo "$1" | rev | cut -d. -f1 | rev )"
 
+tools=()
+
+tools["py"]="python3"
+tools["sh"]="bash"
+tools["js"]="node"
+
 case "$ext" in
     c)
         tool="gcc -Wall -lm"
@@ -32,11 +38,20 @@ case "$ext" in
 
         cmd="$out"
         ;;
-    py)
-        tool="python3"
+    py|sh|js)
+        tool=${tools["$ext"]}
         file="$1"
 
         cmd="$tool $file"
+        ;;
+    kt)
+        tool="kotlinc -include-runtime"
+        file="$1"
+        out="$name.jar"
+
+        comp="$tool $file -d $out"
+        $comp
+        cmd="java -jar $out"
         ;;
     *)
         (>&2 echo "This script isn't supposed to handle these types of files")
