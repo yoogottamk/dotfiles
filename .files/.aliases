@@ -17,12 +17,11 @@ alias gmom='git merge origin/master'
 alias gpom='git pull origin master'
 alias gr='git remote'
 alias gst='git status'
+alias grev='gc HEAD --'
 
 # end git aliases
 
-alias tmux="tmux -u"
-alias i="sudo apt install"
-alias octave="octave --no-gui -q"
+alias octave="octave -q"
 
 # easy way out
 alias x='exit'
@@ -32,11 +31,6 @@ function hcc() {
     gcc -m32 -fno-stack-protector -z execstack -mpreferred-stack-boundary=2 -g "$1" -o $( echo "$1" | cut -d. -f1 )
 }
 
-# what i always do anyways
-function cl() {
-    cd "$@" && ls
-}
-
 function mkcd() {
     mkdir "$1" && cd "$1"
 }
@@ -44,9 +38,6 @@ function mkcd() {
 alias gdb="gdb -q"
 
 alias mx="chmod +x"
-
-alias v='f -e vim'
-alias o='a -e xdg-open'
 
 alias xo='xdg-open'
 
