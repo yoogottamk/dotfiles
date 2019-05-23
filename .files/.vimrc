@@ -22,7 +22,7 @@ Plugin 'ervandew/supertab'
 Plugin 'mxw/vim-jsx'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mattn/emmet-vim'
-Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'udalov/kotlin-vim'
 Plugin 'lervag/vimtex'
 
 call vundle#end()
@@ -81,7 +81,7 @@ if has("gui_running")
     set bg=dark
     colo solarized
     set lines=999 columns=999
-    set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 14
+    set guifont=Source\ Code\ Pro\ for\ Powerline\ 14
     let g:airline_theme='deus'
     let g:ale_set_highlights=1
     set cursorline
@@ -102,6 +102,11 @@ let g:netrw_banner=0
 
 " ale
 let g:ale_sign_error="▶"
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
+\   'html': ['prettier'],
+\}
 
 "  NERDTree {{{
 
@@ -228,4 +233,7 @@ let g:vimtex_view_method='zathura'
 " My own commenter {{{
 so ~/.vim/bundle/vim-commenter/vim-commenter.vim
 " }}}
+
+" idk why but seems necessary
+set ff=unix
 
