@@ -3,11 +3,9 @@
 #   Script for updating vim
 #   Gets the latest source code, builds it, installs it
 
-sudo apt remove --purge vim vim-runtime vim-gnome vim-tiny vim-gui-common -y
-sudo dpkg -r vim
-
 cd ~/vim
-yes | rm *.deb
+
+sudo make uninstall
 
 git pull && git fetch
 
@@ -15,11 +13,9 @@ cd src
 make distclean
 cd ..
 
-./configure --enable-multibyte --enable-perlinterp=dynamic --enable-rubyinterp=dynamic --with-ruby-command=/usr/bin/ruby --enable-pythoninterp=dynamic --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu --enable-python3interp --with-python3-config-dir=/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu --enable-luainterp --with-luajit --enable-cscope --enable-gui=gtk3 --with-features=huge --with-x --enable-fontset --enable-largefile --disable-netbeans --with-compiledby="yoogottamk" --enable-fail-if-missing
+./configure --with-x --enable-multibyte --enable-perlinterp=dynamic --enable-rubyinterp=dynamic --with-ruby-command=$(which ruby) --enable-pythoninterp=dynamic --with-python-config-dir=/usr/lib/python2.7/config --enable-python3interp=dynamic --with-python3-config-dir=/usr/lib/python3.7/config-3.7m-x86_64-linux-gnu --enable-luainterp=dynamic --with-luajit --enable-cscope --enable-gui=gtk3 --with-features=huge --enable-fontset --enable-largefile --disable-netbeans --with-compiledby="yoogottamk" --enable-fail-if-missing
 
 make
 
-sudo checkinstall
-
-sudo apt-mark hold vim
+sudo make install
 
