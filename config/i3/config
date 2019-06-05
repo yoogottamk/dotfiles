@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:Source Code Pro for Powerline 14
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -30,13 +30,13 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec "i3-sensible-terminal -e zsh -c \\"tmux -q has-session && exec tmux attach-session -d || exec tmux new-session -s term\\""
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start rofi
-bindsym $mod+d exec "rofi -combi-modi window,drun,run -show combi -modi combi -font 'Source Code Pro 16' -theme solarized"
+bindsym $mod+d exec "zsh -c \\"rofi -combi-modi window,drun,run -show combi -modi combi -font 'Source Code Pro 16' -theme solarized\\""
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -45,8 +45,8 @@ bindsym $mod+d exec "rofi -combi-modi window,drun,run -show combi -modi combi -f
 
 # change focus
 bindsym $mod+h focus left
-bindsym $mod+j focus up
-bindsym $mod+k focus down
+bindsym $mod+j focus down
+bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
@@ -95,6 +95,7 @@ bindsym $mod+z focus child
 # focus the child container
 #bindsym $mod+d focus child
 
+set $w0 "¯\_(ツ)_/¯"
 set $w1 "1 "
 set $w2 "2 "
 set $w3 "3 "
@@ -103,6 +104,7 @@ set $w5 "5 "
 
 
 # switch to workspace
+bindsym $mod+grave workspace $w0
 bindsym $mod+1 workspace $w1
 bindsym $mod+2 workspace $w2
 bindsym $mod+3 workspace $w3
@@ -115,6 +117,7 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
+bindsym $mod+Shift+grave move container to workspace $w0
 bindsym $mod+Shift+1 move container to workspace $w1
 bindsym $mod+Shift+2 move container to workspace $w2
 bindsym $mod+Shift+3 move container to workspace $w3
@@ -135,7 +138,7 @@ assign [class="whatsapp-linux"] workspace $w4
 assign [class="TelegramDesktop"] workspace $w4
 assign [class="discord"] workspace $w4
 
-assign [class="Spotify"] workspace $w5
+for_window [class="Spotify"] move to workspace $w5
 
 # move between workspaces
 bindsym $mod+Tab workspace next_on_output
@@ -177,7 +180,6 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    font pango:Droid Sans Mono for Powerline Regular 14
     status_command i3status
 
     # inspired from solarized dark theme
@@ -195,9 +197,7 @@ bar {
     }
 }
 
-# Natural scrolling!!
-exec_always synclient VertScrollDelta=-111
-exec_always synclient HorizScrollDelta=-111
+hide_edge_borders both
 
 # swap escape and capslock
 exec_always setxkbmap -option caps:swapescape -option keypad:pointerkeys
@@ -209,9 +209,6 @@ exec guake
 # managing networks
 exec nm-applet
 exec blueman-applet
-
-# font
-font pango:Ubuntu 14
 
 # get volume controls
 bindsym XF86AudioRaiseVolume exec volume_control '+5%'
@@ -225,8 +222,8 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # control brightness
-bindsym XF86MonBrightnessUp exec /home/yog/bin/brightness_control inc 5
-bindsym XF86MonBrightnessDown exec /home/yog/bin/brightness_control dec 5
+bindsym XF86MonBrightnessUp exec brightness_control inc 5
+bindsym XF86MonBrightnessDown exec brightness_control dec 5
 
 # locking
 bindsym $mod+Control+l exec i3lock_cool
@@ -245,17 +242,17 @@ mode "media" {
 
     bindsym space exec playerctl play-pause
 
-    bindsym Control+h exec playerctl previous
-    bindsym Control+Left exec playerctl previous
+    bindsym h exec playerctl previous
+    bindsym Left exec playerctl previous
 
-    bindsym Control+l exec playerctl next
-    bindsym Control+Right exec playerctl next
+    bindsym l exec playerctl next
+    bindsym Right exec playerctl next
 
-    bindsym Control+k exec volume_control '+5%'
-    bindsym Control+Up exec volume_control '+5%'
+    bindsym k exec volume_control '+5%'
+    bindsym Up exec volume_control '+5%'
 
-    bindsym Control+j exec volume_control '-5%'
-    bindsym Control+Down exec volume_control '-5%'
+    bindsym j exec volume_control '-5%'
+    bindsym Down exec volume_control '-5%'
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -265,5 +262,6 @@ mode "media" {
 bindsym $mod+Ctrl+m mode "media"
 
 # default floating window
-for_window [class="Blueman-manager" instance="blueman-manager"] float enable
+for_window [class="Blueman-manager"] float enable
+for_window [class="SimpleScreenRecorder"] float enable
 

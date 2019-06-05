@@ -41,3 +41,5 @@ alias mx="chmod +x"
 
 alias xo='xdg-open'
 
+alias so='source'
+

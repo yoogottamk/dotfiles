@@ -4,7 +4,9 @@
 URxvt*font:                             xft:Source Code Pro for Powerline:size=16:antialias=true
 URxvt*boldFont:                         xft:Source Code Pro:bold:size=16
 
-! URxvt*transparent:                      true
+URxvt*transparent:                      true
+URxvt*highlightSelection:               true
+URxvt*blurRadius:                       5
 URxvt*scrollBar:                        false
 URxvt*depth:                            24
 URxvt*borderless:                       1
