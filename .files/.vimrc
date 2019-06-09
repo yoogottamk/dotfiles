@@ -24,6 +24,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mattn/emmet-vim'
 Plugin 'udalov/kotlin-vim'
 Plugin 'lervag/vimtex'
+Plugin 'junegunn/fzf.vim'
 
 call vundle#end()
 
@@ -100,13 +101,14 @@ set viminfo='100,<1000,s100,h
 "  netrw
 let g:netrw_banner=0
 
-" ale
+" {{{ ale
 let g:ale_sign_error="▶"
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'css': ['prettier'],
 \   'html': ['prettier'],
 \}
+" }}}
 
 "  NERDTree {{{
 
@@ -146,7 +148,7 @@ nnoremap <leader>w :w<CR>
 nnoremap H ^
 nnoremap L $
 
-nnoremap <F2> :ls<CR>:b 
+nnoremap <F2> :Buffers<cr>
 
 " edit .vimrc
 nnoremap <leader>ev :vs ~/.vimrc<cr>
@@ -172,9 +174,10 @@ vnoremap <silent> - :m '<-2<CR>gv=gv
 
 " }}}
 
-"  custom
+" {{{ custom
 set laststatus=2
 set shortmess+=I
+" }}}
 
 "  AirLine stuff {{{
 
@@ -234,6 +237,6 @@ let g:vimtex_view_method='zathura'
 so ~/.vim/bundle/vim-commenter/vim-commenter.vim
 " }}}
 
-" idk why but seems necessary
-set ff=unix
-
+" {{{ fzf
+set rtp+=~/.fzf
+" }}}
