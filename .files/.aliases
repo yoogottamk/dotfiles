@@ -13,8 +13,7 @@ alias gd='git diff'
 alias gl='git log'
 alias glo='git log --oneline --decorate'
 alias gm='git merge'
-alias gmom='git merge origin/master'
-alias gpom='git pull origin master'
+alias gpo='git pull origin'
 alias gr='git remote'
 alias gst='git status'
 alias grev='gc HEAD --'
@@ -36,10 +35,25 @@ function mkcd() {
 }
 
 alias gdb="gdb -q"
-
 alias mx="chmod +x"
-
 alias xo='xdg-open'
 
 alias so='source'
+alias upa='source $HOME/.aliases'
+alias upp='source $HOME/.path_dirs'
 
+alias jd-gui='java -jar $HOME/misc/jd-gui/build/libs/jd-gui-1.6.1.jar'
+
+function gtkc() {
+    name="$1"
+    out="$( basename -s .c "$name" )"
+
+    gcc `pkg-config --cflags gtk+-3.0` -o "$out" "$name" `pkg-config --libs gtk+-3.0`
+}
+
+function gtkc++() {
+    name="$1"
+    out="$( basename -s .cpp "$name" )"
+
+    g++ "$name" -o "$out" `pkg-config gtkmm-3.0 --cflags --libs`
+}
