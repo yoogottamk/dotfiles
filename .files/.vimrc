@@ -19,12 +19,14 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
-Plugin 'mxw/vim-jsx'
-Plugin 'pangloss/vim-javascript'
 Plugin 'mattn/emmet-vim'
-Plugin 'udalov/kotlin-vim'
 Plugin 'lervag/vimtex'
 Plugin 'junegunn/fzf.vim'
+
+" language syntax
+Plugin 'udalov/kotlin-vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 call vundle#end()
 

@@ -230,7 +230,7 @@ bindsym $mod+Control+l exec i3lock_cool
 exec xautolock -time 15 -locker '~/bin/i3lock_cool' &
 
 # set wallpaper
-exec feh --bg-fill ~/Pictures/img10.jpg
+exec_always feh --bg-fill ~/Pictures/img18.jpg
 
 # screenshot!
 bindsym --release Print exec scrot -s '/home/yog/Pictures/Screenshot_%Y%m%d_%H%M%S.png'
