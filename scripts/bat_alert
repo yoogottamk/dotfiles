@@ -1,0 +1,12 @@
+#!/bin/bash
+
+bat_level="$( cat /sys/class/power_supply/BAT0/capacity )"
+bat_status="$( cat /sys/class/power_supply/BAT0/status )"
+
+if [[ "$bat_status" != "Charging" ]]; then
+    if (( bat_level < 10 )); then
+        dunstify -u critical -a "Alert" "Battery level critical [${bat_level}% remaining]"
+    elif (( bat_level < 15 )); then
+        dunstify -a "Alert" "Battery level critical [${bat_level}% remaining]"
+    fi
+fi
