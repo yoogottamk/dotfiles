@@ -11,4 +11,4 @@ export NVM_DIR="$HOME/.nvm"
 export QT_QPA_PLATFORMTHEME="gtk2"
 
 # start the transparency compositor
-xcompmgr -c &
+compton &

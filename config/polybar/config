@@ -16,14 +16,14 @@ width = 100%
 height = 35
 line-size = 4
 
-font-0 = Source Code Pro for Powerline:pixelsize=14
-font-1 = FontAwesome:pixelsize=14
-font-2 = EmojiOne:scale=7
+font-0 = Source Code Pro for Powerline:pixelsize=14;1
+font-1 = FontAwesome:pixelsize=14;1
+font-2 = EmojiOne:scale=7;1
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-module-margin = 1
+module-margin-right = 1
 
 wm-name = i3
 
@@ -31,14 +31,8 @@ wm-name = i3
 inherit = default-config/bar
 bottom = true
 
-modules-left = i3
-modules-right = pulseaudio wireless-network wired-network battery
-
-[bar/top]
-inherit = default-config/bar
-
-modules-left = cmus spotify
-modules-center = date
+modules-left = i3 cmus spotify
+modules-right = pulseaudio wireless-network wired-network battery date
 
 tray-position = right
 tray-background = ${colors.background}
@@ -163,7 +157,7 @@ inherit = default-config/player
 exec = cmus-polybar
 exec-if = pgrep -x cmus
 
-label = %output:0:50:...%
+label = %output:0:37:...%
 format = %{A1:cmus-polybar -p:}%{A} <label> %{A1:cmus-polybar -n:}%{A}
 click-left = cmus-polybar -u
 
@@ -173,26 +167,8 @@ inherit = default-config/player
 exec = spotify-polybar
 exec-if = pgrep -x spotify
 
-label = %output:0:50:...%
+label = %output:0:37:...%
 format = %{A1:spotify-polybar -p:}%{A} <label> %{A1:spotify-polybar -n:}%{A}
 click-left = spotify-polybar -u
-
-[module/cpu]
-type = internal/cpu
-interval = 0.5
-
-format = <label> <ramp-coreload>
-
-label = CPU %percentage%%
-
-ramp-coreload-spacing = 1
-ramp-coreload-0 = ▁
-ramp-coreload-1 = ▂
-ramp-coreload-2 = ▃
-ramp-coreload-3 = ▄
-ramp-coreload-4 = ▅
-ramp-coreload-5 = ▆
-ramp-coreload-6 = ▇
-ramp-coreload-7 = █
 
 ; vim:ft=dosini

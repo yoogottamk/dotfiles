@@ -20,7 +20,7 @@
 
     word_wrap = yes
     ignore_newline = no
-    geometry = "300x5-10+45"
+    geometry = "300x5-20+30"
     transparency = 0
 
     idle_threshold = 60
@@ -74,3 +74,4 @@
     foreground = "#ffffff"
     timeout = 0
 
+# vim:ft=dosini
