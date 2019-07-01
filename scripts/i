@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Script to easily install stuff
+# Usage: i <list of packages to install>
+#   options: -p,--pacman <package>: treat the package followed by the flag as a pacman package
+#            -a,--aur <package>: treat the package followed by the flag as an aur package
+
 # bash: exit code 0: cool, great [ not false ]
 # hence, the weird syntax with !
 
@@ -50,7 +55,7 @@ while (( $# > 0 )); do
                 elif (( ! $(onAUR "$1") )); then
                     aur_packages+=("$1")
                 else
-                    echo "$1 not found"
+                    (>&2 echo Package "$1 not found")
                 fi
             else
                 echo "$1 is already installed"
