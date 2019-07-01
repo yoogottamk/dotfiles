@@ -150,19 +150,17 @@ nnoremap <leader>w :w<CR>
 nnoremap H ^
 nnoremap L $
 
+" fzf
 nnoremap <F2> :Buffers<cr>
+nnoremap <leader>o :Files<cr>
 
 " edit .vimrc
 nnoremap <leader>ev :vs ~/.vimrc<cr>
-
 " src .vimrc
 nnoremap <leader>sv :so ~/.vimrc<cr>
 
 " easier on code folding
 nnoremap <space><space> za
-
-" easier noh
-nnoremap <leader>n :noh<CR>
 
 inoremap <F8> <esc>:cd %:p:h<cr>
 nnoremap <F8> :cd %:p:h<cr>
@@ -209,8 +207,6 @@ augroup end
 
 "  YCM  {{{
 let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
-" let g:ycm_enable_diagnostic_signs=0
-" let g:ycm_enable_diagnostic_highlighting=0
 let g:ycm_server_python_interpreter='/usr/bin/python3'
 "  }}}
 
