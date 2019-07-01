@@ -1,11 +1,11 @@
 [colors]
-background = #073642
+background = #cc073642
 foreground = #fdf6e3
 
 active-ws-fg = #2aa198
 active-ws-bg = #002b36
 inactive-ws-fg = #002b36
-inactive-ws-bg = #586e75
+inactive-ws-bg = #bb586e75
 mode-fg = #fdf6e3
 mode-bg = #dc322f
 
@@ -16,14 +16,16 @@ width = 100%
 height = 35
 line-size = 4
 
-font-0 = Source Code Pro for Powerline:pixelsize=14;1
-font-1 = FontAwesome:pixelsize=14;1
-font-2 = EmojiOne:scale=7;1
+font-0 = Source Code Pro for Powerline:pixelsize=14;0
+font-1 = FontAwesome:pixelsize=14;0
+font-2 = EmojiOne:scale=7;0
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
 module-margin = 1
+
+wm-name = i3
 
 [bar/bottom]
 inherit = default-config/bar
@@ -38,9 +40,15 @@ inherit = default-config/bar
 modules-left = cmus spotify
 modules-center = date
 
+tray-position = right
+tray-background = ${colors.background}
+tray-maxsize = 28
+
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
+
+strip-wsnumbers = true
 
 pin-workspace = true
 
@@ -70,28 +78,12 @@ label-visible-padding = 1
 type = internal/pulseaudio
 sink = bluez_sink.04_5D_4B_5E_F9_7D.a2dp_sink
 
-format-volume = <ramp-volume> <label-volume> <bar-volume>
+format-volume = <ramp-volume> <label-volume>
 
 label-muted = (muted)
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = #000
 
 [module/battery]
 type = internal/battery
@@ -160,30 +152,29 @@ time = %H:%M:%S
 
 label = %time% %date%
 
-[module/cmus]
+[default-config/player]
 type = custom/script
+format-underline = #2aa198
+interval = 1
+
+[module/cmus]
+inherit = default-config/player
 
 exec = cmus-polybar
 exec-if = pgrep -x cmus
 
+label = %output:0:50:...%
 format = %{A1:cmus-polybar -p:}%{A} <label> %{A1:cmus-polybar -n:}%{A}
-format-underline = #2aa198
-
-interval = 1
-
 click-left = cmus-polybar -u
 
 [module/spotify]
-type = custom/script
+inherit = default-config/player
 
 exec = spotify-polybar
 exec-if = pgrep -x spotify
 
+label = %output:0:50:...%
 format = %{A1:spotify-polybar -p:}%{A} <label> %{A1:spotify-polybar -n:}%{A}
-format-underline = #2aa198
-
-interval = 1
-
 click-left = spotify-polybar -u
 
 ; vim:ft=dosini
