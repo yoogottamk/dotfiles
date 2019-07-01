@@ -20,10 +20,10 @@
 
     word_wrap = yes
     ignore_newline = no
-    geometry = "300x5-30+20"
+    geometry = "300x5-10+45"
     transparency = 0
 
-    idle_threshold = 120
+    idle_threshold = 60
     monitor = 0
     follow = keyboard
     sticky_history = yes

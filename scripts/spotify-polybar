@@ -1,0 +1,56 @@
+#!/bin/bash
+
+dbus_dest="org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2"
+dbus_interface="org.freedesktop.DBus.Properties.Get"
+dbus_props_dest="org.mpris.MediaPlayer2.Player"
+
+spotify_playpause="org.mpris.MediaPlayer2.Player.PlayPause"
+spotify_next="org.mpris.MediaPlayer2.Player.Next"
+spotify_previous="org.mpris.MediaPlayer2.Player.Previous"
+
+function get_status() {
+    spotify_metadata="$( dbus-send --print-reply --dest=$dbus_dest "$dbus_interface" string:"$dbus_props_dest" string:"Metadata" )"
+    spotify_playback_status="$( dbus-send --print-reply --dest=$dbus_dest "$dbus_interface" string:"$dbus_props_dest" string:"PlaybackStatus" )"
+
+    play_pause="$( echo "$spotify_playback_status" | tail -1 | grep -Po '(?<=")[^"]+(?=")' )"
+
+    artist="$( echo "$spotify_metadata" | grep -A3 'xesam:artist' | tail -n +2 | grep -Po '(?<=")[^"]+(?=")' )"
+    title="$( echo "$spotify_metadata" | grep -A2 'xesam:title' | tail -n +2 | grep -Po '(?<=")[^"]+(?=")' )"
+
+    if [[ "$play_pause" == "Playing" ]]; then
+        icon=
+    else
+        icon=
+    fi
+
+    echo "$icon $artist: $title"
+}
+
+if [[ ! $( pgrep -x spotify ) ]]; then
+    (>&2 echo spotify is not running)
+    exit 1
+fi
+
+if (( $# == 0 )); then
+    get_status
+else
+    while (( $# != 0 )); do
+        case "$1" in
+            -u )
+                dbus-send --print-reply --dest=$dbus_dest "$spotify_playpause"
+                getStatus
+                shift ;;
+            -n )
+                dbus-send --print-reply --dest=$dbus_dest "$spotify_next"
+                getStatus
+                shift ;;
+            -p )
+                dbus-send --print-reply --dest=$dbus_dest "$spotify_previous"
+                getStatus
+                shift ;;
+            * )
+                (>&2 echo not yet implemented)
+                ;;
+        esac
+    done
+fi

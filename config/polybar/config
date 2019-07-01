@@ -1,0 +1,189 @@
+[colors]
+background = #073642
+foreground = #fdf6e3
+
+active-ws-fg = #2aa198
+active-ws-bg = #002b36
+inactive-ws-fg = #002b36
+inactive-ws-bg = #586e75
+mode-fg = #fdf6e3
+mode-bg = #dc322f
+
+border = #073642
+
+[default-config/bar]
+width = 100%
+height = 35
+line-size = 4
+
+font-0 = Source Code Pro for Powerline:pixelsize=14;1
+font-1 = FontAwesome:pixelsize=14;1
+font-2 = EmojiOne:scale=7;1
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+module-margin = 1
+
+[bar/bottom]
+inherit = default-config/bar
+bottom = true
+
+modules-left = i3
+modules-right = pulseaudio wireless-network wired-network battery
+
+[bar/top]
+inherit = default-config/bar
+
+modules-left = cmus spotify
+modules-center = date
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+
+pin-workspace = true
+
+label-focused = %name%
+label-focused-background = ${colors.active-ws-bg}
+label-focused-foreground = ${colors.active-ws-fg}
+label-focused-padding = 1
+label-focused-underline = ${colors.active-ws-fg}
+
+label-unfocused = %name%
+label-unfocused-background = ${colors.inactive-ws-bg}
+label-unfocused-foreground = ${colors.inactive-ws-fg}
+label-unfocused-padding = 1
+
+label-urgent = %name%
+label-urgent-background = ${colors.mode-bg}
+label-urgent-foreground = ${colors.mode-fg}
+label-urgent-padding = 1
+
+label-mode-background = ${colors.mode-bg}
+label-mode-foreground = ${colors.mode-fg}
+label-mode-padding = 1
+
+label-visible-padding = 1
+
+[module/pulseaudio]
+type = internal/pulseaudio
+sink = bluez_sink.04_5D_4B_5E_F9_7D.a2dp_sink
+
+format-volume = <ramp-volume> <label-volume> <bar-volume>
+
+label-muted = (muted)
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = #000
+
+[module/battery]
+type = internal/battery
+full-at = 99
+
+battery = BAT0
+adapter = ADP1
+
+time-format = %H:%M
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+label-charging = %percentage%% (%time%)
+label-discharging = %percentage%% (%time%)
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+[default-config/network]
+type = internal/network
+format-disconnected =
+format-connected-underline = #2aa198
+
+[module/wireless-network]
+inherit = default-config/network
+interface = wlo1
+
+format-connected = <ramp-signal> <label-connected>
+
+label-connected = %{A1:nm-connection-editor:}%essid% :%downspeed%%{A}
+
+ramp-signal-0 = 😱
+ramp-signal-1 = 😞
+ramp-signal-2 = 😒
+ramp-signal-3 = 😊
+ramp-signal-4 = 😃
+ramp-signal-5 = 😈
+
+[module/wired-network]
+inherit = default-config/network
+interface = eno1
+
+format-connected = <label-connected>
+
+label-connected = %{A1:nm-connection-editor:}%ifname% :%downspeed%%{A}
+
+[module/date]
+type = internal/date
+interval = 1
+
+format = <label>
+
+date = %d/%m/%Y
+time = %H:%M:%S
+
+label = %time% %date%
+
+[module/cmus]
+type = custom/script
+
+exec = cmus-polybar
+exec-if = pgrep -x cmus
+
+format = %{A1:cmus-polybar -p:}%{A} <label> %{A1:cmus-polybar -n:}%{A}
+format-underline = #2aa198
+
+interval = 1
+
+click-left = cmus-polybar -u
+
+[module/spotify]
+type = custom/script
+
+exec = spotify-polybar
+exec-if = pgrep -x spotify
+
+format = %{A1:spotify-polybar -p:}%{A} <label> %{A1:spotify-polybar -n:}%{A}
+format-underline = #2aa198
+
+interval = 1
+
+click-left = spotify-polybar -u
+
+; vim:ft=dosini

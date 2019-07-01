@@ -1,0 +1,47 @@
+#!/bin/bash
+
+function getStatus() {
+    cmus_status="$( cmus-remote -C status )"
+
+    play_pause="$( echo "$cmus_status" | head -1 | cut -d' ' -f2 )"
+
+    artist="$( echo "$cmus_status" | grep '^tag artist' | sed 's/tag artist //' )"
+    title="$( echo "$cmus_status" | grep '^tag title' | sed 's/tag title //' )"
+
+    if [[ "$play_pause" ==  "playing" ]]; then
+        icon=
+    else
+        icon=
+    fi
+
+    echo "$icon $artist: $title"
+}
+
+if [[ ! $( pgrep -x cmus ) ]]; then
+    (>&2 echo cmus is not running)
+    exit 1
+fi
+
+if (( $# == 0 )); then
+    getStatus
+else
+    while (( $# != 0 )); do
+        case "$1" in
+            -u )
+                cmus-remote -u
+                getStatus
+                shift ;;
+            -n )
+                cmus-remote -n
+                getStatus
+                shift ;;
+            -p )
+                cmus-remote -r
+                getStatus
+                shift ;;
+            * )
+                (>&2 echo not yet implemented)
+                ;;
+        esac
+    done
+fi

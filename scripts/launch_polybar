@@ -1,0 +1,6 @@
+#!/bin/bash
+
+killall polybar
+
+polybar top --reload &
+polybar bottom --reload &
