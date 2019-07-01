@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function getStatus() {
+function get_status() {
     cmus_status="$( cmus-remote -C status )"
 
     play_pause="$( echo "$cmus_status" | head -1 | cut -d' ' -f2 )"
@@ -23,21 +23,21 @@ if [[ ! $( pgrep -x cmus ) ]]; then
 fi
 
 if (( $# == 0 )); then
-    getStatus
+    get_status
 else
     while (( $# != 0 )); do
         case "$1" in
             -u )
                 cmus-remote -u
-                getStatus
+                get_status
                 shift ;;
             -n )
                 cmus-remote -n
-                getStatus
+                get_status
                 shift ;;
             -p )
                 cmus-remote -r
-                getStatus
+                get_status
                 shift ;;
             * )
                 (>&2 echo not yet implemented)

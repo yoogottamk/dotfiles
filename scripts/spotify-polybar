@@ -38,15 +38,15 @@ else
         case "$1" in
             -u )
                 dbus-send --print-reply --dest=$dbus_dest "$spotify_playpause"
-                getStatus
+                get_status
                 shift ;;
             -n )
                 dbus-send --print-reply --dest=$dbus_dest "$spotify_next"
-                getStatus
+                get_status
                 shift ;;
             -p )
                 dbus-send --print-reply --dest=$dbus_dest "$spotify_previous"
-                getStatus
+                get_status
                 shift ;;
             * )
                 (>&2 echo not yet implemented)
