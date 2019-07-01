@@ -5,8 +5,8 @@ bat_status="$( cat /sys/class/power_supply/BAT0/status )"
 
 if [[ "$bat_status" != "Charging" ]]; then
     if (( bat_level < 10 )); then
-        dunstify -u critical -a "Alert" "Battery level critical [${bat_level}% remaining]"
+        i3-nagbar -m "Battery level critical [${bat_level}% remaining]" -f "pango:Source Code Pro for Powerline 14"
     elif (( bat_level < 15 )); then
-        dunstify -a "Alert" "Battery level critical [${bat_level}% remaining]"
+        i3-nagbar -m "Battery level critical [${bat_level}% remaining]" -t warning -f "pango:Source Code Pro for Powerline 14"
     fi
 fi
