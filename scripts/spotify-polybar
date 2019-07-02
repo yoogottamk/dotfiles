@@ -1,6 +1,7 @@
 #!/bin/bash
 
-dbus_dest="org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2"
+dbus_bus_name="org.mpris.MediaPlayer2.spotify"
+dbus_object_path="/org/mpris/MediaPlayer2"
 dbus_interface="org.freedesktop.DBus.Properties.Get"
 dbus_props_dest="org.mpris.MediaPlayer2.Player"
 
@@ -9,8 +10,8 @@ spotify_next="org.mpris.MediaPlayer2.Player.Next"
 spotify_previous="org.mpris.MediaPlayer2.Player.Previous"
 
 function get_status() {
-    spotify_metadata="$( dbus-send --print-reply --dest=$dbus_dest "$dbus_interface" string:"$dbus_props_dest" string:"Metadata" )"
-    spotify_playback_status="$( dbus-send --print-reply --dest=$dbus_dest "$dbus_interface" string:"$dbus_props_dest" string:"PlaybackStatus" )"
+    spotify_metadata="$( dbus-send --print-reply --dest="$dbus_bus_name" "$dbus_object_path" "$dbus_interface" string:"$dbus_props_dest" string:"Metadata" )"
+    spotify_playback_status="$( dbus-send --print-reply --dest="$dbus_bus_name" "$dbus_object_path" "$dbus_interface" string:"$dbus_props_dest" string:"PlaybackStatus" )"
 
     play_pause="$( echo "$spotify_playback_status" | tail -1 | grep -Po '(?<=")[^"]+(?=")' )"
 
@@ -26,6 +27,10 @@ function get_status() {
     echo "$icon $artist: $title"
 }
 
+function spotify_control() {
+    dbus-send --print-reply --dest="$dbus_bus_name" "$dbus_object_path" "$1"
+}
+
 if [[ ! $( pgrep -x spotify ) ]]; then
     (>&2 echo spotify is not running)
     exit 1
@@ -37,15 +42,15 @@ else
     while (( $# != 0 )); do
         case "$1" in
             -u )
-                dbus-send --print-reply --dest=$dbus_dest "$spotify_playpause"
+                spotify_control "$spotify_playpause"
                 get_status
                 shift ;;
             -n )
-                dbus-send --print-reply --dest=$dbus_dest "$spotify_next"
+                spotify_control "$spotify_next"
                 get_status
                 shift ;;
             -p )
-                dbus-send --print-reply --dest=$dbus_dest "$spotify_previous"
+                spotify_control "$spotify_previous"
                 get_status
                 shift ;;
             * )
