@@ -95,7 +95,7 @@ bindsym $mod+z focus child
 # focus the child container
 #bindsym $mod+d focus child
 
-set $w0 "0"
+set $w0 "0: "
 set $w1 "1: "
 set $w2 "2: "
 set $w3 "3: "

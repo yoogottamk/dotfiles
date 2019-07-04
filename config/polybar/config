@@ -91,12 +91,16 @@ adapter = ADP1
 time-format = %H:%M
 
 format-charging = <animation-charging> <label-charging>
-format-discharging = <ramp-capacity> <label-discharging>
+label-charging = %percentage%% (%time%)
 format-charging-underline = #859900
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%% (%time%)
 format-discharging-underline = #cb4b16
 
-label-charging = %percentage%% (%time%)
-label-discharging = %percentage%% (%time%)
+format-full =  <label-full>
+label-full = %percentage%%
+format-full-underline = #859900
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 

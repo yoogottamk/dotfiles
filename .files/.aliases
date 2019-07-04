@@ -1,5 +1,4 @@
 # begin git aliases
-
 alias g=git
 alias ga='git add'
 alias gb='git branch'
@@ -17,10 +16,11 @@ alias gpo='git pull origin'
 alias gr='git remote'
 alias gst='git status'
 alias grev='gc HEAD --'
-
 # end git aliases
 
+# quiet!
 alias octave="octave -q"
+alias gdb="gdb -q"
 
 # easy way out
 alias x='exit'
@@ -34,7 +34,6 @@ function mkcd() {
     mkdir "$1" && cd "$1"
 }
 
-alias gdb="gdb -q"
 alias mx="chmod +x"
 alias xo='xdg-open'
 
@@ -43,6 +42,7 @@ alias upa='source $HOME/.aliases'
 alias upp='source $HOME/.path_dirs'
 
 alias jd-gui='java -jar $HOME/misc/jd-gui/build/libs/jd-gui-1.6.1.jar'
+alias stegsolve='java -jar $HOME/bin/stegsolve.jar'
 
 function gtkc() {
     name="$1"
