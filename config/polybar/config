@@ -9,8 +9,6 @@ inactive-ws-bg = #bb586e75
 mode-fg = #fdf6e3
 mode-bg = #dc322f
 
-border = #073642
-
 [default-config/bar]
 width = 100%
 height = 35
@@ -83,7 +81,7 @@ ramp-volume-2 = 
 
 [module/battery]
 type = internal/battery
-full-at = 99
+full-at = 98
 
 battery = BAT0
 adapter = ADP1

@@ -52,8 +52,8 @@
     color = "#000000"
 
 [shortcuts]
-    close = mod4+m
-    close_all = mod4+shift+m
+    close = mod4+x
+    close_all = mod4+shift+x
     history = mod4+n
 
     # context menu
