@@ -20,7 +20,7 @@
 
     word_wrap = yes
     ignore_newline = no
-    geometry = "300x5-20+30"
+    geometry = "400x5-20+30"
     transparency = 0
 
     idle_threshold = 60
@@ -46,6 +46,9 @@
     dmenu = /usr/bin/dmenu -p dunst:
 
     browser = /usr/bin/firefox -new-tab
+
+    icon_position = left
+    max_icon_size = 100
 
 [frame]
     width = 0
