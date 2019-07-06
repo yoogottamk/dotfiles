@@ -139,7 +139,7 @@ interface = eno1
 
 format-connected = <label-connected>
 
-label-connected = %{A1:nm-connection-editor:}%local_ip% :%downspeed%%{A}
+label-connected = %{A1:nm-connection-editor:}%ifname%: %local_ip% :%downspeed%%{A}
 
 [module/date]
 type = internal/date

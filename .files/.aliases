@@ -57,3 +57,5 @@ function gtkc++() {
 
     g++ "$name" -o "$out" `pkg-config gtkmm-3.0 --cflags --libs`
 }
+
+alias mirror='ffplay -f video4linux2 -i /dev/video0 -video_size 640x480 -fflags nobuffer'
