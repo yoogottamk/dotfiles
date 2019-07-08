@@ -148,10 +148,12 @@ interval = 1
 format = <label>
 format-underline = #b58900
 
-date = %d/%m/%Y
+date = 
+date-alt = %d/%m/%Y
 time = %H:%M:%S
+time-alt = "%H:%M:%S "
 
-label = %time% %date%
+label = %time%%date%
 
 [default-config/player]
 type = custom/script
@@ -171,11 +173,15 @@ click-left = cmus-polybar -u
 [module/spotify]
 inherit = default-config/player
 
-exec = spotify-polybar
+exec = spotifyc -f "{{ icon }} {{ artist }}: {{ title }}" -i "" "" -o
 exec-if = pgrep -x spotify
 
 label = %output:0:37:...%
-format = %{A1:spotify-polybar -p:}%{A} <label> %{A1:spotify-polybar -n:}%{A}
-click-left = spotify-polybar -u
+format = %{A1:spotifyc -p:}%{A} <label> %{A1:spotifyc -n:}%{A}
+
+click-left = spotifyc -c
+click-right = spotifyc -v t
+scroll-up = spotifyc -v '-5'
+scroll-down = spotifyc -v '+5'
 
 ; vim:ft=dosini
