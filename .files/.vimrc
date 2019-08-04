@@ -100,8 +100,9 @@ set viminfo='100,<1000,s100,h
 
 "  }}}
 
-"  netrw
+"  netrw {{{
 let g:netrw_banner=0
+" }}}
 
 " {{{ ale
 let g:ale_sign_error="▶"
@@ -238,3 +239,16 @@ so ~/.vim/bundle/vim-commenter/vim-commenter.vim
 " {{{ fzf
 set rtp+=~/.fzf
 " }}}
+
+" {{{ jump to the last known location
+augroup vimStartup
+    au!
+
+    autocmd BufReadPost *
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+      \ |   exe "normal! g`\""
+      \ | endif
+augroup END
+" }}}
+
+tnoremap <Esc> <C-\><C-n>
