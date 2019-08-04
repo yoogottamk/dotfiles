@@ -5,14 +5,14 @@ killall i3-nagbar
 bat_level="$( cat /sys/class/power_supply/BAT0/capacity )"
 bat_status="$( cat /sys/class/power_supply/BAT0/status )"
 
-if [[ "$bat_status" != "Charging" ]]; then
+if [[ "$bat_status" == "Discharging" ]]; then
     if (( bat_level <= 10 )); then
         i3-nagbar -m "Battery level critical [${bat_level}% remaining]" -f "pango:Source Code Pro for Powerline 14"
     elif (( bat_level <= 15 )); then
         i3-nagbar -m "Battery level critical [${bat_level}% remaining]" -t warning -f "pango:Source Code Pro for Powerline 14"
     fi
-elif [[ "$bat_status" == "Charging" ]]; then
-    if (( bat_level >= 98 )); then
+elif [[ "$bat_status" == "Charging"  || "$bat_status" == "Full" ]]; then
+    if (( bat_level >= 99 )); then
         i3-nagbar -m "Save electricity, unplug your charger" -t warning -f "pango:Source Code Pro for Powerline 14"
     fi
 fi
