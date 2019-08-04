@@ -105,9 +105,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-EDITOR=vim
-VISUAL=vim
-
 # load aliases
 source ~/.aliases
 
