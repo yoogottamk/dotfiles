@@ -84,7 +84,7 @@ if has("gui_running")
     set bg=dark
     colo solarized
     set lines=999 columns=999
-    set guifont=Source\ Code\ Pro\ for\ Powerline\ 14
+    set guifont=Inconsolata\ for\ Powerline\ 16
     let g:airline_theme='deus'
     let g:ale_set_highlights=1
     set cursorline
@@ -105,7 +105,7 @@ let g:netrw_banner=0
 " }}}
 
 " {{{ ale
-let g:ale_sign_error="▶"
+let g:ale_sign_error=">>"
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'css': ['prettier'],
@@ -173,6 +173,7 @@ inoremap <silent> <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <silent> + :m '>+1<CR>gv=gv
 vnoremap <silent> - :m '<-2<CR>gv=gv
 
+tnoremap <Esc> <C-\><C-n>
 " }}}
 
 " {{{ custom
@@ -250,5 +251,3 @@ augroup vimStartup
       \ | endif
 augroup END
 " }}}
-
-tnoremap <Esc> <C-\><C-n>
