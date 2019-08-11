@@ -22,9 +22,6 @@ alias grev='gc HEAD --'
 alias octave="octave -q"
 alias gdb="gdb -q"
 
-# easy way out
-alias x='exit'
-
 # for testing
 function hcc() {
     gcc -m32 -fno-stack-protector -z execstack -mpreferred-stack-boundary=2 -g "$1" -o $( echo "$1" | cut -d. -f1 )
@@ -59,3 +56,6 @@ function gtkc++() {
 }
 
 alias mirror='ffplay -f video4linux2 -i /dev/video0 -video_size 640x480 -fflags nobuffer'
+
+# better ssh sessions
+alias ssh='TERM=xterm-256color ssh'

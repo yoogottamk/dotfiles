@@ -251,3 +251,11 @@ augroup vimStartup
       \ | endif
 augroup END
 " }}}
+
+" {{{ vim pretty display md
+augroup md
+    au!
+
+    autocmd BufReadPre *.md setlocal conceallevel=2
+augroup end
+" }}}
