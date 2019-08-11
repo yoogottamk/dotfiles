@@ -34,7 +34,6 @@ msg_id="999999"
 if [[ "$current_volume" = 0 || "$mute" = "yes" ]]; then
     dunstify -r "$msg_id" -a "Volume" -u low "Volume muted"
 else
-    dunstify -r "$msg_id" -a "Volume" -u low "${current_volume}%
-    " "$( /home/yog/bin/make_progress_bar "$current_volume" 100 "⚫" "⚪" )"
+    dunstify -r "$msg_id" -a "Volume" -u low "${current_volume}%" "$( /home/yog/bin/make_progress_bar "$current_volume" 100 "⚫" "⚪" )"
 fi
 

@@ -39,6 +39,4 @@ percentage="$( echo "$new_brightness*100/$max_brightness" | bc )"
 echo "$new_brightness" > /sys/class/backlight/intel_backlight/brightness
 
 msg_id="999998"
-dunstify -r "$msg_id" -a "Brightness" -u low "${percentage}%
- " "$( /home/yog/bin/make_progress_bar "$new_brightness" "$max_brightness" "⚫" "⚪" )"
-
+dunstify -r "$msg_id" -a "Brightness" -u low "${percentage}%" "$( /home/yog/bin/make_progress_bar "$new_brightness" "$max_brightness" "⚫" "⚪" )"
