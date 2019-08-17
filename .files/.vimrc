@@ -3,7 +3,7 @@
 set nocp
 
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=/home/yog/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 
@@ -129,6 +129,7 @@ nnoremap <leader>nt :NERDTree<CR>
 " for spellings
 nnoremap <F6> :setlocal spell spelllang=en<CR>
 nnoremap <F7> :set nospell<CR>
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " for split navigation
 nnoremap <C-j> <C-w>j
@@ -150,6 +151,7 @@ nnoremap <leader>w :w<CR>
 " Useful
 nnoremap H ^
 nnoremap L $
+nnoremap <leader><space> :noh<cr>
 
 " fzf
 nnoremap <F2> :Buffers<cr>
@@ -166,10 +168,9 @@ nnoremap <space><space> za
 inoremap <F8> <esc>:cd %:p:h<cr>
 nnoremap <F8> :cd %:p:h<cr>
 
+" move (selected) line(s) up or down
 nnoremap <silent> + :m .+1<CR>==
 nnoremap <silent> - :m .-2<CR>==
-inoremap <silent> <A-j> <Esc>:m .+1<CR>==gi
-inoremap <silent> <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <silent> + :m '>+1<CR>gv=gv
 vnoremap <silent> - :m '<-2<CR>gv=gv
 
@@ -234,7 +235,7 @@ let g:vimtex_view_method='zathura'
 " }}}
 
 " My own commenter {{{
-so ~/.vim/bundle/vim-commenter/vim-commenter.vim
+so /home/yog/.vim/bundle/vim-commenter/vim-commenter.vim
 " }}}
 
 " {{{ fzf
