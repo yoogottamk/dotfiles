@@ -7,7 +7,7 @@ set incremental-search true
 
 set scroll-page-aware true
 
-set font "Source Code Pro for Powerline 16"
+set font "Inconsolata 16"
 
 # zathurarc-dark
 set notification-error-bg       "#586e75"
@@ -48,9 +48,6 @@ set recolor-lightcolor          "#002b36"
 set recolor-darkcolor           "#fdf6e3"
 
 # my maps
-
-# add a toggle so that can see actual colors if I want to
-map <C-i> recolor toggle
 
 # normal
 map <C-+> zoom in

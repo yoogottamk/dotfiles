@@ -19,7 +19,7 @@
     lightfg:                     rgba ( 88, 104, 117, 100% );
     selected-normal-background:  rgba ( 0, 54, 66, 100% );
     border-color:                @foreground;
-    spacing:                     2;
+    spacing:                     10;
     separatorcolor:              rgba ( 0, 54, 66, 100% );
     urgent-background:           rgba ( 0, 43, 55, 100% );
     selected-urgent-background:  rgba ( 0, 54, 66, 100% );
@@ -39,9 +39,9 @@
     padding: 0;
 }
 #message {
-    border:       0px dash 0px 0px ;
+    border:       3;
     border-color: @separatorcolor;
-    padding:      1px ;
+    padding:      10;
 }
 #textbox {
     text-color: @foreground;
@@ -127,3 +127,5 @@
     margin:     0px 0.3em 0em 0em ;
     text-color: @normal-foreground;
 }
+
+/* vim: ft=css
