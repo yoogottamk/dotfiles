@@ -55,7 +55,6 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -188,7 +187,7 @@ bindsym XF86MonBrightnessDown exec brightness_control dec 5
 
 # locking
 bindsym $mod+Control+l exec i3lock_cool
-exec xautolock -time 15 -locker '~/bin/i3lock_cool' &
+exec xautolock -time 15 -locker '~/bin/i3lock_cool' -detectsleep &
 
 # set wallpaper
 exec_always feh --bg-fill ~/Pictures/img20.jpg
@@ -196,6 +195,9 @@ exec_always feh --bg-fill ~/Pictures/img20.jpg
 # screenshot!
 bindsym --release Print exec scrot -s $home'/Pictures/Screenshot_%Y%m%d_%H%M%S.png'
 bindsym --release Shift+Print exec scrot $home'/Pictures/Screenshot_%Y%m%d_%H%M%S.png'
+
+# todo
+bindsym $mod+s exec todo
 
 bindsym $mod+m mode "media"
 bindsym $mod+c mode "config"
