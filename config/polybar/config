@@ -15,7 +15,7 @@ height = 35
 line-size = 4
 monitor = ${env:MONITOR:}
 
-font-0 = Source Code Pro for Powerline:pixelsize=14;1
+font-0 = Inconsolata:pixelsize=16;1
 font-1 = FontAwesome:pixelsize=14;1
 font-2 = EmojiOne:scale=7;1
 
@@ -149,12 +149,12 @@ interval = 1
 format = <label>
 format-underline = #b58900
 
-date = 
-date-alt = %d/%m/%Y
+date =
+date-alt = "%d/%m/%Y "
 time = %H:%M:%S
-time-alt = "%H:%M:%S "
+time-alt = %H:%M:%S
 
-label = %time%%date%
+label = %date%%time%
 
 [default-config/player]
 type = custom/script
@@ -196,7 +196,7 @@ scroll-down = spotifyc -v '+5'
 ;;   %percentage-sum% - Cumulative load on all cores
 ;;   %percentage-cores% - load percentage for each core
 ;;   %percentage-core[1-9]% - load percentage for specific core
-;label = 
+;label =
 ;
 ;; Spacing between individual per-core ramps
 ;ramp-coreload-0 = ▁
