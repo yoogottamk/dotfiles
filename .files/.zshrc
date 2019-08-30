@@ -111,6 +111,9 @@ source ~/.aliases
 # nvm
 source /usr/share/nvm/init-nvm.sh
 
+# fasd
+eval "$(fasd --init auto)"
+
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
