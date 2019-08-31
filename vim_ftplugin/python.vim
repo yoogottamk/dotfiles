@@ -7,8 +7,8 @@ nnoremap <F5> :w<CR>:vert bo term run %:p %:p:h/inp<CR>
 inoremap <F5> <esc>:w<CR>:vert bo term run %:p %:p:h/inp<CR>
 
 " <F4> to use the old deprecated python
-nnoremap <F4> :w<CR>:vert bo term python %<CR>
-inoremap <F4> <Esc>:w<CR>:vert bo term python %<CR>
+nnoremap <F4> :w<CR>:vert bo term python2 %<CR>
+inoremap <F4> <Esc>:w<CR>:vert bo term python2 %<CR>
 
 let b:comment_leader = "#"
 

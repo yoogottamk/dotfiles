@@ -1,6 +1,3 @@
-let b:ale_fixers = ['eslint', 'prettier']
-let b:ale_fix_on_save = 1
-
 " <F3> to split open a file which will be used for input
 nnoremap <F3> :w<CR>:sp inp<CR>
 inoremap <F3> <esc>:w<CR>:sp inp<CR>
