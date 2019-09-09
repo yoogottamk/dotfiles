@@ -38,10 +38,11 @@ fi
 # xterm -geometry 80x20+494-0 &
 # exec xterm -geometry 80x66+0+0 -name login
 
-pointer_device='Elan Touchpad'
+pointer_device='ETPS/2 Elantech Touchpad'
 
 xinput --set-prop "$pointer_device" "libinput Natural Scrolling Enabled" 1
 xinput --set-prop "$pointer_device" "libinput Tapping Enabled" 1
+xinput --set-prop "$pointer_device" "libinput Middle Click Emulation" 1
 
 # disable that awful beep
 xset -b
@@ -49,4 +50,3 @@ xset -b
 source ~/.profile
 
 exec i3
-
