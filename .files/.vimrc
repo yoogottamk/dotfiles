@@ -21,6 +21,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
 Plugin 'mattn/emmet-vim'
 Plugin 'lervag/vimtex'
+Plugin 'shime/vim-livedown'
 Plugin 'junegunn/fzf.vim'
 
 " language syntax
@@ -46,36 +47,30 @@ augroup filetype_vim
 augroup end
 
 set backspace=indent,eol,start
+" update file if content changed outside
 set autoread
 
-set go-=r
-set go-=R
-set go-=l
-set go-=L
-set go-=m
-set go-=T
+" remove all extra stuff from gvim
+set go-=rRlLmT
 
-set nobackup
-set noswapfile
-set nowb
+" disable swapfile
+set nobackup noswapfile nowb
 
-set ai si
+set autoindent smartindent
 
-set et
+set expandtab
 set smarttab
-set sw=4
-set ts=4
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
 
-set hls
-set is
-set ignorecase
-set smartcase
+set hlsearch
+set incsearch smartcase
 
-set undolevels=999
-set history=999
+set undolevels=999 history=999
 
-set background=dark
 set t_Co=256
+set background=dark
 colo desert
 
 let g:airline_theme='solarized_flood'
@@ -93,8 +88,8 @@ endif
 set noshowmode
 set showcmd
 
-set spr
-set sb
+" show splits on the right and below
+set spr sb
 
 set viminfo='100,<1000,s100,h
 
@@ -162,9 +157,10 @@ nnoremap <leader>ev :vs ~/.vimrc<cr>
 " src .vimrc
 nnoremap <leader>sv :so ~/.vimrc<cr>
 
-" easier on code folding
+" easier code folding
 nnoremap <space><space> za
 
+" cd to dir containing this file
 inoremap <F8> <esc>:cd %:p:h<cr>
 nnoremap <F8> :cd %:p:h<cr>
 
@@ -173,6 +169,12 @@ nnoremap <silent> + :m .+1<CR>==
 nnoremap <silent> - :m .-2<CR>==
 vnoremap <silent> + :m '>+1<CR>gv=gv
 vnoremap <silent> - :m '<-2<CR>gv=gv
+
+" quickfix maps
+nnoremap ]q :cnext<cr>
+nnoremap [q :cprev<cr>
+nnoremap [Q :cfirst<cr>
+nnoremap ]Q :clast<cr>
 
 tnoremap <Esc> <C-\><C-n>
 " }}}
@@ -211,6 +213,7 @@ augroup end
 "  YCM  {{{
 let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
 let g:ycm_server_python_interpreter='/usr/bin/python3'
+let g:ycm_always_populate_location_list = 1
 "  }}}
 
 " YCM + UltiSnips {{{
