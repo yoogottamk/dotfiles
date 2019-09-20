@@ -1,4 +1,4 @@
-"  Vundle stuff --- {{{
+"  Vundle stuff {{{
 
 set nocp
 
@@ -34,24 +34,23 @@ call vundle#end()
 "  }}}
 
 "  Basic vim settings {{{
-
 filetype plugin indent on
 syntax enable
 set nu rnu
 
 let mapleader=","
 
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-augroup end
-
 set backspace=indent,eol,start
 " update file if content changed outside
 set autoread
 
 " remove all extra stuff from gvim
-set go-=rRlLmT
+set go-=r
+set go-=R
+set go-=l
+set go-=L
+set go-=m
+set go-=T
 
 " disable swapfile
 set nobackup noswapfile nowb
@@ -88,6 +87,9 @@ endif
 set noshowmode
 set showcmd
 
+set laststatus=2
+set shortmess+=I
+
 " show splits on the right and below
 set spr sb
 
@@ -96,28 +98,27 @@ set viminfo='100,<1000,s100,h
 "  }}}
 
 "  netrw {{{
+
 let g:netrw_banner=0
+
 " }}}
 
-" {{{ ale
+" ale {{{
+
 let g:ale_sign_error=">>"
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'css': ['prettier'],
 \   'html': ['prettier'],
 \}
+
 " }}}
 
-"  NERDTree {{{
-
-augroup nerdtree_clear
-    autocmd!
-    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | bd | endif
-augroup end
+" NERDTree {{{
 
 nnoremap <leader>nt :NERDTree<CR>
 
-"  }}}
+" }}}
 
 "  maps {{{
 
@@ -154,15 +155,12 @@ nnoremap <leader>o :Files<cr>
 
 " edit .vimrc
 nnoremap <leader>ev :vs ~/.vimrc<cr>
-" src .vimrc
-nnoremap <leader>sv :so ~/.vimrc<cr>
 
 " easier code folding
 nnoremap <space><space> za
 
 " cd to dir containing this file
-inoremap <F8> <esc>:cd %:p:h<cr>
-nnoremap <F8> :cd %:p:h<cr>
+nnoremap <leader>cd :cd %:p:h<cr>
 
 " move (selected) line(s) up or down
 nnoremap <silent> + :m .+1<CR>==
@@ -177,14 +175,10 @@ nnoremap [Q :cfirst<cr>
 nnoremap ]Q :clast<cr>
 
 tnoremap <Esc> <C-\><C-n>
+
 " }}}
 
-" {{{ custom
-set laststatus=2
-set shortmess+=I
-" }}}
-
-"  AirLine stuff {{{
+"  AirLine {{{
 
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
@@ -203,20 +197,18 @@ let g:user_emmet_settings = {
 \  },
 \}
 
-augroup emmet_enable
-    autocmd!
-    autocmd FileType html,css,php,javascript.jsx  EmmetInstall
-augroup end
-
 "  }}}
 
-"  YCM  {{{
+" YCM {{{
+
 let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
 let g:ycm_server_python_interpreter='/usr/bin/python3'
 let g:ycm_always_populate_location_list = 1
-"  }}}
+
+" }}}
 
 " YCM + UltiSnips {{{
+
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
@@ -224,42 +216,72 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
 " }}}
 
 " UltiSnips {{{
-let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 let g:UltiSnipsEditSplit="vertical"
+
 " }}}
 
 " vimtex {{{
+
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
+
 " }}}
 
 " My own commenter {{{
-so /home/yog/.vim/bundle/vim-commenter/vim-commenter.vim
+
+so ~/.vim/bundle/vim-commenter/vim-commenter.vim
+
 " }}}
 
-" {{{ fzf
+" fzf {{{
+
 set rtp+=~/.fzf
+
 " }}}
 
-" {{{ jump to the last known location
-augroup vimStartup
-    au!
+" autocmds {{{
 
-    autocmd BufReadPost *
-      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-      \ |   exe "normal! g`\""
-      \ | endif
-augroup END
-" }}}
+if has("autocmd")
+    " jump to the last known location
+    augroup vimStartup
+        au!
+        autocmd BufReadPost *
+          \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+          \ |   exe "normal! g`\""
+          \ | endif
+    augroup END
 
-" {{{ vim pretty display md
-augroup md
-    au!
+    " vim pretty display md
+    augroup markDown
+        au!
+        autocmd BufReadPre *.md setlocal conceallevel=2
+    augroup end
 
-    autocmd BufReadPre *.md setlocal conceallevel=2
-augroup end
-" }}}
+    augroup nerdtreeClear
+        au!
+        autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | bd | endif
+    augroup end
+
+    augroup filetypeVim
+        au!
+        autocmd FileType vim setlocal foldmethod=marker
+    augroup end
+
+    augroup emmetEnable
+        au!
+        autocmd FileType html,css,php,javascript.jsx EmmetInstall
+    augroup end
+
+    augroup sourceVimrc
+        au!
+        autocmd BufWritePost .vimrc source ~/.vimrc
+    augroup end
+endif
+
+ " }}}
