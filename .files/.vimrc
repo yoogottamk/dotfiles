@@ -7,6 +7,8 @@ set rtp+=/home/yog/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 
+Plugin 'gko/vim-coloresque'
+
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -64,7 +66,8 @@ set tabstop=4
 set softtabstop=4
 
 set hlsearch
-set incsearch smartcase
+set incsearch
+set ignorecase smartcase
 
 set undolevels=999 history=999
 
@@ -284,4 +287,17 @@ if has("autocmd")
     augroup end
 endif
 
- " }}}
+" }}}
+
+" misc functions{{{
+
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" }}}
