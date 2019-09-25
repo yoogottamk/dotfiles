@@ -19,7 +19,7 @@ inoremap <F5> <esc>:w<CR>:vert bo term run %:p %:p:h/inp<CR>
 nnoremap <F9> :w<CR>:vert bo term cf % %:p<CR>
 inoremap <F9> <Esc>:w<CR>:vert bo term cf % %:p<CR>
 
-let b:ale_linters=['gcc']
+let b:ale_linters=[]
 
 let b:comment_leader = "//"
 
