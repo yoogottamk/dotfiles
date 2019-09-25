@@ -4,7 +4,7 @@ if [ ! -d ~/.scr ]; then
     mkdir ~/.scr
 fi
 
-scrot ~/.scr/lock.png
+maim ~/.scr/lock.png
 
 convert ~/.scr/lock.png -blur 0x16 -gravity center -undercolor white -pointsize 50 -fill black -annotate 0x0+0+150 "Locked at $( date '+%H%M' -d now )" ~/.scr/lock_blur_text.png
 
