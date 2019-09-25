@@ -11,7 +11,7 @@
 name="$( echo "$1" | rev | cut -d. -f2- | rev )"
 ext="$( echo "$1" | rev | cut -d. -f1 | rev )"
 
-tools=()
+declare -A tools
 
 tools["py"]="python3"
 tools["sh"]="bash"
@@ -51,12 +51,13 @@ case "$ext" in
 
         comp="$tool $file -d $out"
         $comp
+
         cmd="java -jar $out"
         ;;
     *)
-        (>&2 echo "This script isn't supposed to handle these types of files")
-        exit 1
-
+        # if no filetype specified, I generally use a shebang
+        # [ eg: `#!/usr/bin/env python3` ] so, simply executing it should work
+        $1
         ;;
 esac
 
