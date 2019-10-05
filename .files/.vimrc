@@ -25,6 +25,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'lervag/vimtex'
 Plugin 'shime/vim-livedown'
 Plugin 'junegunn/fzf.vim'
+Plugin 'bronson/vim-visual-star-search'
 
 " language syntax
 Plugin 'udalov/kotlin-vim'
@@ -176,6 +177,12 @@ nnoremap ]q :cnext<cr>
 nnoremap [q :cprev<cr>
 nnoremap [Q :cfirst<cr>
 nnoremap ]Q :clast<cr>
+
+" location list maps
+nnoremap ]l :lnext<cr>
+nnoremap [l :lprev<cr>
+nnoremap [L :lfirst<cr>
+nnoremap ]L :llast<cr>
 
 tnoremap <Esc> <C-\><C-n>
 
