@@ -15,12 +15,15 @@ alias gm='git merge'
 alias gpo='git pull origin'
 alias gr='git remote'
 alias gst='git status'
-alias grev='gc HEAD --'
+alias grev='git checkout HEAD --'
+alias gps='git push'
+alias gpl='git pull'
 # end git aliases
 
 # quiet!
-alias octave="octave -q"
-alias gdb="gdb -q"
+alias octave='octave -q'
+alias gdb='gdb -q'
+alias bc='bc -q'
 
 # for testing
 function hcc() {
