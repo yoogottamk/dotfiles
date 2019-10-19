@@ -36,12 +36,15 @@ call vundle#end()
 
 "  }}}
 
+" {{{ internal vim packages
+packadd termdebug
+packadd matchit
+" }}}
+
 "  Basic vim settings {{{
 filetype plugin indent on
 syntax enable
 set nu rnu
-
-let mapleader=","
 
 set backspace=indent,eol,start
 " update file if content changed outside
@@ -74,9 +77,11 @@ set undolevels=999 history=999
 
 set t_Co=256
 set background=dark
-colo desert
 
 let g:airline_theme='solarized_flood'
+
+" display manpages properly in gvim
+runtime ftplugin/man.vim
 
 if has("gui_running")
     set bg=dark
@@ -86,6 +91,7 @@ if has("gui_running")
     let g:airline_theme='deus'
     let g:ale_set_highlights=1
     set cursorline
+    nnoremap K :<C-U>exe "topleft vert Man" v:count "<C-R><C-W>"<CR>
 endif
 
 set noshowmode
@@ -127,8 +133,8 @@ nnoremap <leader>nt :NERDTree<CR>
 "  maps {{{
 
 " for spellings
-nnoremap <F6> :setlocal spell spelllang=en<CR>
-nnoremap <F7> :set nospell<CR>
+nnoremap <F7> :setlocal spell! spelllang=en<CR>
+nnoremap <F6> :Termdebug %:r<CR>
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " for split navigation
@@ -136,12 +142,26 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+tnoremap <C-j> <C-w>j
+tnoremap <C-k> <C-w>k
+tnoremap <C-h> <C-w>h
+tnoremap <C-l> <C-w>l
 
 " for buffer navigation
 nnoremap <C-tab> :bn!<CR>
 nnoremap <C-S-tab> :bp!<CR>
 nnoremap <leader>l :bn!<CR>
 nnoremap <leader>h :bp!<CR>
+
+" for tab navigation
+nnoremap ]t :tabn<cr>
+nnoremap [t :tabp<cr>
+nnoremap ]T :tabl<cr>
+nnoremap [T :tabr<cr>
+tnoremap ]t <C-\><C-n>:tabn<cr>
+tnoremap [t <C-\><C-n>:tabp<cr>
+tnoremap ]T <C-\><C-n>:tabl<cr>
+tnoremap [T <C-\><C-n>:tabr<cr>
 
 " for doing some things faster
 nnoremap <leader>q :bd<CR>
@@ -185,6 +205,10 @@ nnoremap [L :lfirst<cr>
 nnoremap ]L :llast<cr>
 
 tnoremap <Esc> <C-\><C-n>
+
+nnoremap <C-f> :YcmCompleter FixIt<CR>
+inoremap <C-f> <c-g>u<Esc>:YcmCompleter FixIt<CR>a<c-g>u
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " }}}
 
