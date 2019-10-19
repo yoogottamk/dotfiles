@@ -19,7 +19,7 @@ tools["js"]="node"
 
 case "$ext" in
     c)
-        tool="gcc -Wall -lm"
+        tool="gcc -Wall -lm -g"
         file="$1"
         out="$name"
 
@@ -29,7 +29,7 @@ case "$ext" in
         cmd="$out"
         ;;
     cpp)
-        tool="g++ -Wall"
+        tool="g++ -Wall -g"
         file="$1"
         out="$name"
 

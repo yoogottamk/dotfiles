@@ -154,6 +154,7 @@ bindsym $mod+r mode "resize"
 
 # polybar
 exec_always launch_polybar
+exec_always libinput-gestures-setup start
 
 hide_edge_borders both
 
@@ -188,7 +189,7 @@ bindsym $mod+Control+l exec i3lock_cool
 exec xautolock -time 15 -locker '~/bin/i3lock_cool' -detectsleep &
 
 # set wallpaper
-exec_always feh --bg-fill ~/Pictures/img20.jpg
+exec_always feh --bg-fill ~/Pictures/wall.jpg
 
 # screenshot!
 bindsym --release Print exec maim -s ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
