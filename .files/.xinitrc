@@ -38,12 +38,17 @@ fi
 # xterm -geometry 80x20+494-0 &
 # exec xterm -geometry 80x66+0+0 -name login
 
+# They renamed it but rolled back to an older version again,
+#   keeping both
+#
 # pointer_device='ETPS/2 Elantech Touchpad'
 pointer_device='Elan Touchpad'
 
 xinput --set-prop "$pointer_device" "libinput Natural Scrolling Enabled" 1
 xinput --set-prop "$pointer_device" "libinput Tapping Enabled" 1
-xinput --set-prop "$pointer_device" "libinput Middle Click Emulation" 1
+
+# enabled by default and the property no longer exists
+# xinput --set-prop "$pointer_device" "libinput Middle Click Emulation" 1
 
 # disable that awful beep
 xset -b

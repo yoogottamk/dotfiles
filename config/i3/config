@@ -70,6 +70,7 @@ bindsym $mod+z focus child
 default_border none
 
 gaps inner 15
+smart_gaps on
 
 set $w0 "0: "
 set $w1 "1: "
