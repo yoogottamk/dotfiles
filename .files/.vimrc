@@ -1,38 +1,31 @@
-"  Vundle stuff {{{
+"  vim-plug stuff {{{
 
-set nocp
+call plug#begin('~/.vim/plugged')
 
-filetype off
-set rtp+=/home/yog/.vim/bundle/Vundle.vim
-
-call vundle#begin()
-
-Plugin 'gko/vim-coloresque'
-
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'scrooloose/NERDTree'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'w0rp/ale'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'SirVer/ultisnips'
-Plugin 'ervandew/supertab'
-Plugin 'mattn/emmet-vim'
-Plugin 'lervag/vimtex'
-Plugin 'shime/vim-livedown'
-Plugin 'junegunn/fzf.vim'
-Plugin 'bronson/vim-visual-star-search'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+Plug 'scrooloose/NERDTree'
+Plug 'jiangmiao/auto-pairs'
+Plug 'w0rp/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'SirVer/ultisnips'
+Plug 'ervandew/supertab'
+Plug 'mattn/emmet-vim'
+Plug 'lervag/vimtex'
+Plug 'shime/vim-livedown'
+Plug 'junegunn/fzf.vim'
+Plug 'thosakwe/vim-flutter'
 
 " language syntax
-Plugin 'udalov/kotlin-vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
+Plug 'udalov/kotlin-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'dart-lang/dart-vim-plugin'
 
-call vundle#end()
+call plug#end()
 
 "  }}}
 
@@ -42,8 +35,6 @@ packadd matchit
 " }}}
 
 "  Basic vim settings {{{
-filetype plugin indent on
-syntax enable
 set nu rnu
 
 set backspace=indent,eol,start
@@ -80,9 +71,6 @@ set background=dark
 
 let g:airline_theme='solarized_flood'
 
-" display manpages properly in gvim
-runtime ftplugin/man.vim
-
 if has("gui_running")
     set bg=dark
     colo solarized
@@ -91,7 +79,6 @@ if has("gui_running")
     let g:airline_theme='deus'
     let g:ale_set_highlights=1
     set cursorline
-    nnoremap K :<C-U>exe "topleft vert Man" v:count "<C-R><C-W>"<CR>
 endif
 
 set noshowmode
@@ -206,8 +193,9 @@ nnoremap ]L :llast<cr>
 
 tnoremap <Esc> <C-\><C-n>
 
-nnoremap <C-f> :YcmCompleter FixIt<CR>
-inoremap <C-f> <c-g>u<Esc>:YcmCompleter FixIt<CR>a<c-g>u
+" TODO: change this later
+" nnoremap <C-f> :YcmCompleter FixIt<CR>
+" inoremap <C-f> <c-g>u<Esc>:YcmCompleter FixIt<CR>a<c-g>u
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " }}}
@@ -234,22 +222,22 @@ let g:user_emmet_settings = {
 "  }}}
 
 " YCM {{{
-
-let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
-let g:ycm_server_python_interpreter='/usr/bin/python3'
-let g:ycm_always_populate_location_list = 1
+" TODO: clean this later
+" let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
+" let g:ycm_server_python_interpreter='/usr/bin/python3'
+" let g:ycm_always_populate_location_list = 1
 
 " }}}
 
 " YCM + UltiSnips {{{
-
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" TODO: clean this up later
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" let g:UltiSnipsExpandTrigger = "<tab>"
+" let g:UltiSnipsJumpForwardTrigger = "<tab>"
+" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " }}}
 
@@ -331,4 +319,8 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+" }}}
+
+" coc {{{
+source ~/.config/nvim/coc-init.vim
 " }}}
