@@ -9,6 +9,7 @@ path_dirs=(
     "$HOME/proj/todo"
     "/usr/local/android-studio/bin"
     "$HOME/flutter/bin"
+    "$HOME/.cargo/bin"
 )
 
 appended_path=$(IFS=":$IFS"; printf "%s" "${path_dirs[*]}")
