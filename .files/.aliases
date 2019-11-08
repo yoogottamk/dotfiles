@@ -68,3 +68,6 @@ alias o='a -e xdg-open'
 
 # switch to nvim
 alias vim='nvim'
+
+# finally got tired of this
+alias ':q'=exit
