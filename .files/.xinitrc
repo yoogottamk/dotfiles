@@ -41,8 +41,8 @@ fi
 # They renamed it but rolled back to an older version again,
 #   keeping both
 #
-# pointer_device='ETPS/2 Elantech Touchpad'
-pointer_device='Elan Touchpad'
+pointer_device='ETPS/2 Elantech Touchpad'
+# pointer_device='Elan Touchpad'
 
 xinput --set-prop "$pointer_device" "libinput Natural Scrolling Enabled" 1
 xinput --set-prop "$pointer_device" "libinput Tapping Enabled" 1
