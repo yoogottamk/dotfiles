@@ -10,8 +10,8 @@ export NVM_DIR="$HOME/.nvm"
 # Use GTK themes for Qt apps
 export QT_QPA_PLATFORMTHEME="gtk2"
 
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 
 # start the transparency compositor
 compton &

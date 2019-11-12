@@ -56,6 +56,9 @@ label-unfocused-background = ${colors.inactive-ws-bg}
 label-unfocused-foreground = ${colors.inactive-ws-fg}
 label-unfocused-padding = 1
 
+label-visible = %name%
+label-visible-padding = 1
+
 label-urgent = %name%
 label-urgent-background = ${colors.mode-bg}
 label-urgent-foreground = ${colors.mode-fg}
@@ -64,8 +67,6 @@ label-urgent-padding = 1
 label-mode-background = ${colors.mode-bg}
 label-mode-foreground = ${colors.mode-fg}
 label-mode-padding = 1
-
-label-visible-padding = 1
 
 [module/pulseaudio]
 type = internal/pulseaudio
