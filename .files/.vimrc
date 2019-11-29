@@ -8,7 +8,6 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/NERDTree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'w0rp/ale'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'SirVer/ultisnips'
@@ -18,12 +17,15 @@ Plug 'lervag/vimtex'
 Plug 'shime/vim-livedown'
 Plug 'junegunn/fzf.vim'
 Plug 'thosakwe/vim-flutter'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'srcery-colors/srcery-vim'
 
 " language syntax
 Plug 'udalov/kotlin-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'dart-lang/dart-vim-plugin'
+Plug 'gootorov/q-sharp.vim'
 
 call plug#end()
 
@@ -95,26 +97,20 @@ set viminfo='100,<1000,s100,h
 "  }}}
 
 "  netrw {{{
-
 let g:netrw_banner=0
-
 " }}}
 
 " ale {{{
-
 let g:ale_sign_error=">>"
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'css': ['prettier'],
 \   'html': ['prettier'],
 \}
-
 " }}}
 
 " NERDTree {{{
-
 nnoremap <leader>nt :NERDTree<CR>
-
 " }}}
 
 "  maps {{{
@@ -201,15 +197,12 @@ inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 " }}}
 
 "  AirLine {{{
-
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
 let g:airline#extensions#ale#enabled=1
-
 "  }}}
 
 "  Emmet {{{
-
 let g:user_emmet_leader_key=','
 let g:user_emmet_install_global = 0
 
@@ -218,34 +211,15 @@ let g:user_emmet_settings = {
 \      'extends' : 'jsx',
 \  },
 \}
-
 "  }}}
 
-" YCM {{{
-" TODO: clean this later
-" let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
-" let g:ycm_server_python_interpreter='/usr/bin/python3'
-" let g:ycm_always_populate_location_list = 1
-
-" }}}
-
-" YCM + UltiSnips {{{
-" TODO: clean this up later
-" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" let g:UltiSnipsExpandTrigger = "<tab>"
-" let g:UltiSnipsJumpForwardTrigger = "<tab>"
-" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-" }}}
-
 " UltiSnips {{{
-
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 let g:UltiSnipsEditSplit="vertical"
 
+let g:UltiSnipsExpandTrigger = "<C-j>"
+let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 " }}}
 
 " vimtex {{{
@@ -262,9 +236,7 @@ so ~/.vim/bundle/vim-commenter/vim-commenter.vim
 " }}}
 
 " fzf {{{
-
 set rtp+=~/.fzf
-
 " }}}
 
 " autocmds {{{
@@ -309,7 +281,6 @@ endif
 " }}}
 
 " misc functions{{{
-
 " Show syntax highlighting groups for word under cursor
 nmap <C-S-P> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
@@ -318,7 +289,6 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-
 " }}}
 
 " coc {{{

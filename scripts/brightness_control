@@ -1,9 +1,32 @@
 #!/bin/bash
 
+old_brightness="$HOME/.old_brightness"
+brightness_file="/sys/class/backlight/intel_backlight/brightness"
+
 # if type of change is not specified, quit
-if [[ "$1" != "inc" && "$1" != "dec" ]]; then
+if [[ "$1" != "inc" && "$1" != "dec" && "$1" != "toggle" ]]; then
     exit
 fi
+
+max_brightness="$( cat /sys/class/backlight/intel_backlight/max_brightness )"
+current_brightness="$( cat /sys/class/backlight/intel_backlight/brightness )"
+
+if [[ "$1" == "toggle" ]]; then
+    if [[ -f "$old_brightness" ]]; then
+        # restore old brightness
+        new_brightness="$( cat "$old_brightness" )"
+        echo "$new_brightness" > "$brightness_file"
+
+        # remove this file
+        rm "$old_brightness"
+
+        exit
+    else
+        echo "$current_brightness" > "$old_brightness"
+        echo "0" > "$brightness_file"
+    fi
+fi
+
 
 # if change in brightness is not passed, quit
 [ -z "$2" ] && exit
@@ -14,9 +37,6 @@ regex='^\d+$'
 if ! [[ "$( echo "$2" | grep -P "$regex" )" ]]; then
     exit
 fi
-
-max_brightness="$( cat /sys/class/backlight/intel_backlight/max_brightness )"
-current_brightness="$( cat /sys/class/backlight/intel_backlight/brightness )"
 
 step="$( echo "$max_brightness"'/100*'"$2" | bc )"
 
@@ -36,7 +56,7 @@ fi
 
 percentage="$( echo "$new_brightness*100/$max_brightness" | bc )"
 
-echo "$new_brightness" > /sys/class/backlight/intel_backlight/brightness
+echo "$new_brightness" > "$brightness_file"
 
 msg_id="999998"
 dunstify -r "$msg_id" -a "Brightness" -u low "${percentage}%" "$( /home/yog/bin/make_progress_bar "$new_brightness" "$max_brightness" "⚫" "⚪" )"

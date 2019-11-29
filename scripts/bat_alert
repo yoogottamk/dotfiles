@@ -13,6 +13,6 @@ if [[ "$bat_status" == "Discharging" ]]; then
     fi
 elif [[ "$bat_status" == "Charging"  || "$bat_status" == "Full" ]]; then
     if (( bat_level >= 99 )); then
-        i3-nagbar -m "Save electricity, unplug your charger" -t warning -f "pango:Source Code Pro for Powerline 14"
+        i3-nagbar -m "Battery full, Unplug charger" -t warning -f "pango:Source Code Pro for Powerline 14"
     fi
 fi

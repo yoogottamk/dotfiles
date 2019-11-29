@@ -17,7 +17,7 @@ bindsym $mod+Return exec "i3-sensible-terminal"
 bindsym $mod+Shift+q kill
 
 # start rofi
-bindsym $mod+d exec "rofi -show combi -combi-modi window,drun,run -modi drun,run,window,combi -font 'Inconsolata 18' -theme solarized-custom -terminal tilix -lines 10"
+bindsym $mod+d exec "rofi -show combi -combi-modi window,run,drun -modi drun,run,window,combi -font 'Inconsolata 18' -theme solarized-custom -terminal tilix -lines 10"
 
 # change focus
 bindsym $mod+h focus left
@@ -201,6 +201,7 @@ bindsym $mod+s exec todo
 
 bindsym $mod+m mode "media"
 bindsym $mod+c mode "config"
+bindsym $mod+Escape mode "normal"
 
 # media control mode
 mode "media" {
@@ -231,6 +232,18 @@ mode "config" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+mode "normal" {
+    bindsym h focus left
+    bindsym l focus right
+    bindsym j workspace next_on_output
+    bindsym k workspace prev_on_output
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+Escape exec brightness_control toggle
 
 # default floating window
 for_window [class="Blueman-manager"] floating enable

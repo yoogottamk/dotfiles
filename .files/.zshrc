@@ -127,3 +127,21 @@ PERL_MM_OPT="INSTALL_BASE=/home/yog/perl5"; export PERL_MM_OPT;
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
+
+# pip zsh completion start
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] ) )
+}
+compctl -K _pip_completion pip3
+# pip zsh completion end
+
+# automatically send SIGCONT to disown'd child
+setopt AUTO_CONTINUE
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
