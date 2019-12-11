@@ -27,6 +27,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'gootorov/q-sharp.vim'
+Plug 'neovimhaskell/haskell-vim'
 
 call plug#end()
 
