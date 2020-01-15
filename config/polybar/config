@@ -10,6 +10,7 @@ mode-fg = #fdf6e3
 mode-bg = #dc322f
 
 [default-config/bar]
+enable-ipc = true
 width = 100%
 height = 35
 line-size = 4

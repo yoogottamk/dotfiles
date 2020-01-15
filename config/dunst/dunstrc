@@ -65,16 +65,16 @@
 [urgency_low]
     background = "#222222"
     foreground = "#888888"
-    timeout = 10
+    timeout = 10s
 
 [urgency_normal]
     background = "#285577"
     foreground = "#ffffff"
-    timeout = 15
+    timeout = 15s
 
 [urgency_critical]
     background = "#900000"
     foreground = "#ffffff"
-    timeout = 0
+    timeout = 0s
 
 # vim:ft=dosini

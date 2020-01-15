@@ -79,6 +79,8 @@ set viminfo='100,<1000,s100,h
 set cursorline
 " set textwidth=80
 
+let mapleader=","
+
 "  }}}
 
 "  netrw {{{
@@ -120,10 +122,6 @@ tnoremap <C-j> <C-w>j
 tnoremap <C-k> <C-w>k
 tnoremap <C-h> <C-w>h
 " tnoremap <C-l> <C-w>l
-
-" for buffer navigation
-nnoremap <leader>l :bn!<CR>
-nnoremap <leader>h :bp!<CR>
 
 " for doing some things faster
 nnoremap <leader>q :bd<CR>
@@ -187,6 +185,10 @@ nnoremap [L :lfirst<cr>
 nnoremap ]L :llast<cr>
 
 tnoremap <Esc> <C-\><C-n>
+
+" ALE
+nnoremap ]e :ALENext<cr>
+nnoremap [e :ALEPrevious<cr>
 
 " }}}
 
