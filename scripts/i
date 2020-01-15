@@ -19,7 +19,7 @@ onPacman() {
 }
 
 onAUR() {
-    yaourt -Si "$1" &>/dev/null
+    yay -Si "$1" &>/dev/null
     echo $?
 }
 
@@ -71,6 +71,6 @@ fi
 
 
 if (( ${#aur_packages[@]} > 0 )); then
-    yaourt -S "${aur_packages[@]}"
+    yay -S "${aur_packages[@]}"
 fi
 
