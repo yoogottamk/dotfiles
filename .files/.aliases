@@ -71,3 +71,6 @@ alias vim='nvim'
 
 # finally got tired of this
 alias ':q'=exit
+
+# python aliases
+alias numpy='python -i $HOME/.pyload/load-numpy.py'
