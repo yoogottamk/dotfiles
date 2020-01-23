@@ -2,13 +2,12 @@
 
 path_dirs=(
     "$HOME/bin"
-    "$HOME/.gem/ruby/2.6.0/bin"
+    "$HOME/.gem/ruby/2.7.0/bin"
     "$HOME/.apps/whatsapp-linux-linux-x64"
     "$HOME/.local/bin"
     "$HOME/proj/spotify-control"
     "$HOME/proj/todo"
     "/usr/local/android-studio/bin"
-    "$HOME/flutter/bin"
     "$HOME/.cargo/bin"
 )
 
