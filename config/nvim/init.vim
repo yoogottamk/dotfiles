@@ -5,7 +5,6 @@ let &packpath = &runtimepath
 
 call plug#begin(stdpath('data') . '/plugged')
 
-Plug 'VundleVim/Vundle.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/NERDTree'
 Plug 'srcery-colors/srcery-vim'
