@@ -165,6 +165,9 @@ hide_edge_borders both
 exec_always setxkbmap -option caps:swapescape -option keypad:pointerkeys
 exec xkbset ma 60 10 10 5 2
 
+# save dbus session address
+exec_always "echo $DBUS_SESSION_BUS_ADDRESS > ~/.dbusaddr"
+
 # guake!!
 exec guake
 
