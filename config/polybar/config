@@ -1,11 +1,11 @@
 [colors]
-background = #cc073642
-foreground = #fdf6e3
+background = #88000000
+foreground = #eeeeee
 
-active-ws-fg = #2aa198
-active-ws-bg = #002b36
-inactive-ws-fg = #002b36
-inactive-ws-bg = #bb586e75
+active-ws-fg = #8c8d8d
+active-ws-bg = #181a1b
+inactive-ws-fg = #181a1b
+inactive-ws-bg = #bb8c8d8d
 mode-fg = #fdf6e3
 mode-bg = #dc322f
 

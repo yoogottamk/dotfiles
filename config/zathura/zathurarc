@@ -9,48 +9,20 @@ set scroll-page-aware true
 
 set font "Inconsolata 16"
 
-# zathurarc-dark
-set notification-error-bg       "#586e75"
-set notification-error-fg       "#dc322f"
-set notification-warning-bg     "#586e75"
-set notification-warning-fg     "#dc322f"
-set notification-bg             "#002b36"
-set notification-fg             "#b58900"
+set default-bg "#181a1b"
+set default-fg "#d5d2be"
+set inputbar-bg "#3f3f3f"
+set inputbar-fg "#d5d2be"
+set statusbar-bg "#2b2b2b"
+set statusbar-fg "#d5d2be"
 
-set completion-group-bg         "#002b36"
-set completion-group-fg         "#839496"
-set completion-bg               "#073642"
-set completion-fg               "#93a1a1"
-set completion-highlight-bg     "#586e75"
-set completion-highlight-fg     "#eee8d5"
+set index-bg "#3f3f3f"
+set index-fg "#d5d2be"
+set index-active-bg "#4f4f4f"
+set index-active-fg "#d5d2be"
 
-# Define the color in index mode
-set index-bg                    "#073642"
-set index-fg                    "#93a1a1"
-set index-active-bg             "#586e75"
-set index-active-fg             "#eee8d5"
+set recolor true
+set recolor-lightcolor "#eeeee"
+set recolor-darkcolor "#11111"
 
-set inputbar-bg                 "#002b36"
-set inputbar-fg                 "#eee8d5"
-
-set statusbar-bg                "#073642"
-set statusbar-fg                "#93a1a1"
-
-set highlight-color             "#657b83"
-set highlight-active-color      "#268bd2"
-
-set default-bg                  "#073642"
-set default-fg                  "#93a1a1"
-
-# Recolor book content's color
-set recolor                     true
-set recolor-lightcolor          "#002b36"
-set recolor-darkcolor           "#fdf6e3"
-
-# my maps
-
-# normal
-map <C-+> zoom in
-map <C-=> zoom in
-map <C--> zoom out
-
+set guioptions none

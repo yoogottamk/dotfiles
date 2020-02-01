@@ -77,4 +77,8 @@
     foreground = "#ffffff"
     timeout = 0s
 
+[play_sound]
+    summary = "*"
+    script = /home/yog/bin/alert.sh
+
 # vim:ft=dosini
