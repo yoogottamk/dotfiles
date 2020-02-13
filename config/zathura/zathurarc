@@ -22,7 +22,7 @@ set index-active-bg "#4f4f4f"
 set index-active-fg "#d5d2be"
 
 set recolor true
-set recolor-lightcolor "#eeeee"
-set recolor-darkcolor "#11111"
+set recolor-lightcolor "#111111"
+set recolor-darkcolor "#eeeeee"
 
 set guioptions none
