@@ -17,7 +17,7 @@ bindsym $mod+Return exec "i3-sensible-terminal"
 bindsym $mod+Shift+q kill
 
 # start rofi
-bindsym $mod+d exec "rofi -show combi -combi-modi window,run,drun -modi drun,run,window,combi -font 'Inconsolata 18' -theme solarized-custom -terminal tilix -lines 10"
+bindsym $mod+d exec "rofi -show combi -combi-modi window,run,drun -modi drun,run,window,combi -font 'JetBrains Mono 14' -terminal tilix -lines 10"
 
 # change focus
 bindsym $mod+h focus left
