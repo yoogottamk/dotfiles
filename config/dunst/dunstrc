@@ -1,5 +1,5 @@
 [global]
-    font = Source Code Pro 16
+    font = JetBrains Mono 16
 
     allow_markup = yes
     # The format of the message. Possible variables are:
