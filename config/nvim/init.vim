@@ -22,11 +22,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " language syntax
 Plug 'udalov/kotlin-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'gootorov/q-sharp.vim'
 Plug 'neovimhaskell/haskell-vim'
+
+Plug 'MaxMEllon/vim-jsx-pretty'
 
 call plug#end()
 
@@ -63,6 +63,9 @@ set t_Co=256
 set background=dark
 let g:airlinetheme="srcery"
 colo srcery
+let g:srcery_italic = 1
+let g:srcery_transparent_background = 1
+set termguicolors
 
 set noshowmode
 set showcmd
