@@ -198,7 +198,8 @@ exec xautolock -time 15 -locker '~/bin/i3lock_cool' -detectsleep &
 exec_always feh --bg-fill ~/Pictures/wall.jpg
 
 # screenshot!
-bindsym --release Print exec maim -s ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
+bindsym --release Print exec "maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
+bindsym --release Mod1+Print exec maim -s ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
 bindsym --release Shift+Print exec maim ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
 
 # todo
@@ -207,6 +208,7 @@ bindsym $mod+s exec todo
 bindsym $mod+m mode "media"
 bindsym $mod+c mode "config"
 bindsym $mod+Escape mode "normal"
+bindsym $mod+y mode "copy"
 
 # media control mode
 mode "media" {
@@ -243,6 +245,13 @@ mode "normal" {
     bindsym l focus right
     bindsym j workspace next_on_output
     bindsym k workspace prev_on_output
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "copy" {
+    bindsym s exec xclip -selection clipboard <<< "¯\_(ツ)_/¯"; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
