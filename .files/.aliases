@@ -74,3 +74,6 @@ alias ':q'=exit
 
 # python aliases
 alias numpy='python -i $HOME/.pyload/load-numpy.py'
+
+# ldapsearch: I use it frequently
+alias ldp='ldapsearch -H ldap://ldap.iiit.ac.in -b "dc=iiit,dc=ac,dc=in" -x'
