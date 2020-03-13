@@ -12,12 +12,12 @@ alias gd='git diff'
 alias gl='git log'
 alias glo='git log --oneline --decorate'
 alias gm='git merge'
-alias gpo='git pull origin'
 alias gr='git remote'
 alias gst='git status'
 alias grev='git checkout HEAD --'
 alias gps='git push'
 alias gpl='git pull'
+alias gcp='git cherry-pick'
 # end git aliases
 
 # quiet!
