@@ -3,8 +3,13 @@ nnoremap <F3> :w<CR>:sp inp<CR>
 inoremap <F3> <esc>:w<CR>:sp inp<CR>
 
 " <F5> to build and run current file, with the input file [if exists]
-nnoremap <F5> :w<CR>:vert bo term run %:p %:p:h/inp<CR>
-inoremap <F5> <esc>:w<CR>:vert bo term run %:p %:p:h/inp<CR>
+if has('nvim')
+    nnoremap <F5> :w<CR>:vs \| te run %:p %:p:h/inp<CR>
+    inoremap <F5> <esc>:w<CR>:vs \| term run %:p %:p:h/inp<CR>
+else
+    nnoremap <F5> :w<CR>:vert bo term run %:p %:p:h/inp<CR>
+    inoremap <F5> <esc>:w<CR>:vert bo term run %:p %:p:h/inp<CR>
+endif
 
 let b:comment_leader = "//"
 

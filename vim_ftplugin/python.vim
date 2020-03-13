@@ -20,3 +20,4 @@ endif
 
 let b:comment_leader = "#"
 
+let b:ale_fixers = ['pylint']
