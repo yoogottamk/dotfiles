@@ -32,6 +32,13 @@ if [[ "$1" == "pack" ]]; then
     done
     cd ..
 
+    echo Linking vim ftplugins...
+    cd vim_ftplugin
+    for f in *; do
+        ln -f "$HOME/.vim/ftplugin/$f"
+    done
+    cd ..
+
     # This includes hidden files in *
     shopt -s dotglob
 
