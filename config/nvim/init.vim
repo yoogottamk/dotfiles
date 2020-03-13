@@ -217,7 +217,7 @@ let g:user_emmet_settings = {
 
 " UltiSnips {{{
 
-let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips']
 let g:UltiSnipsEditSplit="vertical"
 
 let g:UltiSnipsExpandTrigger = "<C-j>"
