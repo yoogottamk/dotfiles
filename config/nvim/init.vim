@@ -9,7 +9,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/NERDTree'
 Plug 'srcery-colors/srcery-vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'SirVer/ultisnips'
@@ -81,7 +82,7 @@ set viminfo='100,<1000,s100,h
 set cursorline
 " set textwidth=80
 
-let mapleader=","
+let mapleader=" "
 
 "  }}}
 
@@ -143,7 +144,11 @@ nnoremap <leader>o :Files<cr>
 nnoremap <leader>ev :vs ~/.config/nvim/init.vim<cr>
 
 " easier code folding
-nnoremap <space><space> za
+" nnoremap <space><space> za
+
+" make commenting easier
+nnoremap <leader>/ :Commentary<cr>
+vnoremap <leader>/ :Commentary<CR>
 
 " cd to dir containing this file
 nnoremap <leader>cd :cd %:p:h<cr>
@@ -189,8 +194,8 @@ nnoremap ]L :llast<cr>
 tnoremap <Esc> <C-\><C-n>
 
 " ALE
-nnoremap ]e :ALENext<cr>
-nnoremap [e :ALEPrevious<cr>
+" nnoremap ]e :ALENext<cr>
+" nnoremap [e :ALEPrevious<cr>
 
 " }}}
 
@@ -230,12 +235,6 @@ let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
-
-" }}}
-
-" My own commenter {{{
-
-so ~/.vim/bundle/vim-commenter/vim-commenter.vim
 
 " }}}
 
