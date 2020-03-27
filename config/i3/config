@@ -113,6 +113,7 @@ assign [class="firefox"] workspace $w3
 assign [class="whatsapp-linux"] workspace $w4
 assign [class="TelegramDesktop"] workspace $w4
 assign [class="discord"] workspace $w4
+assign [class="Slack"] workspace $w4
 
 for_window [class="Spotify"] move to workspace $w5
 
@@ -220,6 +221,8 @@ mode "media" {
     bindsym l exec playerctl next
     bindsym Right exec playerctl next
 
+    bindsym m exec volume_control 'm'
+
     bindsym k exec volume_control '+5%'
     bindsym Up exec volume_control '+1%'
 
@@ -263,3 +266,6 @@ bindsym $mod+Shift+Escape exec brightness_control toggle
 for_window [class="Blueman-manager"] floating enable
 for_window [class="SimpleScreenRecorder"] floating enable
 for_window [instance="nm-connection-editor" class="Nm-connection-editor"] floating enable
+
+# temp, dass assignment 3
+for_window [class="drive"] floating enable
