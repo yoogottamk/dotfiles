@@ -77,3 +77,6 @@ alias numpy='python -i $HOME/.pyload/load-numpy.py'
 
 # ldapsearch: I use it frequently
 alias ldp='ldapsearch -H ldap://ldap.iiit.ac.in -b "dc=iiit,dc=ac,dc=in" -x'
+
+# pipe something here to copy to clipboard
+alias cbcp='xclip -selection clipboard'
