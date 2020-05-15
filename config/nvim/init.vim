@@ -9,7 +9,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/NERDTree'
 Plug 'srcery-colors/srcery-vim'
 Plug 'jiangmiao/auto-pairs'
-" Plug 'w0rp/ale'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -20,6 +19,7 @@ Plug 'shime/vim-livedown'
 Plug 'junegunn/fzf.vim'
 Plug 'thosakwe/vim-flutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'calviken/vim-gdscript3'
 
 " language syntax
 Plug 'udalov/kotlin-vim'

@@ -10,10 +10,10 @@ inoremap <F3> <esc>:w<CR>:sp inp<CR>
 " question [deduced from name of file]
 if has('nvim')
     nnoremap <F5> :w<CR>:vs \| te run %:p %:p:h/inp<CR>i
-    inoremap <F5> <esc>:w<CR>:vs \| te run %:p %:p:h/inp<CR>
+    inoremap <F5> <esc>:w<CR>:vs \| te run %:p %:p:h/inp<CR>i
 
-    nnoremap <F9> :w<CR>:vs \| te cf % %:p<CR>
-    inoremap <F9> <Esc>:w<CR>:vs \| te cf % %:p<CR>
+    nnoremap <F9> :w<CR>:vs \| te cf % %:p<CR>i
+    inoremap <F9> <Esc>:w<CR>:vs \| te cf % %:p<CR>i
 else
     nnoremap <F5> :w<CR>:vert bo term run %:p %:p:h/inp<CR>
     inoremap <F5> <esc>:w<CR>:vert bo term run %:p %:p:h/inp<CR>
