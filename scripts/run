@@ -57,7 +57,7 @@ case "$ext" in
     *)
         # if no filetype specified, I generally use a shebang
         # [ eg: `#!/usr/bin/env python3` ] so, simply executing it should work
-        $1
+        cmd="$1"
         ;;
 esac
 
