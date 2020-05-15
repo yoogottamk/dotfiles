@@ -2,13 +2,15 @@
 
 path_dirs=(
     "$HOME/bin"
-    "$HOME/.gem/ruby/2.7.0/bin"
     "$HOME/.apps/whatsapp-linux-linux-x64"
     "$HOME/.local/bin"
     "$HOME/proj/spotify-control"
     "$HOME/proj/todo"
-    "/usr/local/android-studio/bin"
     "$HOME/.cargo/bin"
+    "$ANDROID_HOME/emulator"
+    "$ANDROID_HOME/tools"
+    "$ANDROID_HOME/tools/bin"
+    "$ANDROID_HOME/platform-tools"
 )
 
 appended_path=$(IFS=":$IFS"; printf "%s" "${path_dirs[*]}")
