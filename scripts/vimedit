@@ -1,0 +1,17 @@
+#!/bin/bash
+
+file=`mktemp`
+
+sleep 0.5s
+
+xdotool key ctrl+c
+
+xclip -selection clipboard -o > $file
+uxterm -e "$EDITOR $file"
+xclip -selection clipboard -i < $file
+
+sleep 0.1s
+
+xdotool key ctrl+v
+
+rm $file
