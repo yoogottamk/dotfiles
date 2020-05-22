@@ -14,6 +14,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 export ANDROID_HOME="$HOME/Android/Sdk"
+export TERMINAL=tilix
 
 # start the transparency compositor
 picom &
