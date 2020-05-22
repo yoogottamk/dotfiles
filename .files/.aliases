@@ -80,3 +80,8 @@ alias ldp='ldapsearch -H ldap://ldap.iiit.ac.in -b "dc=iiit,dc=ac,dc=in" -x'
 
 # pipe something here to copy to clipboard
 alias cbcp='xclip -selection clipboard'
+
+alias i='yay -S'
+alias up='yay -Syu'
+
+alias k='kubectl'
