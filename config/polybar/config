@@ -32,7 +32,8 @@ inherit = default-config/bar
 bottom = true
 
 modules-left = i3 cmus spotify
-modules-right = pulseaudio wireless-network wired-network battery date
+modules-center = date
+modules-right = pulseaudio wireless-network wired-network battery
 
 tray-position = right
 tray-background = ${colors.background}
@@ -89,14 +90,12 @@ full-at = 99
 battery = BAT0
 adapter = ADP1
 
-time-format = %H:%M
-
 format-charging = <animation-charging> <label-charging>
-label-charging = %percentage%% (%time%)
+label-charging = %percentage%%
 format-charging-underline = #859900
 
 format-discharging = <ramp-capacity> <label-discharging>
-label-discharging = %percentage%% (%time%)
+label-discharging = %percentage%%
 format-discharging-underline = #cb4b16
 
 format-full =  <label-full>
@@ -114,7 +113,7 @@ animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
-animation-charging-framerate = 750
+animation-charging-framerate = 1000
 
 [default-config/network]
 type = internal/network
@@ -152,7 +151,7 @@ format = <label>
 format-underline = #b58900
 
 date =
-date-alt = "%d/%m/%Y "
+date-alt = "%a %d/%m/%Y "
 time = %H:%M:%S
 time-alt = %H:%M:%S
 
@@ -186,28 +185,5 @@ click-left = spotifyc -c
 click-right = spotifyc -v t
 scroll-up = spotifyc -v '-5'
 scroll-down = spotifyc -v '+5'
-
-;[module/cpu]
-;type=internal/cpu
-;interval = 0.5
-;
-;format = <label> <ramp-coreload>
-;
-;; Available tokens:
-;;   %percentage% (default) - total cpu load averaged over all cores
-;;   %percentage-sum% - Cumulative load on all cores
-;;   %percentage-cores% - load percentage for each core
-;;   %percentage-core[1-9]% - load percentage for specific core
-;label =
-;
-;; Spacing between individual per-core ramps
-;ramp-coreload-0 = ▁
-;ramp-coreload-1 = ▂
-;ramp-coreload-2 = ▃
-;ramp-coreload-3 = ▄
-;ramp-coreload-4 = ▅
-;ramp-coreload-5 = ▆
-;ramp-coreload-6 = ▇
-;ramp-coreload-7 = █
 
 ; vim:ft=dosini
