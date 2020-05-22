@@ -105,6 +105,7 @@
     spacing:    0;
     text-color: @normal-foreground;
     padding:    1px ;
+    children:   [ prompt,space,entry,case-indicator ];
 }
 #case-indicator {
     spacing:    0;
@@ -117,9 +118,6 @@
 #prompt {
     spacing:    0;
     text-color: @normal-foreground;
-}
-#inputbar {
-    children:   [ prompt,space,entry,case-indicator ];
 }
 #space {
     expand:     false;
