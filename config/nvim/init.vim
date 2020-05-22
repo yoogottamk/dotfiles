@@ -138,7 +138,7 @@ nnoremap <leader><space> :noh<cr>
 
 " fzf
 nnoremap <F2> :Buffers<cr>
-nnoremap <leader>o :Files<cr>
+nnoremap <leader>l :Files<cr>
 
 " edit init.vim
 nnoremap <leader>ev :vs ~/.config/nvim/init.vim<cr>
