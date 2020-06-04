@@ -1,0 +1,49 @@
+* {
+    bg: #181818;
+    bg-sel: #2f2f2f;
+    fg: #eeeeee;
+    sep: #007acc;
+}
+
+window {
+    background-color: @bg;
+    height: 50%;
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    background-color: @bg;
+    border: 0;
+}
+
+listview {
+    padding: 8;
+    background-color: @bg;
+}
+
+element {
+    border: 0;
+    padding: 10;
+    background-color: @bg;
+    color: @fg;
+}
+
+element selected {
+    background-color: @bg-sel;
+}
+
+inputbar {
+    padding: 8;
+    children: [entry];
+    background-color: @bg;
+}
+
+entry {
+    padding: 8;
+    background-color: @bg-sel;
+    color: @fg;
+    border: 0 0 0 4;
+    border-color: @sep;
+}
+
+/* vim: ft=css
