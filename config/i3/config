@@ -16,7 +16,7 @@ bindsym $mod+Return exec "i3-sensible-terminal"
 bindsym $mod+Shift+q kill
 
 # start rofi
-bindsym $mod+d exec "rofi -show combi -combi-modi window,drun -modi drun,window,combi,ssh"
+bindsym $mod+d exec "rofi -show drun -modi drun,window"
 
 # recent files
 bindsym $mod+s exec recent
@@ -180,6 +180,9 @@ exec guake
 # managing networks
 exec nm-applet
 exec blueman-applet
+
+# redshift
+exec redshift-gtk
 
 # get volume controls
 bindsym XF86AudioRaiseVolume exec volume_control '+5%'

@@ -150,3 +150,4 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 complete -F __start_kubectl k
+complete -F __start_kubectl kk

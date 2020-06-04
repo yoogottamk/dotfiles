@@ -2,7 +2,7 @@
 
 recent_files="$( fasd -tfR | awk '{ print $2 }' )"
 
-selected=($( rofi -dmenu -multi-select <<< "$recent_files" ))
+selected=($( rofi -dmenu -multi-select -columns 1 -width 75 <<< "$recent_files" ))
 
 [ ${#selected[@]} -eq 0 ] && exit 0
 

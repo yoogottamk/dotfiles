@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # begin git aliases
 alias g=git
 alias ga='git add'
@@ -76,7 +78,7 @@ alias ':q'=exit
 alias numpy='python -i $HOME/.pyload/load-numpy.py'
 
 # ldapsearch: I use it frequently
-alias ldp='ldapsearch -H ldap://ldap.iiit.ac.in -b "dc=iiit,dc=ac,dc=in" -x'
+alias ldp='ldapsearch -H ldap://ldap.iiit.ac.in -b "ou=Users,dc=iiit,dc=ac,dc=in" -x'
 
 # pipe something here to copy to clipboard
 alias cbcp='xclip -selection clipboard'
@@ -85,3 +87,4 @@ alias i='yay -S'
 alias up='yay -Syu'
 
 alias k='kubectl'
+alias kk='kubectl --kubeconfig /home/yog/.kube/k3s'

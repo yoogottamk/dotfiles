@@ -7,7 +7,7 @@ sleep 0.5s
 xdotool key ctrl+c
 
 xclip -selection clipboard -o > $file
-uxterm -e "$EDITOR $file"
+uxterm -e "$EDITOR +AirlineToggle +'set nonu nornu' $file"
 xclip -selection clipboard -i < $file
 
 sleep 0.1s
