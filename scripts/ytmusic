@@ -1,0 +1,50 @@
+#!/bin/bash
+
+PLAYER_NAME=YTMusic
+
+function is_active() {
+    players=($( playerctl -l ))
+    [[ $( grep $PLAYER_NAME <<< "${players[@]}" ) ]] && echo 0 || echo 1
+}
+
+function get_status() {
+    status="$( playerctl -p $PLAYER_NAME metadata -f '{{artist}}: {{title}}' )"
+
+    play_pause="$( playerctl -p $PLAYER_NAME status )"
+
+    if [[ "$play_pause" ==  "Playing" ]]; then
+        icon=
+    else
+        icon=
+    fi
+
+    echo "$icon $status"
+}
+
+if (( $# == 0 )); then
+    get_status
+else
+    while (( $# != 0 )); do
+        case "$1" in
+            -t )
+                playerctl -p $PLAYER_NAME play-pause
+                get_status
+                shift ;;
+            -n )
+                playerctl -p $PLAYER_NAME next
+                get_status
+                shift ;;
+            -p )
+                playerctl -p $PLAYER_NAME previous
+                get_status
+                shift ;;
+            -c )
+                ret=$(is_active)
+                exit $ret
+                shift ;;
+            * )
+                (>&2 echo not yet implemented)
+                ;;
+        esac
+    done
+fi

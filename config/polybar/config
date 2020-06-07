@@ -31,7 +31,7 @@ wm-name = i3
 inherit = default-config/bar
 bottom = true
 
-modules-left = i3 cmus spotify
+modules-left = i3 cmus spotify ytmusic
 modules-center = date
 modules-right = pulseaudio wireless-network wired-network battery
 
@@ -171,6 +171,16 @@ exec-if = pgrep -x cmus
 label = %output:0:37:...%
 format = %{A1:cmus-polybar -p:}%{A} <label> %{A1:cmus-polybar -n:}%{A}
 click-left = cmus-polybar -u
+
+[module/ytmusic]
+inherit = default-config/player
+
+exec = ytmusic
+exec-if = ytmusic -c && pgrep -x firefox
+
+label = %output:0:37:...%
+format = %{A1:ytmusic -p:}%{A} <label> %{A1:cmus-polybar -n:}%{A}
+click-left = ytmusic -t
 
 [module/spotify]
 inherit = default-config/player

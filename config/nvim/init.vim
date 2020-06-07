@@ -20,6 +20,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'thosakwe/vim-flutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'calviken/vim-gdscript3'
+Plug 'wellle/context.vim'
 
 " language syntax
 Plug 'udalov/kotlin-vim'
@@ -89,17 +90,6 @@ let mapleader=" "
 "  netrw {{{
 
 let g:netrw_banner=0
-
-" }}}
-
-" ale {{{
-
-let g:ale_sign_error=">>"
-let g:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'css': ['prettier'],
-\   'html': ['prettier'],
-\}
 
 " }}}
 
@@ -193,17 +183,12 @@ nnoremap ]L :llast<cr>
 
 tnoremap <Esc> <C-\><C-n>
 
-" ALE
-" nnoremap ]e :ALENext<cr>
-" nnoremap [e :ALEPrevious<cr>
-
 " }}}
 
 "  AirLine {{{
 
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
-let g:airline#extensions#ale#enabled=1
 
 "  }}}
 

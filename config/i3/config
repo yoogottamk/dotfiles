@@ -184,6 +184,9 @@ exec blueman-applet
 # redshift
 exec redshift-gtk
 
+# ytmusic
+exec "/usr/bin/node /home/yog/proj/mpris-ytmusic/main.js"
+
 # get volume controls
 bindsym XF86AudioRaiseVolume exec volume_control '+5%'
 bindsym XF86AudioLowerVolume exec volume_control '-5%'
