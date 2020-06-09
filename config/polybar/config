@@ -33,7 +33,7 @@ bottom = true
 
 modules-left = i3 cmus spotify ytmusic
 modules-center = date
-modules-right = pulseaudio wireless-network wired-network battery
+modules-right = pulseaudio wireless-network wired-network ntst battery
 
 tray-position = right
 tray-background = ${colors.background}
@@ -179,7 +179,7 @@ exec = ytmusic
 exec-if = ytmusic -c && pgrep -x firefox
 
 label = %output:0:37:...%
-format = %{A1:ytmusic -p:}%{A} <label> %{A1:cmus-polybar -n:}%{A}
+format = %{A1:ytmusic -p:}%{A} <label> %{A1:ytmusic -n:}%{A}
 click-left = ytmusic -t
 
 [module/spotify]
@@ -195,5 +195,12 @@ click-left = spotifyc -c
 click-right = spotifyc -v t
 scroll-up = spotifyc -v '-5'
 scroll-down = spotifyc -v '+5'
+
+[module/ntst]
+type = custom/script
+format-underline = #a7450a
+interval = 5
+
+exec = ntst
 
 ; vim:ft=dosini
