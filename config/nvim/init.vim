@@ -19,14 +19,11 @@ Plug 'shime/vim-livedown'
 Plug 'junegunn/fzf.vim'
 Plug 'thosakwe/vim-flutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'calviken/vim-gdscript3'
-Plug 'wellle/context.vim'
 
 " language syntax
-Plug 'udalov/kotlin-vim'
 Plug 'dart-lang/dart-vim-plugin'
-Plug 'gootorov/q-sharp.vim'
-Plug 'neovimhaskell/haskell-vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 Plug 'MaxMEllon/vim-jsx-pretty'
 

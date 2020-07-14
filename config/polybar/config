@@ -33,7 +33,7 @@ bottom = true
 
 modules-left = i3 cmus spotify ytmusic
 modules-center = date
-modules-right = pulseaudio wireless-network wired-network ntst battery
+modules-right = pulseaudio wireless-network wired-network battery
 
 tray-position = right
 tray-background = ${colors.background}
@@ -126,7 +126,7 @@ interface = wlo1
 
 format-connected = <ramp-signal> <label-connected>
 
-label-connected = %{A1:nm-connection-editor:}%essid% :%downspeed%%{A}
+label-connected = %{A1:nm-connection-editor:}%essid% :%downspeed% :%upspeed%%{A}
 
 ramp-signal-0 = 🥺
 ramp-signal-1 = 😞
@@ -141,7 +141,7 @@ interface = eno1
 
 format-connected = <label-connected>
 
-label-connected = %{A1:nm-connection-editor:}%ifname%: %local_ip% :%downspeed%%{A}
+label-connected = %{A1:nm-connection-editor:}%ifname%: %local_ip% :%downspeed% :%upspeed%%{A}
 
 [module/date]
 type = internal/date
@@ -195,12 +195,5 @@ click-left = spotifyc -c
 click-right = spotifyc -v t
 scroll-up = spotifyc -v '-5'
 scroll-down = spotifyc -v '+5'
-
-[module/ntst]
-type = custom/script
-format-underline = #a7450a
-interval = 5
-
-exec = ntst
 
 ; vim:ft=dosini

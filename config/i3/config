@@ -21,6 +21,9 @@ bindsym $mod+d exec "rofi -show drun -modi drun,window"
 # recent files
 bindsym $mod+s exec recent
 
+# emoji!
+bindsym $mod+g exec "rofi -show emoji -modi emoji -columns 1"
+
 # edit whatever in vim
 bindsym $mod+q exec vimedit
 
