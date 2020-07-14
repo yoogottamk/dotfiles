@@ -1,26 +1,26 @@
 :root {
-	/* Colors */
-	--primary-background: #222222;
-	--primary-background-hover: #555555;
-	--secondary-background: #2b2b2b;
-	--tertiary-background: #303030;
-	--text: #aaa;
-	--text-disabled: #555555;
-	--accent: #1e1e1e;
-	--accent-hover: #3f3f3f;
+    /* Colors */
+    --primary-background: #222222;
+    --primary-background-hover: #555555;
+    --secondary-background: #2b2b2b;
+    --tertiary-background: #303030;
+    --text: #aaa;
+    --text-disabled: #555555;
+    --accent: #1e1e1e;
+    --accent-hover: #3f3f3f;
 
-	/* TST */
-	--tst-margin-top-offset: 20px;
-	--tst-min-width: 40px;
-	--tst-max-width: 200px;
+    /* TST */
+    --tst-margin-top-offset: 20px;
+    --tst-min-width: 40px;
+    --tst-max-width: 200px;
 
-	/* Misc. */
-	--window-control-width: 150px;
-	--top-drag-space: 5px;
-	--animation-time: 0.3s;
-	--border-width: 2px;
-	--bookmarks-bar-height: 25px;
-	--title-bar-height: 38px;
+    /* Misc. */
+    --window-control-width: 150px;
+    --top-drag-space: 5px;
+    --animation-time: 0.3s;
+    --border-width: 2px;
+    --bookmarks-bar-height: 25px;
+    --title-bar-height: 38px;
 }
 
 .tab.unread .label { 
@@ -45,10 +45,9 @@
 #tabbar { 
 	overflow-y: scroll !important; 
 	margin-left: -6px !important;
-	margin-top: 7px !important;
 }
 #tabbar:hover {
-	margin-left: -1rem !important;
+        margin-left: -1rem !important;
 }
 
 /* Hide new tab button when collapsed & adjust margins */
@@ -125,6 +124,6 @@ body:hover .tab .twisty {
 }
 
 .tab.active {
-	background: rgba(127, 127, 127);
+    background: rgb(63, 63, 63);
 }
 
