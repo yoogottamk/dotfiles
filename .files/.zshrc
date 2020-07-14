@@ -108,9 +108,6 @@ source $ZSH/oh-my-zsh.sh
 # load aliases
 source ~/.aliases
 
-# nvm
-source /usr/share/nvm/init-nvm.sh
-
 # fasd
 eval "$(fasd --init auto)"
 
@@ -118,15 +115,14 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-PATH="/home/yog/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/yog/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/yog/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/yog/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/yog/perl5"; export PERL_MM_OPT;
-
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-        source /etc/profile.d/vte.sh
+    source /etc/profile.d/vte.sh
 fi
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
 
 # pip zsh completion start
 function _pip_completion {
@@ -143,11 +139,11 @@ compctl -K _pip_completion pip3
 # automatically send SIGCONT to disown'd child
 setopt AUTO_CONTINUE
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+complete -F __start_kubectl k
+complete -F __start_kubectl kk
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
-complete -F __start_kubectl k
-complete -F __start_kubectl kk
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.

@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# xrandr --setprovideroutputsource modesetting NVIDIA-0
-# xrandr --auto
-
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
@@ -56,6 +53,6 @@ xinput --set-prop "$pointer_device" "libinput Tapping Enabled" 1
 # disable that awful beep
 xset -b
 
-source ~/.profile
+source /home/yog/.profile
 
 exec i3

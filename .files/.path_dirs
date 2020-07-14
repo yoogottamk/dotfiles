@@ -2,15 +2,8 @@
 
 path_dirs=(
     "$HOME/bin"
-    "$HOME/.apps/whatsapp-linux-linux-x64"
     "$HOME/.local/bin"
-    "$HOME/proj/spotify-control"
-    "$HOME/proj/todo"
-    "$HOME/.cargo/bin"
-    "$ANDROID_HOME/emulator"
-    "$ANDROID_HOME/tools"
-    "$ANDROID_HOME/tools/bin"
-    "$ANDROID_HOME/platform-tools"
+    "$HOME/go/bin"
 )
 
 appended_path=$(IFS=":$IFS"; printf "%s" "${path_dirs[*]}")
