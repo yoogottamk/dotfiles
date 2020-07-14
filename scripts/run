@@ -67,4 +67,3 @@ esac
 [ ! -z "$2"  -a -f "$2" ] && cmd="$cmd < $2"
 
 eval "$cmd"
-

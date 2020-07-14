@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# for creating files from templates with correct permission
+
+# 2 modes:
+# e filename.ext
+# e filename ext
+
+[[ $# != 1 && $# != 2 ]] && {>&2 echo -e "Usage:\n$0 filename.ext\nOR\n$0 filename ext"; exit 1; }
+
+filename="$( basename -- "$1" )"
+
+[[ $# == 1 ]] && ext="${filename##*.}" || ext="$2"
+
+[[ -f "$HOME/.templates/_.$ext" ]] || {>&2 echo "Template for $ext not found"; exit 2; }
+cp -i "$HOME/.templates/_.$ext" "$1"
+
+${EDITOR:-vim} "$1"
