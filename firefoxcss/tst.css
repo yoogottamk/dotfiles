@@ -1,0 +1,130 @@
+:root {
+	/* Colors */
+	--primary-background: #222222;
+	--primary-background-hover: #555555;
+	--secondary-background: #2b2b2b;
+	--tertiary-background: #303030;
+	--text: #aaa;
+	--text-disabled: #555555;
+	--accent: #1e1e1e;
+	--accent-hover: #3f3f3f;
+
+	/* TST */
+	--tst-margin-top-offset: 20px;
+	--tst-min-width: 40px;
+	--tst-max-width: 200px;
+
+	/* Misc. */
+	--window-control-width: 150px;
+	--top-drag-space: 5px;
+	--animation-time: 0.3s;
+	--border-width: 2px;
+	--bookmarks-bar-height: 25px;
+	--title-bar-height: 38px;
+}
+
+.tab.unread .label { 
+	font-weight: bold !important; 
+}
+.tab:not(:hover) > .closebox { 
+	display: none; 
+}
+.closebox:hover { 
+	font-weight: 900; 
+}
+.tab, .tabs, body, #background {
+	background: var(--secondary-background);
+}
+#tabbar {
+	border-right: var(--border-width) solid var(--accent);
+	box-shadow: none !important;
+}
+.tab.muted {
+	opacity: 0.5;
+}
+#tabbar { 
+	overflow-y: scroll !important; 
+	margin-left: -6px !important;
+	margin-top: 7px !important;
+}
+#tabbar:hover {
+	margin-left: -1rem !important;
+}
+
+/* Hide new tab button when collapsed & adjust margins */
+body .newtab-button {
+	visibility: none;
+	opacity: 0;
+	transition: visibility 0s, opacity .5s linear;
+	margin-top: 5px;
+}
+body:hover .newtab-button {
+	visibility: visible;
+	opacity: 1;
+}
+
+/* Hide tab labels when collapsed */
+body .label {
+	visibility: none;
+	opacity: 0;
+	transition: visibility 0s, opacity .1s linear;
+}
+body:hover .label {
+	visibility: visible;
+	opacity: 1;
+}
+
+/* Hide arrow & move favicons left when collapsed */
+body .tab .twisty {
+	visibility: hidden;
+	opacity: 0;
+	margin-left: -12px;
+	transition: display 0s, opacity .05s, linear;
+}
+body:hover .tab .twisty {
+	visibility: visible;
+	opacity: 1;
+	margin-left: 0px;
+}
+
+/* Animations */
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+@keyframes pulse {
+	0% {
+		width: 0px;
+		height: 0px;
+		opacity: 1;
+	}
+	100% {
+		width: 350px;
+		height: 350px;
+		opacity: 0;
+		top: calc(50% - 175px);
+		left: calc(50% - 175px);
+	}
+}
+
+/* Style tabs w/ sound */
+.tab.sound-playing .favicon::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border-radius: 50%;
+	background: #FFFFFF;
+	animation: pulse 2s ease-out 0s infinite;
+	z-index: -1;
+	opacity: 0;
+}
+
+.tab.active {
+	background: rgba(127, 127, 127);
+}
+
