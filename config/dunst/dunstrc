@@ -1,5 +1,5 @@
 [global]
-    font = JetBrains Mono 16
+    font = JetBrains Mono 14
 
     allow_markup = yes
     # The format of the message. Possible variables are:
@@ -20,7 +20,8 @@
 
     word_wrap = yes
     ignore_newline = no
-    geometry = "400x5-20-60"
+    # 35: polybar height
+    geometry = "400x5-0-35"
     transparency = 0
 
     idle_threshold = 60
@@ -50,6 +51,8 @@
     icon_position = left
     max_icon_size = 100
 
+    icon_path = /usr/share/icons/Papirus-Dark/16x16/status:/usr/share/icons/Papirus-Dark/16x16/devices/:/usr/share/icons/Papirus-Dark/16x16/apps/:/usr/share/icons/Papirus-Dark/16x16/actions
+
 [frame]
     width = 0
     color = "#000000"
@@ -77,8 +80,8 @@
     foreground = "#ffffff"
     timeout = 0s
 
-[play_sound]
-    summary = "*"
-    script = /home/yog/bin/alert.sh
+# [play_sound]
+#     summary = "*"
+#     script = /home/yog/bin/alert.sh
 
 # vim:ft=dosini
