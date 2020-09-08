@@ -26,12 +26,14 @@ foreground = ${colors.foreground}
 module-margin-right = 1
 
 wm-name = i3
+; wm-name = bspwm
+; wm-restack = bspwm
 
 [bar/bottom]
 inherit = default-config/bar
 bottom = true
 
-modules-left = i3 cmus spotify ytmusic
+modules-left = i3 bspwm cmus spotify ytmusic
 modules-center = date
 modules-right = pulseaudio wireless-network wired-network battery
 
@@ -69,6 +71,53 @@ label-urgent-padding = 1
 label-mode-background = ${colors.mode-bg}
 label-mode-foreground = ${colors.mode-fg}
 label-mode-padding = 1
+
+[module/bspwm]
+type = internal/bspwm
+
+format = <label-state> <label-mode>
+
+label-focused = %name%
+label-focused-foreground = ${colors.active-ws-fg}
+label-focused-background = ${colors.active-ws-bg}
+label-focused-underline = ${colors.active-ws-fg}
+label-focused-padding = 1
+
+label-occupied = %name%
+label-occupied-foreground = ${colors.inactive-ws-fg}
+label-occupied-background = ${colors.inactive-ws-bg}
+label-occupied-padding = 1
+
+label-urgent = %name%
+label-urgent-foreground = ${colors.mode-fg}
+label-urgent-background = ${colors.mode-bg}
+label-urgent-padding = 1
+
+label-empty = 
+
+; The following labels will be used to indicate the layout/mode
+; for the focused workspace. Requires <label-mode>
+;
+; Available tokens:
+;   None
+;label-monocle = 
+;label-tiled = 
+;label-fullscreen = 
+;label-floating = 
+;label-pseudotiled = P
+;label-locked = 
+;label-locked-foreground = #bd2c40
+;label-sticky = 
+;label-sticky-foreground = #fba922
+;label-private = 
+;label-private-foreground = #bd2c40
+;label-marked = M
+
+;;;;;;      #!/bin/bash
+;;;;;;      counter=0
+;;;;;;      bspc query -D --names | while read -r name; do
+;;;;;;        printf 'ws-icon-%i = "%s;<insert-icon-here>"\n' $((counter++)) $name
+;;;;;;      done
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -176,7 +225,7 @@ click-left = cmus-polybar -u
 inherit = default-config/player
 
 exec = ytmusic
-exec-if = ytmusic -c && pgrep -x firefox
+exec-if = ytmusic -c && pgrep -f firefox
 
 label = %output:0:37:...%
 format = %{A1:ytmusic -p:}%{A} <label> %{A1:ytmusic -n:}%{A}
