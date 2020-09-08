@@ -15,9 +15,9 @@
       "rootPatterns": ["go.mod"],
       "filetypes": ["go"]
     },
-    "digestif": {
-      "command": "digestif",
-      "filetypes": ["tex", "plaintex", "context"]
+     "digestif": {
+       "command": "/home/yog/.luarocks/bin/digestif",
+       "filetypes": ["tex", "plaintex", "context"]
     },
     "clangd": {
       "command": "clangd",
@@ -34,7 +34,7 @@
   "coc.preferences.formatOnSaveFiletypes": ["dart" , "rust", "c", "cpp",
                                             "python", "javascript", "javascriptreact",
                                             "typescript", "typescriptreact","go"],
-  "python.linting.pylintArgs": ["--extension-pkg-whitelist=numpy", "--disable=C0103"],
+  "python.linting.pylintArgs": ["--extension-pkg-whitelist=numpy,cv2", "--disable=C0103"],
   "python.formatting.provider": "black",
-  "eslint.autoFixOnSave": true
+  "coc.source.dictionary.filetypes": ["text", "markdown"]
 }
