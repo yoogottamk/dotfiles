@@ -33,27 +33,14 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
 # split in horizontal orientation
 bindsym $mod+semicolon split h
-
 # split in vertical orientation
 bindsym $mod+v split v
 
@@ -61,8 +48,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (tabbed, toggle split)
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+w layout toggle tabbed split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -133,40 +119,13 @@ bindsym $mod+Shift+Tab workspace prev_on_output
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Quit i3?' -b 'Yes' 'i3-msg exit'"
 
 # toggle polybar visibility
 bindsym $mod+p exec "polybar-msg cmd toggle"
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-    # These bindings trigger as soon as you enter the resize mode
-
-    # Pressing left will shrink the window’s width.
-    # Pressing right will grow the window’s width.
-    # Pressing up will shrink the window’s height.
-    # Pressing down will grow the window’s height.
-    bindsym h resize shrink width 10 px or 10 ppt
-    bindsym k resize grow height 10 px or 10 ppt
-    bindsym j resize shrink height 10 px or 10 ppt
-    bindsym l resize grow width 10 px or 10 ppt
-
-    # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-bindsym $mod+r mode "resize"
-
 # polybar
 exec_always launch_polybar
-exec_always libinput-gestures-setup start
 
 hide_edge_borders both
 
@@ -175,7 +134,7 @@ exec_always setxkbmap -option caps:swapescape -option keypad:pointerkeys
 exec xkbset ma 60 10 10 5 2
 
 # save dbus session address
-exec_always "echo $DBUS_SESSION_BUS_ADDRESS > ~/.dbusaddr"
+exec_always echo $DBUS_SESSION_BUS_ADDRESS > ~/.dbusaddr
 
 # guake!!
 exec guake
@@ -186,9 +145,6 @@ exec blueman-applet
 
 # redshift
 exec redshift-gtk
-
-# ytmusic
-exec "/usr/bin/node /home/yog/proj/mpris-ytmusic/main.js"
 
 # get volume controls
 bindsym XF86AudioRaiseVolume exec volume_control '+5%'
@@ -207,14 +163,15 @@ bindsym XF86MonBrightnessDown exec brightness_control dec 5
 
 # locking
 bindsym $mod+Control+l exec i3lock_cool
-exec xautolock -time 15 -locker '~/bin/i3lock_cool' -detectsleep &
+exec xautolock -time 15 -locker '~/bin/i3lock_cool' -detectsleep
 
 # set wallpaper
 exec_always feh --bg-fill ~/Pictures/wall.jpg
 
 # screenshot!
-bindsym --release Print exec "maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
-bindsym --release Mod1+Print exec maim -s ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
+bindsym --release Print exec "maim -sk --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
+bindsym --release Control+Print exec "maim --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
+bindsym --release Mod1+Print exec maim -sk ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
 bindsym --release Shift+Print exec maim ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
 
 bindsym $mod+m mode "media"
@@ -225,20 +182,12 @@ bindsym $mod+y mode "copy"
 # media control mode
 mode "media" {
     bindsym space exec playerctl play-pause
-
     bindsym h exec playerctl previous
-    bindsym Left exec playerctl previous
-
     bindsym l exec playerctl next
-    bindsym Right exec playerctl next
 
-    bindsym m exec volume_control 'm'
-
+    bindsym m exec volume_control m
     bindsym k exec volume_control '+5%'
-    bindsym Up exec volume_control '+1%'
-
     bindsym j exec volume_control '-5%'
-    bindsym Down exec volume_control '-1%'
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -279,5 +228,4 @@ for_window [class="SimpleScreenRecorder"] floating enable
 for_window [instance="nm-connection-editor" class="Nm-connection-editor"] floating enable
 for_window [class="UXTerm"] floating enable
 
-# temp, dass assignment 3
-for_window [class="drive"] floating enable
+# bindsym Control+w nop Disable_Ctrl_W_for_tests
