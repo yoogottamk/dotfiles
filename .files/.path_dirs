@@ -4,6 +4,7 @@ path_dirs=(
     "$HOME/bin"
     "$HOME/.local/bin"
     "$HOME/go/bin"
+    "$HOME/perl5/bin"
 )
 
 appended_path=$(IFS=":$IFS"; printf "%s" "${path_dirs[*]}")
