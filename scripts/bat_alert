@@ -13,6 +13,6 @@ if [[ "$bat_status" == "Discharging" ]]; then
     fi
 elif [[ "$bat_status" == "Charging"  || "$bat_status" == "Full" ]]; then
     if (( bat_level >= 99 )); then
-        dunstify -r "$msg_id" -a "Battery alert" -u critical "Battery full"
+        dunstify -r "$msg_id" -a "Battery alert" -u critical -t 30000 "Battery full"
     fi
 fi
