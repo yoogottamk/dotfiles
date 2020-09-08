@@ -1,51 +1,56 @@
 :root {
     /* Colors */
-    --primary-background: #222222;
-    --primary-background-hover: #555555;
-    --secondary-background: #2b2b2b;
-    --tertiary-background: #303030;
-    --text: #aaa;
-    --text-disabled: #555555;
+    --secondary-bg: #2b2b2b;
+    --active-bg: #3F3F3F;
+    --hover-bg: #202020;
     --accent: #1e1e1e;
-    --accent-hover: #3f3f3f;
-
-    /* TST */
-    --tst-margin-top-offset: 20px;
-    --tst-min-width: 40px;
-    --tst-max-width: 200px;
 
     /* Misc. */
-    --window-control-width: 150px;
-    --top-drag-space: 5px;
-    --animation-time: 0.3s;
     --border-width: 2px;
-    --bookmarks-bar-height: 25px;
-    --title-bar-height: 38px;
+}
+
+.tab.active {
+    background: var(--active-bg);
+}
+
+.tab {
+    border: none !important;
+}
+
+.tab:hover {
+    background-color: var(--hover-bg);
 }
 
 .tab.unread .label { 
 	font-weight: bold !important; 
 }
+
 .tab:not(:hover) > .closebox { 
 	display: none; 
 }
+
 .closebox:hover { 
 	font-weight: 900; 
 }
+
 .tab, .tabs, body, #background {
-	background: var(--secondary-background);
+	background: var(--secondary-bg);
 }
+
 #tabbar {
 	border-right: var(--border-width) solid var(--accent);
 	box-shadow: none !important;
 }
+
 .tab.muted {
 	opacity: 0.5;
 }
+
 #tabbar { 
 	overflow-y: scroll !important; 
 	margin-left: -6px !important;
 }
+
 #tabbar:hover {
         margin-left: -1rem !important;
 }
@@ -57,6 +62,7 @@ body .newtab-button {
 	transition: visibility 0s, opacity .5s linear;
 	margin-top: 5px;
 }
+
 body:hover .newtab-button {
 	visibility: visible;
 	opacity: 1;
@@ -68,6 +74,7 @@ body .label {
 	opacity: 0;
 	transition: visibility 0s, opacity .1s linear;
 }
+
 body:hover .label {
 	visibility: visible;
 	opacity: 1;
@@ -80,6 +87,7 @@ body .tab .twisty {
 	margin-left: -12px;
 	transition: display 0s, opacity .05s, linear;
 }
+
 body:hover .tab .twisty {
 	visibility: visible;
 	opacity: 1;
@@ -95,6 +103,7 @@ body:hover .tab .twisty {
 		transform: rotate(360deg);
 	}
 }
+
 @keyframes pulse {
 	0% {
 		width: 0px;
@@ -122,8 +131,3 @@ body:hover .tab .twisty {
 	z-index: -1;
 	opacity: 0;
 }
-
-.tab.active {
-    background: rgb(63, 63, 63);
-}
-
