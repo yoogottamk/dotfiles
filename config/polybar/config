@@ -95,30 +95,6 @@ label-urgent-padding = 1
 
 label-empty = 
 
-; The following labels will be used to indicate the layout/mode
-; for the focused workspace. Requires <label-mode>
-;
-; Available tokens:
-;   None
-;label-monocle = 
-;label-tiled = 
-;label-fullscreen = 
-;label-floating = 
-;label-pseudotiled = P
-;label-locked = 
-;label-locked-foreground = #bd2c40
-;label-sticky = 
-;label-sticky-foreground = #fba922
-;label-private = 
-;label-private-foreground = #bd2c40
-;label-marked = M
-
-;;;;;;      #!/bin/bash
-;;;;;;      counter=0
-;;;;;;      bspc query -D --names | while read -r name; do
-;;;;;;        printf 'ws-icon-%i = "%s;<insert-icon-here>"\n' $((counter++)) $name
-;;;;;;      done
-
 [module/pulseaudio]
 type = internal/pulseaudio
 sink = bluez_sink.04_5D_4B_5E_F9_7D.a2dp_sink
@@ -218,7 +194,7 @@ exec = cmus-polybar
 exec-if = pgrep -x cmus
 
 label = %output:0:37:...%
-format = %{A1:cmus-polybar -p:}%{A} <label> %{A1:cmus-polybar -n:}%{A}
+format = %{A1:cmus-polybar -p:}%{A} <label> %{A1:cmus-polybar -n:}%{A}
 click-left = cmus-polybar -u
 
 [module/ytmusic]
@@ -228,7 +204,7 @@ exec = ytmusic
 exec-if = ytmusic -c && pgrep -f firefox
 
 label = %output:0:37:...%
-format = %{A1:ytmusic -p:}%{A} <label> %{A1:ytmusic -n:}%{A}
+format = %{A1:ytmusic -p:}%{A} <label> %{A1:ytmusic -n:}%{A}
 click-left = ytmusic -t
 
 [module/spotify]
@@ -238,7 +214,7 @@ exec = spotifyc -f "{{ icon }} {{ artist }}: {{ title }}" -i "" "" -o
 exec-if = pgrep -x spotify
 
 label = %output:0:37:...%
-format = %{A1:spotifyc -p:}%{A} <label> %{A1:spotifyc -n:}%{A}
+format = %{A1:spotifyc -p:}%{A} <label> %{A1:spotifyc -n:}%{A}
 
 click-left = spotifyc -c
 click-right = spotifyc -v t
