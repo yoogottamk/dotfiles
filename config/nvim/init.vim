@@ -54,6 +54,8 @@ set incsearch
 set ignorecase smartcase
 
 set undolevels=999 history=999
+set undofile
+set undodir=~/.vim/undodir
 
 set t_Co=256
 set background=dark
