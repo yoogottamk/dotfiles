@@ -103,3 +103,5 @@ function shh {
 
 # colors
 alias ip='ip -color=auto'
+
+alias teams-mute='pactl set-sink-input-mute `pactl list sink-inputs | grep -E "^Sink Input|skype" | grep -B1 skype | head -1 | cut -d"#" -f2` toggle'
