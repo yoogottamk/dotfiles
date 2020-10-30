@@ -16,6 +16,7 @@ Plug 'SirVer/ultisnips'
 Plug 'mattn/emmet-vim'
 Plug 'lervag/vimtex'
 Plug 'shime/vim-livedown'
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'thosakwe/vim-flutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -216,12 +217,6 @@ let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
-
-" }}}
-
-" fzf {{{
-
-set rtp+=~/.fzf
 
 " }}}
 

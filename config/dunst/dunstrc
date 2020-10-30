@@ -80,6 +80,10 @@
     foreground = "#ffffff"
     timeout = 0s
 
+[ignore_teams]
+    appname = "Microsoft Teams - Preview"
+    format = ""
+
 # [play_sound]
 #     summary = "*"
 #     script = /home/yog/bin/alert.sh

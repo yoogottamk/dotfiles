@@ -33,7 +33,7 @@ wm-name = i3
 inherit = default-config/bar
 bottom = true
 
-modules-left = i3 bspwm cmus spotify ytmusic
+modules-left = i3 ytmusic
 modules-center = date
 modules-right = pulseaudio wireless-network wired-network battery
 

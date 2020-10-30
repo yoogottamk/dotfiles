@@ -136,15 +136,9 @@ exec xkbset ma 60 10 10 5 2
 # save dbus session address
 exec_always echo $DBUS_SESSION_BUS_ADDRESS > ~/.dbusaddr
 
-# guake!!
-exec guake
-
 # managing networks
 exec nm-applet
 exec blueman-applet
-
-# redshift
-exec redshift-gtk
 
 # get volume controls
 bindsym XF86AudioRaiseVolume exec volume_control '+5%'
@@ -173,6 +167,9 @@ bindsym --release Print exec "maim -sk --format png /dev/stdout | xclip -selecti
 bindsym --release Control+Print exec "maim --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
 bindsym --release Mod1+Print exec maim -sk ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
 bindsym --release Shift+Print exec maim ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
+
+# scratch terminal
+bindsym Mod1+slash exec tilix --quake
 
 bindsym $mod+m mode "media"
 bindsym $mod+c mode "config"
