@@ -3,7 +3,7 @@
     "dart": {
       "command": "dart",
       "args": [
-        "/opt/dart-sdk/bin/snapshots/analysis_server.dart.snapshot",
+        "/opt/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot",
         "--lsp"
       ],
       "filetypes": ["dart"],

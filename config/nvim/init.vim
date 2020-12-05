@@ -25,6 +25,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'tmhedberg/SimpylFold'
 
 Plug 'MaxMEllon/vim-jsx-pretty'
 
@@ -92,7 +93,7 @@ let g:netrw_banner=0
 
 " NERDTree {{{
 
-nnoremap <leader>nt :NERDTree<CR>
+nnoremap <leader>t :NERDTree<CR>
 
 " }}}
 

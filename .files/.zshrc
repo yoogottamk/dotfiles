@@ -9,6 +9,7 @@ plugins=(
     docker
     docker-compose
     docker-machine
+    kubectl
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -43,7 +44,6 @@ compctl -K _pip_completion pip3
 setopt AUTO_CONTINUE
 
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
-complete -F __start_kubectl k
 complete -F __start_kubectl kk
 
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
