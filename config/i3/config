@@ -165,10 +165,10 @@ exec xautolock -time 15 -locker '~/bin/i3lock_cool' -detectsleep
 exec_always feh --bg-fill ~/Pictures/wall.jpg
 
 # screenshot!
-bindsym --release Print exec "maim -sk --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
-bindsym --release Control+Print exec "maim --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
-bindsym --release Mod1+Print exec maim -sk ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
-bindsym --release Shift+Print exec maim ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
+bindsym --release Print exec "maim -sku --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
+bindsym --release Control+Print exec "maim -u --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
+bindsym --release Mod1+Print exec maim -sku ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
+bindsym --release Shift+Print exec maim -u ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
 
 bindsym $mod+m mode "media"
 bindsym $mod+c mode "config"
