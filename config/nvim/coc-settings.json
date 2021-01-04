@@ -30,5 +30,8 @@
                                             "typescript", "typescriptreact","go"],
   "python.linting.pylintArgs": ["--extension-pkg-whitelist=numpy,cv2", "--disable=C0103"],
   "python.formatting.provider": "black",
-  "coc.source.dictionary.filetypes": ["text", "markdown"]
+  "coc.source.dictionary.filetypes": ["text", "markdown"],
+  "yaml.schemas": {
+      "kubernetes": "/*.yaml"
+  }
 }

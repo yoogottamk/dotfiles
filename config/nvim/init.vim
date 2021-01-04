@@ -26,6 +26,7 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'tmhedberg/SimpylFold'
+Plug 'cespare/vim-toml'
 
 Plug 'MaxMEllon/vim-jsx-pretty'
 

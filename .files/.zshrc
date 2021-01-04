@@ -60,4 +60,7 @@ PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 
 export FZF_DEFAULT_COMMAND="rg --hidden --files"
 
+export MALMO_XSD_PATH="/home/yog/prog/god-birdge/MalmoPlatform/Schemas"
+export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
+
 add-zsh-hook -Uz chpwd (){ [ -f .env ] && source .env; [ -d venv ] && source venv/bin/activate }
