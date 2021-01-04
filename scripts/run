@@ -57,6 +57,9 @@ case "$ext" in
     go)
         cmd="go run $1"
         ;;
+    rs)
+        cmd="cargo run $1"
+        ;;
     *)
         # if no filetype specified, I generally use a shebang
         # [ eg: `#!/usr/bin/env python3` ] so, simply executing it should work
