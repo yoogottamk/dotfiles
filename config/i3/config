@@ -1,5 +1,6 @@
 # using `super` key as modifier
 set $mod Mod4
+set $alt Mod1
 
 set $config '/home/yog/.config'
 
@@ -61,6 +62,9 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+z focus child
 
+# mute mic toggle
+bindsym $alt+m exec bash -c "[[ $( amixer get Capture | tail -1 | grep -o '[o[nf]*\]$' ) = '[on]' ]] && polybar-msg hook mic-muter 1 || polybar-msg hook mic-muter 2"
+
 default_border none
 
 gaps inner 15
@@ -103,7 +107,6 @@ assign [class="Gvim"] workspace $w2
 
 assign [class="firefox"] workspace $w3
 
-assign [class="whatsapp-linux"] workspace $w4
 assign [class="TelegramDesktop"] workspace $w4
 assign [class="discord"] workspace $w4
 assign [class="Slack"] workspace $w4

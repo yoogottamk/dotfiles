@@ -35,7 +35,7 @@ bottom = true
 
 modules-left = i3 ytmusic
 modules-center = date
-modules-right = pulseaudio wireless-network wired-network battery
+modules-right = mic-muter pulseaudio wireless-network wired-network battery
 
 tray-position = right
 tray-background = ${colors.background}
@@ -107,6 +107,14 @@ label-muted = (muted)
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
+
+[module/mic-muter]
+type = custom/ipc
+hook-0 = amixer set Capture nocap; echo "  "
+hook-1 = amixer set Capture cap; echo "  "
+initial = 1
+click-left = polybar-msg -p %pid% hook mic-muter 1
+click-right = polybar-msg -p %pid% hook mic-muter 2
 
 [module/battery]
 type = internal/battery
