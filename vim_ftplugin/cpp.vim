@@ -23,6 +23,3 @@ else
 endif
 
 let b:ale_linters=['gcc', 'clang']
-
-let b:comment_leader = "//"
-

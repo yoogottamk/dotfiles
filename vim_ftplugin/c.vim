@@ -1,10 +1,5 @@
-" reqd to fix conflicts between c and cpp files
-if (&ft != 'c')
-    finish
-endif
-
 " load template
-nnoremap <leader>t ggdG:0r ~/.vim/skeleton/skel.c<CR>5jo<esc>O
+nnoremap <leader>t ggdG:0r ~/.vim/skeleton/skel.c<CR>gg/main<CR>3j:noh<CR>o
 
 " <F3> to split open a file which will be used for input
 nnoremap <F3> :w<CR>:sp inp<CR>
@@ -27,7 +22,4 @@ else
     inoremap <F9> <Esc>:w<CR>:vert bo term cf % %:p<CR>
 endif
 
-let b:ale_linters=[]
-
-let b:comment_leader = "//"
-
+let b:ale_linters=['gcc', 'clang']
