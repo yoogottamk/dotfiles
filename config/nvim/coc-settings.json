@@ -32,6 +32,6 @@
   "python.formatting.provider": "black",
   "coc.source.dictionary.filetypes": ["text", "markdown"],
   "yaml.schemas": {
-      "kubernetes": "/*.yaml"
+      "kubernetes": ["/*.yaml", "/kube-deploy.yaml"]
   }
 }

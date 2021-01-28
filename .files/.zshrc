@@ -64,3 +64,5 @@ export MALMO_XSD_PATH="/home/yog/prog/god-birdge/MalmoPlatform/Schemas"
 export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
 
 add-zsh-hook -Uz chpwd (){ [ -f .env ] && source .env; [ -d venv ] && source venv/bin/activate }
+
+export HEROKU_ORGANIZATION="aicrowd-rails-devs"
