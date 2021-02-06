@@ -1,0 +1,41 @@
+#!/bin/bash
+
+function help {
+    >&2 echo "Usage: $0 up|down";
+    exit 1;
+}
+
+[[ $# == 1 ]] || { help; }
+
+# `iptables -A ...` and `ip route/rule add ...` while running "up"
+# `iptables -D ...` and `ip route/rule del ...`while running "down"
+case $1 in
+    up)
+        ipt="-A"
+        ipr="add"
+        ;;
+    down)
+        ipt="-D"
+        ipr="del"
+        ;;
+    *)
+        help
+        ;;
+esac
+
+# get wireless gateway ip
+wlo1gw=$( ip r | grep -Po "default via \K(\d+\.?){4} .* wlo1" | cut -d' ' -f1 )
+# get my ip on this wireless nw
+wlo1ip=$( ip -f inet a show wlo1 | awk '/inet/{ print $2 }' | cut -d/ -f1 )
+
+# any of them empty? ditch
+[[ -z $wlo1gw || -z $wlo1ip ]] && { >&2 echo "wlo1 down?"; exit 1; }
+
+# create table which sends via wireless iface
+sudo ip route $ipr table 22 default via $wlo1gw
+# add rule for marked packets to get routed by above
+sudo ip rule $ipr fwmark 0x1 table 22
+# mark ssh packets which are going out via eth iface
+sudo iptables -t mangle $ipt OUTPUT -o eno1 -p tcp --dport 22 -j MARK --set-mark 1 
+# since im going to change the iface, set source ip to that iface's ip
+sudo iptables -t nat $ipt POSTROUTING -o wlo1 -p tcp --dport 22 -j SNAT --to $wlo1ip
