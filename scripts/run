@@ -60,6 +60,12 @@ case "$ext" in
     rs)
         cmd="cargo run $1"
         ;;
+    erl)
+        cd "$( dirname "$1" )"
+        erlc "$1"
+        # func name, 2 args hardcoded to make my life simple
+        cmd="erl -noshell -s $( basename "$name" ) main inp out -s init stop"
+        ;;
     *)
         # if no filetype specified, I generally use a shebang
         # [ eg: `#!/usr/bin/env python3` ] so, simply executing it should work
