@@ -33,5 +33,6 @@
   "coc.source.dictionary.filetypes": ["text", "markdown"],
   "yaml.schemas": {
       "kubernetes": ["/*.yaml", "/kube-deploy.yaml"]
-  }
+  },
+  "eslint.autoFixOnSave": true
 }
