@@ -28,11 +28,14 @@
   "coc.preferences.formatOnSaveFiletypes": ["dart" , "rust", "c", "cpp",
                                             "python", "javascript", "javascriptreact",
                                             "typescript", "typescriptreact","go"],
-  "python.linting.pylintArgs": ["--extension-pkg-whitelist=numpy,cv2", "--disable=C0103"],
   "python.formatting.provider": "black",
+  "python.linting.pylintEnabled": true,
+  "python.linting.pylintArgs": ["--extension-pkg-whitelist=numpy,cv2", "--disable=C0103"],
   "coc.source.dictionary.filetypes": ["text", "markdown"],
+  "yaml.format.enable": true,
   "yaml.schemas": {
-      "kubernetes": ["/*.yaml", "/kube-deploy.yaml"]
+      "kubernetes": ["**/kube-deploy.yaml", "**/spec.yaml"],
+      "https://raw.githubusercontent.com/docker/compose/master/compose/config/compose_spec.json": ["**/docker-compose.yaml", "**/docker-compose.yml"]
   },
   "eslint.autoFixOnSave": true
 }

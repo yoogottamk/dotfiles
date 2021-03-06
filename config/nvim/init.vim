@@ -289,3 +289,5 @@ hi Normal guibg=NONE ctermbg=NONE
 let g:python3_host_prog='/usr/bin/python'
 
 let g:coc_node_path='/home/yog/.nvm/versions/node/v12.18.2/bin/node'
+
+set inccommand=nosplit
