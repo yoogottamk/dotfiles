@@ -50,20 +50,45 @@ compctl -K _pip_completion pip3
 # automatically send SIGCONT to disown'd child
 setopt AUTO_CONTINUE
 
+# from https://gist.github.com/QinMing/364774610afc0e06cc223b467abe83c0
+lazy_load() {
+    echo "Lazy loading $1 ..."
+
+    local -a names
+    if [[ -n "$ZSH_VERSION" ]]; then
+        names=("${(@s: :)${1}}")
+    else
+        names=($1)
+    fi
+    unalias "${names[@]}"
+    . $2
+    shift 2
+    $*
+}
+
+group_lazy_load() {
+    local script
+    script=$1
+    shift 1
+    for cmd in "$@"; do
+        alias $cmd="lazy_load \"$*\" $script $cmd"
+    done
+}
+
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 complete -F __start_kubectl kk
 
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-export PYTHONSTARTUP=~/.pyrc
+group_lazy_load "$NVM_DIR/nvm.sh" nvm node npm gulp yarn
+group_lazy_load "$HOME/.rvm/scripts/rvm" rvm irb rake rails
 
 PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
+
+export PYTHONSTARTUP=~/.pyrc
 
 export FZF_DEFAULT_COMMAND="rg --hidden --files"
 
