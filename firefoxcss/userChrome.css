@@ -7,6 +7,7 @@
 @import url(userChrome/menus.css);
 @import url(userChrome/navbar.css);
 @import url(userChrome/tst-sidebar.css);
+@import url(userChrome/urlbar.css);
 @import url(userChrome/tst-windowbuttons-and-toolbars.css);
 
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");

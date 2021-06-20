@@ -21,3 +21,7 @@
 .findbar-find-previous:hover, .findbar-find-next:hover {
 	background: var(--toolbarbutton-hover-background) !important;
 }
+
+::-moz-selection {
+    background: rgba(255, 255, 255, 0.2);
+}

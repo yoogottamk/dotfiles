@@ -34,5 +34,5 @@ toolbarspring {
 
 /* Remove borders */
 :root {
-    --tabs-border: transparent;
+    --tabs-border: transparent !important;
 }
