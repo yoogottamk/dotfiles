@@ -20,3 +20,5 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 export ANDROID_SDK_ROOT="/opt/android-sdk"
+
+export CHROME_EXECUTABLE=google-chrome-stable

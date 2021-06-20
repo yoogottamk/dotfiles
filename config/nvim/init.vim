@@ -20,6 +20,9 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'thosakwe/vim-flutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'google/vim-maktaba'
+Plug 'google/vim-coverage'
+Plug 'google/vim-glaive'
 
 " language syntax
 Plug 'dart-lang/dart-vim-plugin'
@@ -219,6 +222,8 @@ let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_open_on_warning = 0
+let g:vimtex_fold_enabled = 1
 
 " }}}
 
@@ -288,6 +293,12 @@ set dictionary+=/usr/share/dict/words
 hi Normal guibg=NONE ctermbg=NONE
 let g:python3_host_prog='/usr/bin/python'
 
-let g:coc_node_path='/home/yog/.nvm/versions/node/v12.18.2/bin/node'
+let g:coc_node_path='/home/yog/.nvm/versions/node/v14.16.0/bin/node'
 
 set inccommand=nosplit
+
+" vim-coverage stuff {{{
+call glaive#Install()
+
+Glaive coverage uncovered_text='--' covered_text='++' partial_text='~~'
+" }}}

@@ -1,6 +1,6 @@
 set selection-clipboard clipboard
 
-set zoom-step 20
+set zoom-step 10
 set scroll-step 100
 
 set incremental-search true

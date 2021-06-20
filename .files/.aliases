@@ -82,8 +82,8 @@ alias ldp='ldapsearch -H ldap://10.4.20.173 -b "ou=Users,dc=iiit,dc=ac,dc=in" -x
 # pipe something here to copy to clipboard
 alias cbcp='xclip -selection clipboard'
 
-alias i='yay --pacman powerpill -S'
-alias up='yay --pacman powerpill -Syu'
+alias i='yay -S'
+alias up='yay -Syu'
 
 alias kk='kubectl --kubeconfig /home/yog/.kube/k3s'
 

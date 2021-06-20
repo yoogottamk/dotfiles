@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-#   Script to automatically 
+#   Script to automatically
 #   1. get the test cases visible in codeforces
 #   2. save my code, compile and run it against the mentioned test cases
 #   3. compare my code's output with the one provided and report,
-#   given the 
+#   given the
 #       - name of the file[Acc to my convention, CF_probCode.c<pp>]
 #       - full path of the .c<pp> file
 #   Works best with vim
@@ -27,7 +27,7 @@ exec_name = ".run"
 # compiler settings
 prog_name = "g"
 
-if name[-1] == 'c':
+if name[-1] == "c":
     prog_name += "cc"
 else:
     prog_name += "++"
@@ -36,26 +36,27 @@ else:
 os.system(prog_name + " " + f_name + " -o " + exec_name + " -Wall -g")
 
 # getting the problem number and code
-s = re.search('_', name)
-e = re.search('\.', name)
+s = re.search("_", name)
+e = re.search("\.", name)
 
-prob = name[s.start() + 1:e.start()]
-code = prob[-1:]
-prob = prob[:-1]
+prob = name[s.start() + 1 : e.start()]
+i = prob.find(next(filter(str.isalpha, prob)))
+code = prob[i:]
+prob = prob[:i]
 
 url = "https://codeforces.com/problemset/problem/" + prob + "/" + code
 
 # getting the page source code
 src = requests.get(url).text
 
-soup = bs.BeautifulSoup(src, 'html.parser')
+soup = bs.BeautifulSoup(src, "html.parser")
 
 # div containing all the sample test cases
-sample_test = soup.find('div', {'class': 'sample-test'})
+sample_test = soup.find("div", {"class": "sample-test"})
 
 # getting test input and output
-tests_in = sample_test.find_all('div', {'class': 'input'})
-tests_out = sample_test.find_all('div', {'class': 'output'})
+tests_in = sample_test.find_all("div", {"class": "input"})
+tests_out = sample_test.find_all("div", {"class": "output"})
 
 # saving input files
 inp_count = 0
@@ -63,9 +64,9 @@ inp_count = 0
 for _in in tests_in:
     _file = open(".__in_file" + str(inp_count), "w")
 
-    for line in _in.find('pre').contents:
-        if not re.search('<', str(line)):
-            _file.write(str(line) + '\n')
+    for line in _in.find("pre").contents:
+        if not re.search("<", str(line)):
+            _file.write(str(line) + "\n")
 
     _file.close()
 
@@ -80,9 +81,9 @@ out_count = 0
 for _in in tests_out:
     _file = open(".__out_file" + str(out_count), "w")
 
-    for line in _in.find('pre').contents:
-        if not re.search('<', str(line)):
-            _file.write(str(line) + '\n')
+    for line in _in.find("pre").contents:
+        if not re.search("<", str(line)):
+            _file.write(str(line) + "\n")
 
     _file.close()
 
@@ -100,7 +101,13 @@ for i in range(inp_count):
     clean = "sed -i '/^$/d' .__out" + str(i)
     os.system(command)
 
-    exit_code = os.system("diff --ignore-all-space -B .__out_file" + str(i) + " .__out" + str(i) + " > /dev/null")
+    exit_code = os.system(
+        "diff --ignore-all-space -B .__out_file"
+        + str(i)
+        + " .__out"
+        + str(i)
+        + " > /dev/null"
+    )
 
     if exit_code != 0:
         print("Wrong Answer on test " + str(i + 1))
@@ -111,19 +118,19 @@ for i in range(inp_count):
         print("\n+-----+\n|Input|\n+-----+")
         for l in _wrong_test_in:
             if l.strip():
-                print(l, end='')
+                print(l, end="")
 
         print("\n+-------+\n|Correct|\n+-------+")
         for l in _wrong_test_out:
             if l.strip():
-                print(l, end='')
+                print(l, end="")
 
         print("\n+----+\n|Your|\n+----+")
         for l in _wrong_ans:
             if l.strip():
-                print(l, end='')
+                print(l, end="")
 
-        print('\n')
+        print("\n")
     else:
         print("Passed test " + str(i + 1))
 
@@ -133,4 +140,3 @@ for i in range(inp_count):
     os.system("rm .__in_file" + str(i))
     os.system("rm .__out_file" + str(i))
     os.system("rm .__out" + str(i))
-

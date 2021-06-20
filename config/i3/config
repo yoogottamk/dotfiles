@@ -23,7 +23,7 @@ bindsym $mod+d exec "rofi -show drun -modi drun,window"
 bindsym $mod+s exec recent
 
 # emoji!
-bindsym $mod+g exec "rofi -show emoji -modi emoji -columns 1"
+bindsym $mod+g exec "rofi -show emoji -modi emoji -columns 1 -sort true -levenshtein-sort true -matching normal"
 
 # edit whatever in vim
 bindsym $mod+q exec vimedit
@@ -102,17 +102,6 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# open apps on default workspaces
-assign [class="Gvim"] workspace $w2
-
-assign [class="firefox"] workspace $w3
-
-assign [class="TelegramDesktop"] workspace $w4
-assign [class="discord"] workspace $w4
-assign [class="Slack"] workspace $w4
-
-for_window [class="Spotify"] move to workspace 5
-
 # move between workspaces
 bindsym $mod+Tab workspace next_on_output
 bindsym $mod+Shift+Tab workspace prev_on_output
@@ -135,7 +124,7 @@ exec guake
 hide_edge_borders both
 
 # swap escape and capslock
-exec_always setxkbmap -option caps:swapescape -option keypad:pointerkeys
+exec_always setxkbmap -option caps:swapescape
 exec xkbset ma 60 10 10 5 2
 
 # save dbus session address
@@ -173,10 +162,14 @@ bindsym --release Control+Print exec "maim -u --format png /dev/stdout | xclip -
 bindsym --release Mod1+Print exec maim -sku ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
 bindsym --release Shift+Print exec maim -u ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
 
+# move workspaces to different monitors
+bindsym $mod+Ctrl+greater move workspace to output right
+bindsym $mod+Ctrl+less move workspace to output left
+
 bindsym $mod+m mode "media"
 bindsym $mod+c mode "config"
-bindsym $mod+Escape mode "normal"
 bindsym $mod+y mode "copy"
+bindsym $mod+r mode "rofi"
 
 # media control mode
 mode "media" {
@@ -202,18 +195,15 @@ mode "config" {
     bindsym Escape mode "default"
 }
 
-mode "normal" {
-    bindsym h focus left
-    bindsym l focus right
-    bindsym j workspace next_on_output
-    bindsym k workspace prev_on_output
+mode "copy" {
+    bindsym s exec xclip -selection clipboard <<< "¯\_(ツ)_/¯"; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
-mode "copy" {
-    bindsym s exec xclip -selection clipboard <<< "¯\_(ツ)_/¯"; mode "default"
+mode "rofi" {
+    bindsym p exec rofi-pass; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -226,5 +216,20 @@ for_window [class="Blueman-manager"] floating enable
 for_window [class="SimpleScreenRecorder"] floating enable
 for_window [instance="nm-connection-editor" class="Nm-connection-editor"] floating enable
 for_window [class="UXTerm"] floating enable
+
+# open apps on default workspaces
+assign [class="microsoft teams - preview"] workspace $w0
+
+assign [class="Gvim"] workspace $w2
+
+assign [class="firefox"] workspace $w3
+
+assign [class="TelegramDesktop"] workspace $w4
+assign [class="discord"] workspace $w4
+assign [class="Slack"] workspace $w4
+assign [class="Zulip"] workspace $w4
+
+for_window [class="Spotify"] move to workspace 5
+
 
 # bindsym Control+w nop Disable_Ctrl_W_for_tests

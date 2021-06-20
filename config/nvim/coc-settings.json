@@ -1,41 +1,43 @@
 {
-  "languageserver": {
-    "dart": {
-      "command": "dart",
-      "args": [
-        "/opt/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot",
-        "--lsp"
-      ],
-      "filetypes": ["dart"],
-      "disableDynamicRegister": true,
-      "trace.server": "verbose"
+    "languageserver": {
+        "dart": {
+            "command": "dart",
+            "args": [
+                "/opt/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot",
+                "--lsp"
+            ],
+            "filetypes": ["dart"],
+            "disableDynamicRegister": true,
+            "trace.server": "verbose"
+        },
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod"],
+            "filetypes": ["go"]
+        },
+        "digestif": {
+            "command": "/home/yog/.luarocks/bin/digestif",
+            "filetypes": ["tex", "plaintex", "context"]
+        },
+        "bash": {
+            "command": "bash-language-server",
+            "args": ["start"],
+            "filetypes": ["sh"]
+        }
     },
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod"],
-      "filetypes": ["go"]
+    "coc.preferences.formatOnSaveFiletypes": ["dart" , "rust", "c", "cpp", "python", "go", "javascript", "typescript", "javascript.react", "typescript.react"],
+    "python.formatting.provider": "black",
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": ["--extension-pkg-whitelist=numpy,cv2", "--disable=C0103", "--generated-members=numpy.* ,torch.*"],
+    "pyright.organizeimports.provider": "isort",
+    "python.analysis.diagnosticMode": "workspace",
+    "coc.source.dictionary.filetypes": ["text", "markdown"],
+    "yaml.format.enable": true,
+    "yaml.schemas": {
+        "kubernetes": ["*kube*", "spec.yaml"],
+        "https://raw.githubusercontent.com/docker/compose/master/compose/config/compose_spec.json": ["**/docker-compose.yaml", "**/docker-compose.yml"],
+        "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json": ["spec.yaml", "argo.yaml"]
     },
-     "digestif": {
-       "command": "/home/yog/.luarocks/bin/digestif",
-       "filetypes": ["tex", "plaintex", "context"]
-    },
-    "bash": {
-      "command": "bash-language-server",
-      "args": ["start"],
-      "filetypes": ["sh"]
-    }
-  },
-  "coc.preferences.formatOnSaveFiletypes": ["dart" , "rust", "c", "cpp",
-                                            "python", "javascript", "javascriptreact",
-                                            "typescript", "typescriptreact","go"],
-  "python.formatting.provider": "black",
-  "python.linting.pylintEnabled": true,
-  "python.linting.pylintArgs": ["--extension-pkg-whitelist=numpy,cv2", "--disable=C0103"],
-  "coc.source.dictionary.filetypes": ["text", "markdown"],
-  "yaml.format.enable": true,
-  "yaml.schemas": {
-      "kubernetes": ["**/kube-deploy.yaml", "**/spec.yaml"],
-      "https://raw.githubusercontent.com/docker/compose/master/compose/config/compose_spec.json": ["**/docker-compose.yaml", "**/docker-compose.yml"]
-  },
-  "eslint.autoFixOnSave": true
+    "yaml.schemaStore.enable": true,
+    "eslint.autoFixOnSave": true
 }
