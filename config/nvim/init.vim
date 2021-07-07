@@ -16,7 +16,7 @@ Plug 'tpope/vim-repeat'
 
 Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
-Plug 'glepnir/lspsaga.nvim'
+Plug 'glepnir/lspsaga.nvim', { 'do': 'wget https://web.iiit.ac.in/~yoogottam.khandelwal/lspsaga.patch && git apply lspsaga.patch' }
 
 Plug 'google/vim-maktaba'
 Plug 'google/vim-coverage'
