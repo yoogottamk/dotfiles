@@ -16,7 +16,7 @@ height = 35
 line-size = 4
 monitor = ${env:MONITOR:}
 
-font-0 = Jetbrains Mono:pixelsize=12;1
+font-0 = JetBrainsMono Nerd Font:pixelsize=12;1
 font-1 = FontAwesome:pixelsize=14;1
 font-2 = EmojiOne:scale=7;1
 
@@ -26,8 +26,6 @@ foreground = ${colors.foreground}
 module-margin-right = 1
 
 wm-name = i3
-; wm-name = bspwm
-; wm-restack = bspwm
 
 [bar/bottom]
 inherit = default-config/bar
@@ -228,5 +226,10 @@ click-left = spotifyc -c
 click-right = spotifyc -v t
 scroll-up = spotifyc -v '-5'
 scroll-down = spotifyc -v '+5'
+
+; [module/bluetooth-battery]
+; type = custom/script
+; exec = blbt $( bluetoothctl info | grep Device | head -1 | awk '{ print $2 }' )
+; tail = true
 
 ; vim:ft=dosini

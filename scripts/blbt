@@ -1,0 +1,51 @@
+#!/usr/bin/python -u
+"""
+For checking the battery of connected bluetooth devices
+
+The core logic was taken from
+https://github.com/TheWeirdDev/Bluetooth_Headset_Battery_Level/blob/master/bluetooth_battery.py
+"""
+
+import socket
+import sys
+import time
+
+import bluetooth
+
+
+def get_rfcomm_port(mac_addr: str):
+    rfcomm_srv = list(
+        filter(
+            lambda srv: srv.get("protocol") == "RFCOMM",
+            bluetooth.find_service(address=mac_addr),
+        )
+    )
+
+    if len(rfcomm_srv) < 1:
+        print("Couldn't find RFCOMM port, defaulting to 4", file=sys.stderr)
+        return 4
+
+    return rfcomm_srv[0]["port"]
+
+
+def get_battery_level(mac_addr: str):
+    s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
+    s.connect((mac_addr, get_rfcomm_port(mac_addr)))
+
+    while True:
+        l = s.recv(128).decode()
+        s.send(f"\r\nOK\r\n".encode())
+
+        if "IPHONEACCEV" in l:
+            k, v = l.strip().split(",")[1:3]
+            if k == "1":
+                return (int(v) + 1) * 10
+
+
+if __name__ == "__main__":
+    assert len(sys.argv) == 2, f"Usage: {sys.argv[0]} MAC_ADDR"
+    mac_addr = sys.argv[1]
+
+    name = bluetooth.lookup_name(mac_addr)
+    battery = get_battery_level(mac_addr)
+    print(f"{name}: {battery}%")

@@ -5,7 +5,7 @@ set $alt Mod1
 set $config '/home/yog/.config'
 
 # Font for window titles
-font pango:JetBrains Mono 14
+font pango:JetBrainsMono Nerd Font 14
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -18,13 +18,10 @@ bindsym $mod+Shift+q kill
 
 # start rofi
 bindsym $mod+d exec "rofi -show drun -modi drun,window"
-
 # recent files
 bindsym $mod+s exec recent
-
 # emoji!
 bindsym $mod+g exec "rofi -show emoji -modi emoji -columns 1 -sort true -levenshtein-sort true -matching normal"
-
 # edit whatever in vim
 bindsym $mod+q exec vimedit
 
@@ -230,6 +227,5 @@ assign [class="Slack"] workspace $w4
 assign [class="Zulip"] workspace $w4
 
 for_window [class="Spotify"] move to workspace 5
-
 
 # bindsym Control+w nop Disable_Ctrl_W_for_tests

@@ -8,5 +8,5 @@ bat_level="$( cat /sys/class/power_supply/BAT0/capacity )"
 bat_status="$( cat /sys/class/power_supply/BAT0/status )"
 
 if [[ "$bat_status" == "Discharging" ]] && (( bat_level <= 10 )); then
-        dunstify -r "$msg_id" -a "Battery alert" -u critical "${bat_level}% remaining"
+    dunstify -r "$msg_id" -a "Battery alert" -u critical "${bat_level}% remaining"
 fi

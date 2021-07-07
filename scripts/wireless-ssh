@@ -36,6 +36,6 @@ sudo ip route $ipr table 22 default via $wlo1gw
 # add rule for marked packets to get routed by above
 sudo ip rule $ipr fwmark 0x1 table 22
 # mark ssh packets which are going out via eth iface
-sudo iptables -t mangle $ipt OUTPUT -o eno1 -p tcp --dport 22 -j MARK --set-mark 1 
+sudo iptables -t mangle $ipt OUTPUT -o eno1 -p tcp --dport 22 -j MARK --set-mark 1
 # since im going to change the iface, set source ip to that iface's ip
 sudo iptables -t nat $ipt POSTROUTING -o wlo1 -p tcp --dport 22 -j SNAT --to $wlo1ip
