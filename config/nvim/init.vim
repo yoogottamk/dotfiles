@@ -1,47 +1,52 @@
 set runtimepath^=~/.vim
 let &packpath = &runtimepath
 
-"  vim-plug stuff {{{
-
+" vim-plug stuff {{{
 call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'vim-airline/vim-airline'
-Plug 'scrooloose/NERDTree'
 Plug 'srcery-colors/srcery-vim'
+
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'SirVer/ultisnips'
-Plug 'mattn/emmet-vim'
-Plug 'lervag/vimtex'
-Plug 'shime/vim-livedown'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'thosakwe/vim-flutter'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-repeat'
+
+Plug 'hrsh7th/nvim-compe'
+Plug 'neovim/nvim-lspconfig'
+Plug 'glepnir/lspsaga.nvim'
+
 Plug 'google/vim-maktaba'
 Plug 'google/vim-coverage'
 Plug 'google/vim-glaive'
 
-" language syntax
+Plug 'tmhedberg/SimpylFold'
+
+Plug 'SirVer/ultisnips'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+
+Plug 'mattn/emmet-vim'
+Plug 'lervag/vimtex'
+Plug 'shime/vim-livedown'
+Plug 'thosakwe/vim-flutter'
+
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
-Plug 'tmhedberg/SimpylFold'
-Plug 'cespare/vim-toml'
-
 Plug 'MaxMEllon/vim-jsx-pretty'
-
+Plug 'cespare/vim-toml'
 call plug#end()
-
-"  }}}
+" }}}
 
 " {{{ internal vim packages
 packadd matchit
 " }}}
 
-"  Basic vim settings {{{
+" Basic vim settings {{{
+" line numbers and relative line numbers
 set nu rnu
 
 " update file if content changed outside
@@ -49,20 +54,19 @@ set autoread
 
 set autoindent smartindent
 
-set expandtab
-set smarttab
+set expandtab smarttab
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 
-set hlsearch
-set incsearch
-set ignorecase smartcase
+set hlsearch incsearch ignorecase smartcase
 
+" nice persistent undo
 set undolevels=999 history=999
 set undofile
 set undodir=~/.vim/undodir
 
+" theme
 set t_Co=256
 set background=dark
 let g:airlinetheme="srcery"
@@ -70,12 +74,17 @@ colo srcery
 let g:srcery_italic = 1
 let g:srcery_transparent_background = 1
 set termguicolors
+hi Normal guibg=NONE ctermbg=NONE
 
+" airline already shows this
 set noshowmode
-set showcmd
 
+set showcmd
 set laststatus=2
-set shortmess+=I
+
+" I disables the vim intro message
+" c disables insertion complete menu messages
+set shortmess+=Ic
 
 " show splits on the right and below
 set spr sb
@@ -83,29 +92,25 @@ set spr sb
 set viminfo='100,<1000,s100,h
 
 set cursorline
-" set textwidth=80
-
 let mapleader=" "
-
-"  }}}
-
-"  netrw {{{
-
 let g:netrw_banner=0
+set dictionary+=/usr/share/dict/words
 
-" }}}
+let g:python3_host_prog='/usr/bin/python'
 
-" NERDTree {{{
+" for live-previewing effects of commands, mostly for :s
+set inccommand=nosplit
 
-nnoremap <leader>t :NERDTree<CR>
+set completeopt=menuone,noselect,noinsert,preview
+set updatetime=300
 
+" always show column so text doesn't move much when signs are shown
+set signcolumn=yes
 " }}}
 
 "  maps {{{
-
 " for spellings
 nnoremap <F7> :setlocal spell! spelllang=en<CR>
-nnoremap <F6> :Termdebug %:r<CR>
 inoremap <C-l> <c-g>u<Esc>[s1z=`]i<c-g>u
 
 " for split navigation
@@ -134,9 +139,6 @@ nnoremap <leader>l :Files<cr>
 
 " edit init.vim
 nnoremap <leader>ev :vs ~/.config/nvim/init.vim<cr>
-
-" easier code folding
-" nnoremap <space><space> za
 
 " make commenting easier
 nnoremap <leader>/ :Commentary<cr>
@@ -183,19 +185,16 @@ nnoremap [l :lprev<cr>
 nnoremap [L :lfirst<cr>
 nnoremap ]L :llast<cr>
 
+" make escape work inside terminal
 tnoremap <Esc> <C-\><C-n>
-
 " }}}
 
 "  AirLine {{{
-
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
-
 "  }}}
 
-"  Emmet {{{
-
+" Emmet {{{
 let g:user_emmet_leader_key=','
 let g:user_emmet_install_global = 0
 
@@ -204,50 +203,39 @@ let g:user_emmet_settings = {
 \      'extends' : 'jsx',
 \  },
 \}
-
-"  }}}
+" }}}
 
 " UltiSnips {{{
-
 let g:UltiSnipsSnippetDirectories = ['~/.UltiSnips']
 let g:UltiSnipsEditSplit="vertical"
 
 let g:UltiSnipsExpandTrigger = "<C-j>"
 let g:UltiSnipsJumpForwardTrigger = "<C-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
-
 " }}}
 
 " vimtex {{{
-
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_open_on_warning = 0
 let g:vimtex_fold_enabled = 1
-
 " }}}
 
 " autocmds {{{
-
 if has("autocmd")
     " jump to the last known location
     augroup vimStartup
         au!
         autocmd BufReadPost *
-          \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-          \ |   exe "normal! g`\""
-          \ | endif
+            \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+            \ |   exe "normal! g`\""
+            \ | endif
     augroup END
 
     " vim pretty display md
     augroup markDown
         au!
         autocmd BufReadPre *.md setlocal conceallevel=2
-    augroup end
-
-    augroup nerdtreeClear
-        au!
-        autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | bd | endif
     augroup end
 
     augroup filetypeVim
@@ -265,40 +253,12 @@ if has("autocmd")
         autocmd BufWritePost init.vim source %
     augroup end
 endif
-
 " }}}
-
-" misc functions{{{
-
-" Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-" }}}
-
-" coc.nvim recommended {{{
-
-source ~/.config/nvim/coc-init.vim
-
-" }}}
-
-" dictionary
-set dictionary+=/usr/share/dict/words
-
-hi Normal guibg=NONE ctermbg=NONE
-let g:python3_host_prog='/usr/bin/python'
-
-let g:coc_node_path='/home/yog/.nvm/versions/node/v14.16.0/bin/node'
-
-set inccommand=nosplit
 
 " vim-coverage stuff {{{
 call glaive#Install()
-
 Glaive coverage uncovered_text='--' covered_text='++' partial_text='~~'
 " }}}
+
+" lua config
+lua require("init")
