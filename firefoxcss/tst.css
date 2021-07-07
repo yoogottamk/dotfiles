@@ -9,125 +9,125 @@
     --border-width: 2px;
 }
 
-.tab.active {
+.tab.active tab-item-substance {
     background: var(--active-bg);
 }
 
-.tab {
+.tab tab-item-substance {
     border: none !important;
 }
 
-.tab:hover {
+.tab tab-item-substance:hover {
     background-color: var(--hover-bg);
 }
 
-.tab.unread .label { 
-	font-weight: bold !important; 
+.tab.unread tab-item-substance .label {
+    font-weight: bold !important;
 }
 
-.tab:not(:hover) > .closebox { 
-	display: none; 
+.tab:not(:hover) tab-item-substance > .closebox {
+    display: none;
 }
 
-.closebox:hover { 
-	font-weight: 900; 
+.closebox:hover {
+    font-weight: 900;
 }
 
-.tab, .tabs, body, #background {
-	background: var(--secondary-bg);
+.tab tab-item-substance, .tabs tab-item-substance, body, #background {
+    background: var(--secondary-bg);
 }
 
 #tabbar {
-	border-right: var(--border-width) solid var(--accent);
-	box-shadow: none !important;
+    border-right: var(--border-width) solid var(--accent);
+    box-shadow: none !important;
 }
 
-.tab.muted {
-	opacity: 0.5;
+.tab.muted tab-item-substance {
+    opacity: 0.5;
 }
 
-#tabbar { 
-	overflow-y: scroll !important; 
-	margin-left: -6px !important;
+#tabbar {
+    overflow-y: scroll !important;
+    margin-left: -6px !important;
 }
 
 #tabbar:hover {
-        margin-left: -1rem !important;
+    margin-left: -1rem !important;
 }
 
 /* Hide new tab button when collapsed & adjust margins */
 body .newtab-button {
-	visibility: none;
-	opacity: 0;
-	transition: visibility 0s, opacity .5s linear;
-	margin-top: 5px;
+    visibility: none;
+    opacity: 0;
+    transition: visibility 0s, opacity .5s linear;
+    margin-top: 5px;
 }
 
 body:hover .newtab-button {
-	visibility: visible;
-	opacity: 1;
+    visibility: visible;
+    opacity: 1;
 }
 
 /* Hide tab labels when collapsed */
 body .label {
-	visibility: none;
-	opacity: 0;
-	transition: visibility 0s, opacity .1s linear;
+    visibility: none;
+    opacity: 0;
+    transition: visibility 0s, opacity .1s linear;
 }
 
 body:hover .label {
-	visibility: visible;
-	opacity: 1;
+    visibility: visible;
+    opacity: 1;
 }
 
 /* Hide arrow & move favicons left when collapsed */
-body .tab .twisty {
-	visibility: hidden;
-	opacity: 0;
-	margin-left: -12px;
-	transition: display 0s, opacity .05s, linear;
+body .tab tab-item-substance .twisty {
+    visibility: hidden;
+    opacity: 0;
+    margin-left: -12px;
+    transition: display 0s, opacity .05s, linear;
 }
 
-body:hover .tab .twisty {
-	visibility: visible;
-	opacity: 1;
-	margin-left: 0px;
+body:hover .tab tab-item-substance .twisty {
+    visibility: visible;
+    opacity: 1;
+    margin-left: 0px;
 }
 
 /* Animations */
 @keyframes spin {
-	0% {
-		transform: rotate(0deg);
-	}
-	100% {
-		transform: rotate(360deg);
-	}
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes pulse {
-	0% {
-		width: 0px;
-		height: 0px;
-		opacity: 1;
-	}
-	100% {
-		width: 350px;
-		height: 350px;
-		opacity: 0;
-		top: calc(50% - 175px);
-		left: calc(50% - 175px);
-	}
+    0% {
+        width: 0px;
+        height: 0px;
+        opacity: 1;
+    }
+    100% {
+        width: 350px;
+        height: 350px;
+        opacity: 0;
+        top: calc(50% - 175px);
+        left: calc(50% - 175px);
+    }
 }
 
 /* Style tabs w/ sound */
-.tab.sound-playing .favicon::after {
-	content: '';
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	border-radius: 50%;
-	background: #FFFFFF;
-	animation: pulse 2s ease-out 0s infinite;
-	z-index: -1;
-	opacity: 0;
+.tab.sound-playing tab-item-substance .favicon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    background: #FFFFFF;
+    animation: pulse 2s ease-out 0s infinite;
+    z-index: -1;
+    opacity: 0;
 }
