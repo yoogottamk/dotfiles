@@ -7,7 +7,7 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'srcery-colors/srcery-vim'
 
-Plug 'jiangmiao/auto-pairs'
+Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -30,7 +30,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'mattn/emmet-vim'
 Plug 'lervag/vimtex'
-Plug 'shime/vim-livedown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'thosakwe/vim-flutter'
 
 Plug 'dart-lang/dart-vim-plugin'
@@ -104,8 +104,7 @@ set inccommand=nosplit
 set completeopt=menuone,noselect,noinsert,preview
 set updatetime=300
 
-" always show column so text doesn't move much when signs are shown
-set signcolumn=yes
+set signcolumn=number
 " }}}
 
 "  maps {{{
@@ -258,6 +257,11 @@ endif
 " vim-coverage stuff {{{
 call glaive#Install()
 Glaive coverage uncovered_text='--' covered_text='++' partial_text='~~'
+" }}}
+
+" live markdown preview {{{
+let g:mkdp_auto_start = 1
+let g:mkdp_browser = '/home/yog/bin/fnewwin'
 " }}}
 
 " lua config

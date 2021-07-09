@@ -68,6 +68,22 @@ nvim_lsp.sumneko_lua.setup{
     }
 }
 
+-- latex
+nvim_lsp.texlab.setup{}
+
+-- yaml
+nvim_lsp.yamlls.setup{
+    settings = {
+        yaml = {
+            schemas = {
+                ["kubernetes"] = {"*kube*", "spec.yaml"},
+                ["https://raw.githubusercontent.com/docker/compose/master/compose/config/compose_spec.json"] = {"**/docker-compose.yaml", "**/docker-compose.yml"},
+                ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = {"spec.yaml", "argo.yaml"}
+            }
+        }
+    }
+}
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -83,19 +99,11 @@ local on_attach = function(client, bufnr)
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<cr>", opts)
     buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<cr>", opts)
-    -- buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<cr>", opts)
     buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
     buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-    -- buf_set_keymap("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>", opts)
-    -- buf_set_keymap("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>", opts)
-    -- buf_set_keymap("n", "<leader>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>", opts)
-    -- buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
     buf_set_keymap("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
     buf_set_keymap("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
     buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-    buf_set_keymap("n", "<leader>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", opts)
-    -- buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", opts)
-    -- buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", opts)
     buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
 
     -- lspsaga better for these
@@ -112,7 +120,7 @@ end
 -- Use a loop to conveniently call "setup" on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = { "pyright", "bashls", "clangd", "dartls", "denols", "dockerls",
-                  "gopls", "julials", "rust_analyzer", "sumneko_lua" }
+                  "gopls", "julials", "rust_analyzer", "sumneko_lua", "texlab", "yamlls" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
@@ -124,6 +132,5 @@ end
 
 -- using lspsaga since it looks better
 require"lspsaga".init_lsp_saga()
-
 -- show function signature when cursor idle in insert mode
 vim.cmd [[autocmd CursorHoldI * silent! lua require("lspsaga.signaturehelp").signature_help()]]
