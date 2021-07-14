@@ -11,12 +11,12 @@ Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 
 Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim', { 'do': 'wget https://web.iiit.ac.in/~yoogottam.khandelwal/lspsaga.patch && git apply lspsaga.patch' }
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'google/vim-maktaba'
 Plug 'google/vim-coverage'
@@ -261,7 +261,8 @@ Glaive coverage uncovered_text='--' covered_text='++' partial_text='~~'
 
 " live markdown preview {{{
 let g:mkdp_auto_start = 1
-let g:mkdp_browser = '/home/yog/bin/fnewwin'
+" let g:mkdp_browser = '/home/yog/bin/fnewwin'
+let g:mkdp_browser = 'qutebrowser'
 " }}}
 
 " lua config
