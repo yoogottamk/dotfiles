@@ -17,6 +17,7 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim', { 'do': 'wget https://web.iiit.ac.in/~yoogottam.khandelwal/lspsaga.patch && git apply lspsaga.patch' }
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'mattn/efm-langserver'
 
 Plug 'google/vim-maktaba'
 Plug 'google/vim-coverage'

@@ -76,7 +76,7 @@ nvim_lsp.yamlls.setup{
     settings = {
         yaml = {
             schemas = {
-                ["kubernetes"] = {"*kube*", "spec.yaml"},
+                ["kubernetes"] = {"*kube*", "spec.yaml", "kube.yaml"},
                 ["https://raw.githubusercontent.com/docker/compose/master/compose/config/compose_spec.json"] = {"**/docker-compose.yaml", "**/docker-compose.yml"},
                 ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = {"spec.yaml", "argo.yaml"}
             }
@@ -100,16 +100,12 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<cr>", opts)
     buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<cr>", opts)
     buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-    buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-    buf_set_keymap("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
     buf_set_keymap("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
     buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-    buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
 
     -- lspsaga better for these
     buf_set_keymap("n", "gh", [[<cmd>lua require"lspsaga.provider".lsp_finder()<cr>]], opts)
     buf_set_keymap("n", "<leader>ca", [[<cmd>lua require"lspsaga.codeaction".code_action()<cr>]], opts)
-    buf_set_keymap("v", "<leader>ca", [[:<C-U>lua require"lspsaga.codeaction".range_code_action()<cr>]], opts)
     buf_set_keymap("n", "K", [[<cmd>lua require"lspsaga.hover".render_hover_doc()<cr>]], opts)
     buf_set_keymap("n", "[d", [[<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()<cr>]], opts)
     buf_set_keymap("n", "]d", [[<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_next()<cr>]], opts)
@@ -129,6 +125,53 @@ for _, lsp in ipairs(servers) do
         }
     }
 end
+
+-- for formatting
+
+vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
+    if err ~= nil or result == nil then
+        return
+    end
+    if not vim.api.nvim_buf_get_option(bufnr, "modified") then
+        local view = vim.fn.winsaveview()
+        vim.lsp.util.apply_text_edits(result, bufnr)
+        vim.fn.winrestview(view)
+        if bufnr == vim.api.nvim_get_current_buf() then
+            vim.api.nvim_command("noautocmd :update")
+        end
+    end
+end
+
+local format_on_attach = function(client)
+    if client.resolved_capabilities.document_formatting then
+        vim.api.nvim_command [[augroup Format]]
+        vim.api.nvim_command [[autocmd! * <buffer>]]
+        vim.api.nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
+        vim.api.nvim_command [[augroup END]]
+    end
+end
+
+nvim_lsp.efm.setup{
+    init_options = {documentFormatting = true},
+    on_attach = format_on_attach,
+    settings = {
+        rootMarkers = {".git"},
+        languages = {
+            python = {
+                {formatCommand = "isort --quiet -", formatStdin = true},
+                {formatCommand = "black --quiet -", formatStdin = true},
+            },
+            sh = {
+                {
+                    lintCommand = "shellcheck -f gcc -x",
+                    lintStdin = true,
+                    lintSource = "shellcheck",
+                    lintFormats = {"%f:%l:%c: %trror: %m", "%f:%l:%c: %tarning: %m", "%f:%l:%c: %tote: %m"},
+                }
+            }
+        }
+    }
+}
 
 -- using lspsaga since it looks better
 require"lspsaga".init_lsp_saga()
