@@ -1,0 +1,120 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 35,
+
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode",
+        "custom/right-arrow-dark"
+    ],
+    "modules-center": [
+        "custom/left-arrow-dark",
+        "clock",
+        "custom/right-arrow-dark"
+    ],
+    "modules-right": [
+        "custom/left-arrow-dark",
+        "custom/mic-muter",
+        "pulseaudio",
+        "idle_inhibitor",
+        "custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "network#1",
+        "custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "network#2",
+        "custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "battery",
+        "tray"
+    ],
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "format": "{name}"
+    },
+
+    "clock": {
+        "interval": 1,
+        "format": "{:%H:%M:%S}",
+        "tooltip": true,
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "custom/mic-muter": {
+        "format": "{}",
+        "interval": "once",
+        "exec": "sleep 0.5; mic-muter status",
+        "on-click": "mic-muter off",
+        "on-click-right": "mic-muter on",
+        "tooltip": false,
+        "signal": 1
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume:2}%",
+        "format-bluetooth": "{icon} {volume}% ",
+        "format-muted": "(muted)",
+        "format-icons": {
+            "headphones": "",
+            "default": [
+                "",
+                ""
+            ]
+        },
+        "scroll-step": 5,
+        "on-click": "pavucontrol"
+    },
+    "network#1": {
+        "interface": "eno1",
+        "format": "{ifname} {ipaddr}"
+    },
+    "network#2": {
+        "interface": "wlo1",
+        "format": "{ifname} {essid} {ipaddr}"
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 50,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "tray": {
+        "icon-size": 24
+    },
+    "custom/left-arrow-dark": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/left-arrow-light": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/right-arrow-dark": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/right-arrow-light": {
+        "format": "",
+        "tooltip": false
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    }
+
+}
+
+// vim: ft=json

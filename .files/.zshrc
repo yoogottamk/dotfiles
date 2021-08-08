@@ -1,3 +1,5 @@
+[[ -o login ]] && source ~/.profile
+
 # base {{{
 export ZSH="/home/yog/.oh-my-zsh"
 
@@ -101,7 +103,6 @@ PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 
 export PYTHONSTARTUP=~/.pyrc
 
-export MALMO_XSD_PATH="/home/yog/prog/god-birdge/MalmoPlatform/Schemas"
 export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
 
 add-zsh-hook -Uz chpwd (){ [ -f .env ] && source .env; [ -d venv ] && source venv/bin/activate }
@@ -109,5 +110,7 @@ add-zsh-hook -Uz chpwd (){ [ -f .env ] && source .env; [ -d venv ] && source ven
 export HEROKU_ORGANIZATION="aicrowd-rails-devs"
 export LESS="-F -X $LESS"
 export COMPOSE_DOCKER_CLI_BUILD=1
+
+task
 
 # vim: fdm=marker

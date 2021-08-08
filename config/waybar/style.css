@@ -1,0 +1,76 @@
+@define-color background #171717;
+@define-color active-ws-fg #8c8d8d;
+@define-color active-ws-bg #000000;
+
+* {
+    font-size: 16px;
+    font-family: "JetBrainsMono Nerd Font";
+}
+
+window#waybar {
+    background: @background;
+    /* border-bottom: 4px solid red; */
+}
+
+/*
+ * Sway config
+ */
+
+#mode {
+    padding: 0 10px;
+}
+
+#workspaces button {
+    padding: 0 7px;
+    background: @active-ws-bg;
+    color: @active-ws-fg;
+    border-radius: 0;
+}
+
+#workspaces button.focused {
+    background: @active-ws-bg;
+    color: #33a2ff;
+}
+
+#mode,
+#workspaces button.urgent {
+    background: @active-ws-bg;
+}
+
+#clock,
+#custom-mic-muter,
+#idle_inhibitor,
+#pulseaudio,
+#network,
+#battery,
+#tray {
+    background: @active-ws-bg;
+    padding: 0 5px;
+}
+
+#custom-left-arrow-dark,
+#custom-left-arrow-light,
+#custom-right-arrow-dark,
+#custom-right-arrow-light {
+    font-size: 26px;
+}
+
+#custom-right-arrow-dark,
+#custom-left-arrow-dark {
+	color: @active-ws-bg;
+}
+#custom-right-arrow-light,
+#custom-left-arrow-light {
+	color: @background;
+	background: @active-ws-bg;
+}
+
+#battery.good {
+    color: green;
+}
+#battery.warning {
+    color: orange;
+}
+#battery.critical {
+    color: red;
+}

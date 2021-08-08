@@ -2,6 +2,7 @@
     font = JetBrainsMono Nerd Font 14
 
     allow_markup = yes
+    markup=full
     # The format of the message. Possible variables are:
     #   %a  appname
     #   %s  summary
@@ -44,7 +45,7 @@
     startup_notification = true
 
     # dmenu path
-    dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /usr/bin/rofi -dmenu -p dunst:
 
     browser = /usr/bin/firefox -new-tab
 
@@ -61,9 +62,7 @@
     close = mod4+x
     close_all = mod4+shift+x
     history = mod4+n
-
-    # context menu
-    context = mod4+shift+i
+    context = ctrl+shift+period
 
 [urgency_low]
     background = "#222222"
@@ -84,8 +83,4 @@
     appname = "Microsoft Teams - Preview"
     format = ""
 
-# [play_sound]
-#     summary = "*"
-#     script = /home/yog/bin/alert.sh
-
-# vim:ft=dosini
+# vim:ft=cfg

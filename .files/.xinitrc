@@ -53,6 +53,6 @@ xinput --set-prop "$pointer_device" "libinput Tapping Enabled" 1
 # disable that awful beep
 xset -b
 
-source /home/yog/.profile
+picom -b
 
 exec i3

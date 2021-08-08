@@ -3,15 +3,24 @@
 source ~/.path_dirs
 
 # Use GTK themes for Qt apps
-export QT_QPA_PLATFORMTHEME="gtk2"
+export GTK_THEME=vimix-dark
+# export QT_QPA_PLATFORMTHEME="gtk2"
+
+# # use wayland wherever possible
+# export QT_QPA_PLATFORM=wayland
+# # export GDK_BACKEND=wayland
+# export CLUTTER_BACKEND=wayland
+# export SDL_VIDEODRIVER=wayland
+
+# export XDG_CURRENT_DESKTOP=sway
+
+# export MOZ_ENABLE_WAYLAND=1
+# export MOZ_DBUS_REMOTE=1
 
 export EDITOR=nvim
 export VISUAL=nvim
 
 export TERMINAL=tilix
-
-# start the transparency compositor
-picom -b
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -22,3 +31,9 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export ANDROID_SDK_ROOT="/opt/android-sdk"
 
 export CHROME_EXECUTABLE=google-chrome-stable
+
+if [ $(tty) = "/dev/tty1" ]; then
+    exec startx
+elif [ $(tty) = "/dev/tty2" ]; then
+    exec sway
+fi

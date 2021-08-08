@@ -26,9 +26,10 @@ Plug 'google/vim-glaive'
 Plug 'tmhedberg/SimpylFold'
 
 Plug 'SirVer/ultisnips'
+
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-
+Plug 'rmagatti/auto-session'
 Plug 'mattn/emmet-vim'
 Plug 'lervag/vimtex'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
@@ -134,8 +135,8 @@ nnoremap L $
 nnoremap <leader><space> :noh<cr>
 
 " fzf
-nnoremap <F2> :Buffers<cr>
-nnoremap <leader>l :Files<cr>
+nnoremap <F2> <cmd>Buffers<cr>
+nnoremap <leader>l <cmd>Files<cr>
 
 " edit init.vim
 nnoremap <leader>ev :vs ~/.config/nvim/init.vim<cr>

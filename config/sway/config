@@ -11,7 +11,8 @@ font pango:JetBrainsMono Nerd Font 14
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec "i3-sensible-terminal"
+# bindsym $mod+Return exec "i3-sensible-terminal"
+bindsym $mod+Return exec tilix
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -37,11 +38,6 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# split in horizontal orientation
-bindsym $mod+semicolon split h
-# split in vertical orientation
-bindsym $mod+v split v
-
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
@@ -59,19 +55,16 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+z focus child
 
-# mute mic toggle
-bindsym $alt+m exec bash -c "[[ $( amixer get Capture | tail -1 | grep -o '[o[nf]*\]$' ) = '[on]' ]] && polybar-msg hook mic-muter 1 || polybar-msg hook mic-muter 2"
-
 default_border none
 
 gaps inner 15
 smart_gaps on
 
-set $w0 "0: "
-set $w1 "1: "
-set $w2 "2: "
-set $w3 "3: "
-set $w4 "4: "
+set $w0 "0:"
+set $w1 "1:"
+set $w2 "2:"
+set $w3 "3:"
+set $w4 "4:"
 
 # switch to workspace
 bindsym $mod+grave workspace $w0
@@ -103,22 +96,23 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Tab workspace next_on_output
 bindsym $mod+Shift+Tab workspace prev_on_output
 
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+minus move scratchpad
+bindsym $alt+slash scratchpad show
 
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Quit i3?' -b 'Yes' 'i3-msg exit'"
+# restart sway inplace
+bindsym $mod+Shift+r reload
 
-# toggle polybar visibility
-bindsym $mod+p exec "polybar-msg cmd toggle"
-# reload polybar
-bindsym $mod+Shift+p exec launch_polybar
+# exit sway
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -b 'Yes' 'swaymsg exit'
 
-# polybar
-exec_always launch_polybar
+exec_always ~/bin/launch_waybar
 
-# guake
-exec guake
+# notifs
+exec dunst
+bindsym $mod+x exec dunstctl close
+
+# gammastep
+exec /usr/bin/gammastep-indicator -l 22.5:88.36 -m wayland
 
 hide_edge_borders both
 
@@ -130,7 +124,7 @@ exec xkbset ma 60 10 10 5 2
 exec_always echo $DBUS_SESSION_BUS_ADDRESS > ~/.dbusaddr
 
 # managing networks
-exec nm-applet
+exec nm-applet --indicator
 exec blueman-applet
 
 # get volume controls
@@ -144,19 +138,25 @@ bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+# control mic
+bindsym $alt+m exec bash -c "mic-muter; pkill -SIGRTMIN+1 waybar"
+
 # control brightness
 bindsym XF86MonBrightnessUp exec brightness_control inc 5
 bindsym XF86MonBrightnessDown exec brightness_control dec 5
 
 # locking
-bindsym $mod+Control+l exec i3lock_cool
-exec xautolock -time 15 -locker '~/bin/i3lock_cool' -detectsleep
+bindsym $mod+Control+l exec swaylock_cool
+exec swayidle -w \
+        timeout 300 swaylock_cool \
+        timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+        before-sleep swaylock_cool
 
 # set wallpaper
-exec_always feh --bg-fill ~/Pictures/wall.jpg
+output * bg ~/Pictures/wall.jpg fill
 
 # screenshot!
-bindsym --release Print exec "maim -sku --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
+bindsym --release Print exec grim -g "$(slurp)" - | wl-copy
 bindsym --release Control+Print exec "maim -u --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
 bindsym --release Mod1+Print exec maim -sku ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
 bindsym --release Shift+Print exec maim -u ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
@@ -164,11 +164,6 @@ bindsym --release Shift+Print exec maim -u ~/Pictures/Screenshot_`date +%Y%m%d_%
 # move workspaces to different monitors
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
-
-bindsym $mod+m mode "media"
-bindsym $mod+c mode "config"
-bindsym $mod+y mode "copy"
-bindsym $mod+r mode "rofi"
 
 # media control mode
 mode "media" {
@@ -195,7 +190,7 @@ mode "config" {
 }
 
 mode "copy" {
-    bindsym s exec xclip -selection clipboard <<< "¯\_(ツ)_/¯"; mode "default"
+    bindsym s exec wl-copy <<< "¯\_(ツ)_/¯"; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -208,6 +203,17 @@ mode "rofi" {
     bindsym Escape mode "default"
 }
 
+mode "mic-on" {
+    bindsym Return exec bash -c "mic-muter off; pkill -SIGRTMIN+1 waybar"; mode "default"
+    bindsym Escape exec bash -c "mic-muter off; pkill -SIGRTMIN+1 waybar"; mode "default"
+}
+
+bindsym $mod+m mode "media"
+bindsym $mod+c mode "config"
+bindsym $mod+y mode "copy"
+bindsym $mod+r mode "rofi"
+bindsym $alt+space exec bash -c "mic-muter on; pkill -SIGRTMIN+1 waybar"; mode "mic-on"
+
 bindsym $mod+Shift+Escape exec brightness_control toggle
 
 # default floating window
@@ -219,15 +225,29 @@ for_window [class="UXTerm"] floating enable
 # open apps on default workspaces
 assign [class="microsoft teams - preview"] workspace $w0
 
-assign [class="Gvim"] workspace $w2
+assign [app_id="firefox"] workspace $w3
 
-assign [class="firefox"] workspace $w3
-
-assign [class="TelegramDesktop"] workspace $w4
+assign [app_id="telegramdesktop"] workspace $w4
 assign [class="discord"] workspace $w4
-assign [class="Slack"] workspace $w4
 assign [class="Zulip"] workspace $w4
 
-for_window [class="Spotify"] move to workspace 5
-
 # bindsym Control+w nop Disable_Ctrl_W_for_tests
+
+input type:keyboard {
+    xkb_options caps:swapescape
+}
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+}
+
+titlebar_border_thickness 1
+titlebar_padding 5 1
+
+bindsym $mod+p exec "pkill -SIGUSR1 waybar"
+
+include /etc/sway/config.d/*
+
+exec /usr/lib/xdg-desktop-portal -r
+exec /usr/lib/xdg-desktop-portal-wlr
