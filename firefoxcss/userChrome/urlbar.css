@@ -131,3 +131,8 @@
 .urlbarView-row[aria-selected = "true"] {
     background-color: #ffffff30;
 }
+
+#urlbar ::-moz-selection,
+.searchbar-textbox ::-moz-selection {
+    background-color: #ffffff30 !important;
+}

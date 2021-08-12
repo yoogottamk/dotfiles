@@ -33,7 +33,7 @@ export ANDROID_SDK_ROOT="/opt/android-sdk"
 export CHROME_EXECUTABLE=google-chrome-stable
 
 if [ $(tty) = "/dev/tty1" ]; then
-    exec startx
+    startx
 elif [ $(tty) = "/dev/tty2" ]; then
     exec sway
 fi

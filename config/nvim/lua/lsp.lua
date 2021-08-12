@@ -76,7 +76,7 @@ nvim_lsp.yamlls.setup{
     settings = {
         yaml = {
             schemas = {
-                ["kubernetes"] = {"*kube*", "spec.yaml", "kube.yaml"},
+                ["kubernetes"] = {"*kube*", "spec.yaml", "kube.yaml", "**/*.yaml"},
                 ["https://raw.githubusercontent.com/docker/compose/master/compose/config/compose_spec.json"] = {"**/docker-compose.yaml", "**/docker-compose.yml"},
                 ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = {"spec.yaml", "argo.yaml"}
             }
@@ -155,11 +155,11 @@ nvim_lsp.efm.setup{
     init_options = {documentFormatting = true},
     on_attach = format_on_attach,
     settings = {
-        rootMarkers = {".git"},
+        rootMarkers = {"venv"},
         languages = {
             python = {
-                {formatCommand = "isort --quiet -", formatStdin = true},
                 {formatCommand = "black --quiet -", formatStdin = true},
+                {formatCommand = "isort --quiet -", formatStdin = true},
             },
             sh = {
                 {

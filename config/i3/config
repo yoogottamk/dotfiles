@@ -117,6 +117,9 @@ bindsym $mod+Shift+p exec launch_polybar
 # polybar
 exec_always launch_polybar
 
+# redshift
+exec redshift-gtk -l 22.5:88.36
+
 # guake
 exec guake
 
