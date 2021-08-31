@@ -11,7 +11,7 @@ font pango:JetBrainsMono Nerd Font 14
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec "i3-sensible-terminal"
+bindsym $mod+Return exec "i3-sensible-terminal -e tmux"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -135,6 +135,8 @@ exec_always echo $DBUS_SESSION_BUS_ADDRESS > ~/.dbusaddr
 # managing networks
 exec nm-applet
 exec blueman-applet
+
+exec_always calcurse --daemon
 
 # get volume controls
 bindsym XF86AudioRaiseVolume exec volume_control '+5%'

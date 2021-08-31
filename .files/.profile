@@ -4,7 +4,7 @@ source ~/.path_dirs
 
 # Use GTK themes for Qt apps
 export GTK_THEME=vimix-dark
-# export QT_QPA_PLATFORMTHEME="gtk2"
+export QT_QPA_PLATFORMTHEME="gtk2"
 
 # # use wayland wherever possible
 # export QT_QPA_PLATFORM=wayland
@@ -20,7 +20,7 @@ export GTK_THEME=vimix-dark
 export EDITOR=nvim
 export VISUAL=nvim
 
-export TERMINAL=tilix
+export TERMINAL=alacritty
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -31,6 +31,9 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export ANDROID_SDK_ROOT="/opt/android-sdk"
 
 export CHROME_EXECUTABLE=google-chrome-stable
+
+eval `ssh-agent`
+ssh-add
 
 if [ $(tty) = "/dev/tty1" ]; then
     startx
