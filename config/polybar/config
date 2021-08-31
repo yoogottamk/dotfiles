@@ -95,7 +95,7 @@ label-empty =
 
 [module/pulseaudio]
 type = internal/pulseaudio
-sink = bluez_sink.E4_41_22_00_3E_7F.a2dp_sink
+sink = bluez_sink.5C_FB_7C_0F_DC_D9.a2dp_sink
 
 format-volume = <ramp-volume> <label-volume>
 format-volume-underline = #268bd2
