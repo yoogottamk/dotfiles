@@ -8,6 +8,7 @@
 window {
     background-color: @bg;
     height: 50%;
+    width: 33%;
 }
 
 mainbox {
@@ -19,6 +20,7 @@ mainbox {
 listview {
     padding: 8;
     background-color: @bg;
+    columns: 3;
 }
 
 element {
@@ -44,6 +46,17 @@ entry {
     color: @fg;
     border: 0 0 0 4;
     border-color: @sep;
+}
+
+element-text, element-icon {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+element-icon {
+    size: 24;
+    margin: 0 10 0 0;
+    vertical-align: 0.5;
 }
 
 /* vim: ft=css
