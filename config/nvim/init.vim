@@ -14,6 +14,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 
 Plug 'hrsh7th/nvim-compe'
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim', { 'do': 'wget https://web.iiit.ac.in/~yoogottam.khandelwal/lspsaga.patch && git apply lspsaga.patch' }
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -40,6 +42,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'cespare/vim-toml'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 call plug#end()
 " }}}
 
@@ -253,6 +256,11 @@ if has("autocmd")
         au!
         autocmd BufWritePost init.vim source %
     augroup end
+
+    " augroup completion
+    "     au!
+    "     autocmd VimEnter * COQnow
+    " augroup end
 endif
 " }}}
 
