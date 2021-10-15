@@ -270,7 +270,6 @@ Glaive coverage uncovered_text='--' covered_text='++' partial_text='~~'
 " }}}
 
 " live markdown preview {{{
-let g:mkdp_auto_start = 1
 " let g:mkdp_browser = '/home/yog/bin/fnewwin'
 let g:mkdp_browser = 'qutebrowser'
 " }}}

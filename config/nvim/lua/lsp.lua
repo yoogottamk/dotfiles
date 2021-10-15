@@ -58,22 +58,29 @@ local on_attach = function(client, bufnr)
     format_on_attach(client)
 end
 
+-- enable snippets
+local cap = vim.lsp.protocol.make_client_capabilities()
+cap.textDocument.completion.completionItem.snippetSupport = true
+
 -- python
 nvim_lsp.pyright.setup {
     on_attach = on_attach,
-    flags = {debounce_text_changes = 150}
+    flags = {debounce_text_changes = 150},
+    capabilities = cap
 }
 
 -- bash
 nvim_lsp.bashls.setup {
     on_attach = on_attach,
-    flags = {debounce_text_changes = 150}
+    flags = {debounce_text_changes = 150},
+    capabilities = cap
 }
 
 -- clangd
 nvim_lsp.clangd.setup {
     on_attach = on_attach,
-    flags = {debounce_text_changes = 150}
+    flags = {debounce_text_changes = 150},
+    capabilities = cap
 }
 
 -- dart
@@ -84,19 +91,22 @@ nvim_lsp.dartls.setup {
         "--lsp"
     },
     on_attach = on_attach,
-    flags = {debounce_text_changes = 150}
+    flags = {debounce_text_changes = 150},
+    capabilities = cap
 }
 
 -- dockerfile
 nvim_lsp.dockerls.setup {
     on_attach = on_attach,
-    flags = {debounce_text_changes = 150}
+    flags = {debounce_text_changes = 150},
+    capabilities = cap
 }
 
 -- go
 nvim_lsp.gopls.setup {
     on_attach = on_attach,
-    flags = {debounce_text_changes = 150}
+    flags = {debounce_text_changes = 150},
+    capabilities = cap
 }
 
 -- julia
@@ -121,19 +131,29 @@ nvim_lsp.julials.setup {
         new_config.cmd = cmd
     end,
     on_attach = on_attach,
-    flags = {debounce_text_changes = 150}
+    flags = {debounce_text_changes = 150},
+    capabilities = cap
 }
 
 -- rust
 nvim_lsp.rust_analyzer.setup {
     on_attach = on_attach,
-    flags = {debounce_text_changes = 150}
+    flags = {debounce_text_changes = 150},
+    capabilities = cap
+}
+
+-- denols
+nvim_lsp.denols.setup {
+    on_attach = on_attach,
+    flags = {debounce_text_changes = 150},
+    capabilities = cap
 }
 
 -- latex
 nvim_lsp.texlab.setup {
     on_attach = on_attach,
-    flags = {debounce_text_changes = 150}
+    flags = {debounce_text_changes = 150},
+    capabilities = cap
 }
 
 -- yaml
@@ -143,9 +163,7 @@ nvim_lsp.yamlls.setup {
     settings = {
         yaml = {
             schemas = {
-                ["kubernetes"] = {
-                    "*kube*", "spec.yaml", "kube.yaml", "**/*.yaml"
-                },
+                ["kubernetes"] = {"*kube*", "spec.yaml", "kube.yaml"},
                 ["https://raw.githubusercontent.com/docker/compose/master/compose/config/compose_spec.json"] = {
                     "**/docker-compose.yaml", "**/docker-compose.yml"
                 },
@@ -154,7 +172,8 @@ nvim_lsp.yamlls.setup {
                 }
             }
         }
-    }
+    },
+    capabilities = cap
 }
 
 -- lua
@@ -176,18 +195,18 @@ nvim_lsp.sumneko_lua.setup {
             workspace = {library = vim.api.nvim_get_runtime_file("", true)},
             telemetry = {enable = false}
         }
-    }
+    },
+    capabilities = cap
 }
 
 -- svelte
 nvim_lsp.svelte.setup {
     on_attach = on_attach,
-    flags = {debounce_text_changes = 150}
+    flags = {debounce_text_changes = 150},
+    capabilities = cap
 }
 
 -- html
-local cap = vim.lsp.protocol.make_client_capabilities()
-cap.textDocument.completion.completionItem.snippetSupport = true
 nvim_lsp.html.setup {
     on_attach = on_attach,
     flags = {debounce_text_changes = 150},
@@ -233,7 +252,8 @@ nvim_lsp.efm.setup {
             },
             lua = {{formatCommand = "lua-format -i", formatStdin = true}}
         }
-    }
+    },
+    capabilities = cap
 }
 
 -- using lspsaga since it looks better
