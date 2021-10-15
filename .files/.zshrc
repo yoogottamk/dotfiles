@@ -4,6 +4,9 @@
 export ZSH="/home/yog/.oh-my-zsh"
 
 ZSH_THEME="agnoster"
+DISABLE_AUTO_UPDATE="true"
+ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
 
 plugins=(
     vi-mode
