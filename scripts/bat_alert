@@ -7,6 +7,8 @@ msg_id=999997
 bat_level="$( cat /sys/class/power_supply/BAT0/capacity )"
 bat_status="$( cat /sys/class/power_supply/BAT0/status )"
 
-if [[ "$bat_status" == "Discharging" ]] && (( bat_level <= 10 )); then
+if [[ "$bat_status" == "Discharging" ]] && (( bat_level <= 30 )); then
     dunstify -r "$msg_id" -a "Battery alert" -u critical "${bat_level}% remaining"
+elif [[ "$bat_status" == "Charging" ]] && (( bat_level >= 80 )); then
+    dunstify -r "$msg_id" -a "Battery alert" -u critical "Unplug for good battery life"
 fi
