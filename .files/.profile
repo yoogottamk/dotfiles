@@ -20,7 +20,7 @@ export QT_QPA_PLATFORMTHEME="gtk2"
 export EDITOR=nvim
 export VISUAL=nvim
 
-export TERMINAL=alacritty
+export TERMINAL=kitty
 
 # nvm
 export NVM_DIR="$HOME/.nvm"

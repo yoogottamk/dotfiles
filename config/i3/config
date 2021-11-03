@@ -11,8 +11,8 @@ font pango:JetBrainsMono Nerd Font 14
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec "i3-sensible-terminal -e tmux"
-bindsym $mod+Shift+Return exec i3-sensible-terminal
+bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Shift+Return exec "i3-sensible-terminal -e tmux"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -64,7 +64,7 @@ bindsym $mod+z focus child
 bindsym $alt+m exec bash -c "[[ $( amixer get Capture | tail -1 | grep -o '[o[nf]*\]$' ) = '[on]' ]] && polybar-msg hook mic-muter 1 || polybar-msg hook mic-muter 2"
 
 default_border none
-
+hide_edge_borders both
 gaps inner 15
 smart_gaps on
 
@@ -123,8 +123,6 @@ exec redshift-gtk -l 22.5:88.36
 
 # guake
 exec guake
-
-hide_edge_borders both
 
 # swap escape and capslock
 exec_always setxkbmap -option caps:swapescape
