@@ -1,7 +1,6 @@
 [global]
     font = JetBrainsMono Nerd Font 14
 
-    allow_markup = yes
     markup=full
     # The format of the message. Possible variables are:
     #   %a  appname
@@ -16,13 +15,16 @@
 
     indicate_hidden = yes
     alignment = left
-    bounce_freq = 0
     show_age_threshold = 60
 
     word_wrap = yes
     ignore_newline = no
     # 35: polybar height
-    geometry = "400x5-0-35"
+    # geometry = "400x5-0-35"
+    width = 400
+    height = 300
+    offset = 0x35
+    origin = bottom-right
     transparency = 0
 
     idle_threshold = 60
@@ -42,7 +44,6 @@
     #  * frame: use the same color as the frame.
     #  * anything else will be interpreted as a X color
     separator_color = auto
-    startup_notification = true
 
     # dmenu path
     dmenu = /usr/bin/rofi -dmenu -p dunst:
@@ -54,15 +55,8 @@
 
     icon_path = /usr/share/icons/Papirus-Dark/16x16/status:/usr/share/icons/Papirus-Dark/16x16/devices/:/usr/share/icons/Papirus-Dark/16x16/apps/:/usr/share/icons/Papirus-Dark/16x16/actions
 
-[frame]
-    width = 0
-    color = "#000000"
-
-[shortcuts]
-    close = mod4+x
-    close_all = mod4+shift+x
-    history = mod4+n
-    context = ctrl+shift+period
+    frame_width = 0
+    frame_color = "#000000"
 
 [urgency_low]
     background = "#222222"
@@ -81,6 +75,6 @@
 
 [ignore_teams]
     appname = "Microsoft Teams - Preview"
-    format = ""
+    skip_display = true
 
 # vim:ft=cfg
