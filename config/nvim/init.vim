@@ -13,21 +13,17 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 
-Plug 'hrsh7th/nvim-compe'
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'neovim/nvim-lspconfig'
-Plug 'glepnir/lspsaga.nvim', { 'do': 'wget https://web.iiit.ac.in/~yoogottam.khandelwal/lspsaga.patch && git apply lspsaga.patch' }
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mattn/efm-langserver'
-
-Plug 'google/vim-maktaba'
-Plug 'google/vim-coverage'
-Plug 'google/vim-glaive'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'onsails/lspkind-nvim'
 
 Plug 'tmhedberg/SimpylFold'
-
-Plug 'SirVer/ultisnips'
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -43,6 +39,11 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'cespare/vim-toml'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
+
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'rafamadriz/friendly-snippets'
+
 call plug#end()
 " }}}
 
@@ -264,11 +265,6 @@ if has("autocmd")
 endif
 " }}}
 
-" vim-coverage stuff {{{
-call glaive#Install()
-Glaive coverage uncovered_text='--' covered_text='++' partial_text='~~'
-" }}}
-
 " live markdown preview {{{
 " let g:mkdp_browser = '/home/yog/bin/fnewwin'
 let g:mkdp_browser = 'qutebrowser'
@@ -276,3 +272,8 @@ let g:mkdp_browser = 'qutebrowser'
 
 " lua config
 lua require("init")
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+set guifont=Fira\ Code:h10

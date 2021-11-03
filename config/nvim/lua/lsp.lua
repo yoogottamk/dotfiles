@@ -32,34 +32,16 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
     buf_set_keymap("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
     buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-
-    -- lspsaga better for these
-    buf_set_keymap("n", "gh",
-                   [[<cmd>lua require"lspsaga.provider".lsp_finder()<cr>]], opts)
-    buf_set_keymap("n", "<leader>ca",
-                   [[<cmd>lua require"lspsaga.codeaction".code_action()<cr>]],
-                   opts)
-    buf_set_keymap("n", "M",
-                   [[<cmd>lua require"lspsaga.hover".render_hover_doc()<cr>]],
-                   opts)
-    buf_set_keymap("n", "[d",
-                   [[<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()<cr>]],
-                   opts)
-    buf_set_keymap("n", "]d",
-                   [[<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_next()<cr>]],
-                   opts)
-    buf_set_keymap("n", "<C-f>",
-                   [[<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<cr>]],
-                   opts)
-    buf_set_keymap("n", "<C-b>",
-                   [[<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<cr>]],
-                   opts)
+    buf_set_keymap("n", "M", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+    buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+    buf_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
     format_on_attach(client)
 end
 
 -- enable snippets
-local cap = vim.lsp.protocol.make_client_capabilities()
+local cap = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 cap.textDocument.completion.completionItem.snippetSupport = true
 
 -- python
@@ -216,8 +198,9 @@ nvim_lsp.html.setup {
 -- for formatting
 
 vim.lsp.handlers["textDocument/formatting"] =
-    function(err, _, result, _, bufnr)
-        if err ~= nil or result == nil then return end
+    function(_, result, ctx, _)
+        local bufnr = ctx.bufnr
+        if result == nil then return end
         if not vim.api.nvim_buf_get_option(bufnr, "modified") then
             local view = vim.fn.winsaveview()
             vim.lsp.util.apply_text_edits(result, bufnr)
@@ -256,7 +239,5 @@ nvim_lsp.efm.setup {
     capabilities = cap
 }
 
--- using lspsaga since it looks better
-require"lspsaga".init_lsp_saga()
 -- show function signature when cursor idle in insert mode
-vim.cmd [[autocmd CursorHoldI * silent! lua require("lspsaga.signaturehelp").signature_help()]]
+vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()<CR>]]
