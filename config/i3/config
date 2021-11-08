@@ -12,7 +12,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Shift+Return exec "i3-sensible-terminal -e tmux"
+bindsym $mod+Shift+Return exec "alactitty -e tmux"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -121,8 +121,9 @@ exec_always launch_polybar
 # redshift
 exec redshift-gtk -l 22.5:88.36
 
-# guake
-exec guake
+# dropdown term
+exec_always --no-startup-id kitti3 -p LB -s 1.0 0.45
+bindsym $alt+slash nop kitti3
 
 # swap escape and capslock
 exec_always setxkbmap -option caps:swapescape

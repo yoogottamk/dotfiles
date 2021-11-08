@@ -64,14 +64,8 @@ alias mirror='ffplay -f video4linux2 -i /dev/video0 -video_size 640x480 -fflags 
 # better ssh sessions
 alias ssh='TERM=xterm-256color ssh'
 
-alias v='f -e vim'
-alias o='a -e xdg-open'
-
 # switch to nvim
 alias vim='nvim'
-
-# finally got tired of this
-alias ':q'=exit
 
 # python aliases
 alias numpy='python -i $HOME/.pyload/load-numpy.py'
@@ -103,3 +97,6 @@ function shh {
 alias ip='ip -color=auto'
 
 alias teams-mute='pactl set-sink-input-mute `pactl list sink-inputs | grep -E "^Sink Input|skype" | grep -B1 skype | head -1 | cut -d"#" -f2` toggle'
+
+# ls hyperlinks
+alias ls="ls --color=tty --hyperlink=auto"

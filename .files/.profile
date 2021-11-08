@@ -6,17 +6,6 @@ source ~/.path_dirs
 export GTK_THEME=vimix-dark
 export QT_QPA_PLATFORMTHEME="gtk2"
 
-# # use wayland wherever possible
-# export QT_QPA_PLATFORM=wayland
-# # export GDK_BACKEND=wayland
-# export CLUTTER_BACKEND=wayland
-# export SDL_VIDEODRIVER=wayland
-
-# export XDG_CURRENT_DESKTOP=sway
-
-# export MOZ_ENABLE_WAYLAND=1
-# export MOZ_DBUS_REMOTE=1
-
 export EDITOR=nvim
 export VISUAL=nvim
 
@@ -38,5 +27,16 @@ ssh-add
 if [ $(tty) = "/dev/tty1" ]; then
     startx
 elif [ $(tty) = "/dev/tty2" ]; then
+    # use wayland wherever possible
+    export QT_QPA_PLATFORM=wayland
+    # export GDK_BACKEND=wayland
+    export CLUTTER_BACKEND=wayland
+    export SDL_VIDEODRIVER=wayland
+
+    export XDG_CURRENT_DESKTOP=sway
+
+    export MOZ_ENABLE_WAYLAND=1
+    export MOZ_DBUS_REMOTE=1
+
     exec sway
 fi

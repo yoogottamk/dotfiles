@@ -25,15 +25,7 @@ source ~/.aliases
 # }}}
 
 # fasd {{{
-{ if [ "$ZSH_VERSION" ] && compctl; then # zsh
-    eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install \
-      zsh-wcomp zsh-wcomp-install)"
-  elif [ "$BASH_VERSION" ] && complete; then # bash
-    eval "$(fasd --init posix-alias bash-hook bash-ccomp bash-ccomp-install)"
-  else # posix shell
-    eval "$(fasd --init posix-alias posix-hook)"
-  fi
-} >> "/dev/null" 2>&1
+eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"  >> /dev/null 2>&1
 # }}}
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
@@ -112,7 +104,11 @@ add-zsh-hook -Uz chpwd (){ [ -f .env ] && source .env; [ -d venv ] && source ven
 
 export HEROKU_ORGANIZATION="aicrowd-rails-devs"
 export LESS="-F -X $LESS"
+
 export COMPOSE_DOCKER_CLI_BUILD=1
+
+# kitty grep
+compdef _rg kg
 
 task
 

@@ -50,6 +50,11 @@ nvim_lsp.pyright.setup {
     flags = {debounce_text_changes = 150},
     capabilities = cap
 }
+-- require'lspconfig'.pylsp.setup{
+--     on_attach = on_attach,
+--     flags = {debounce_text_changes = 150},
+--     capabilities = cap
+-- }
 
 -- bash
 nvim_lsp.bashls.setup {

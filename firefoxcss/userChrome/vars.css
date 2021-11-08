@@ -10,9 +10,9 @@
     --accent-hover: #3f3f3f;
 
     /* TST */
-    --tst-margin-top-offset: 20px;
-    --tst-min-width: 40px;
-    --tst-max-width: 200px;
+    --sidebery-margin-top-offset: 20px;
+    --sidebery-min-width: 32px;
+    --sidebery-max-width: 200px;
 
     /* Misc. */
     --top-drag-space: 5px;

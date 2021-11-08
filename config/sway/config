@@ -11,8 +11,7 @@ font pango:JetBrainsMono Nerd Font 14
 floating_modifier $mod
 
 # start a terminal
-# bindsym $mod+Return exec "i3-sensible-terminal"
-bindsym $mod+Return exec tilix
+bindsym $mod+Return exec "i3-sensible-terminal"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -56,7 +55,7 @@ bindsym $mod+a focus parent
 bindsym $mod+z focus child
 
 default_border none
-
+hide_edge_borders both
 gaps inner 15
 smart_gaps on
 
@@ -96,29 +95,24 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Tab workspace next_on_output
 bindsym $mod+Shift+Tab workspace prev_on_output
 
-bindsym $mod+Shift+minus move scratchpad
-bindsym $alt+slash scratchpad show
-
 # restart sway inplace
 bindsym $mod+Shift+r reload
 
 # exit sway
 bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -b 'Yes' 'swaymsg exit'
 
-exec_always ~/bin/launch_waybar
+# toggle waybar visibility
+bindsym $mod+p exec "pkill -SIGUSR1 waybar"
 
-# notifs
-exec dunst
-bindsym $mod+x exec dunstctl close
+# waybar
+exec_always ~/bin/launch_waybar
 
 # gammastep
 exec /usr/bin/gammastep-indicator -l 22.5:88.36 -m wayland
 
-hide_edge_borders both
-
-# swap escape and capslock
-exec_always setxkbmap -option caps:swapescape
-exec xkbset ma 60 10 10 5 2
+# dropdown term
+exec_always --no-startup-id kitti3 -p LB -s 1.0 0.45
+bindsym $alt+slash nop kitti3
 
 # save dbus session address
 exec_always echo $DBUS_SESSION_BUS_ADDRESS > ~/.dbusaddr
@@ -138,9 +132,6 @@ bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# control mic
-bindsym $alt+m exec bash -c "mic-muter; pkill -SIGRTMIN+1 waybar"
-
 # control brightness
 bindsym XF86MonBrightnessUp exec brightness_control inc 5
 bindsym XF86MonBrightnessDown exec brightness_control dec 5
@@ -157,13 +148,25 @@ output * bg ~/Pictures/wall.jpg fill
 
 # screenshot!
 bindsym --release Print exec grim -g "$(slurp)" - | wl-copy
-bindsym --release Control+Print exec "maim -u --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
-bindsym --release Mod1+Print exec maim -sku ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
-bindsym --release Shift+Print exec maim -u ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
+# bindsym --release Control+Print exec "maim -u --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
+# bindsym --release Mod1+Print exec maim -sku ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
+# bindsym --release Shift+Print exec maim -u ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
+
+# notifs
+exec dunst
+bindsym $mod+x exec dunstctl close
+bindsym $mod+n exec dunstctl history-pop
+bindsym $mod+Shift+x exec dunstctl close-all
+bindsym Control+Shift+Period exec dunstctl close-all
 
 # move workspaces to different monitors
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
+
+bindsym $mod+m mode "media"
+bindsym $mod+c mode "config"
+bindsym $mod+y mode "copy"
+bindsym $mod+r mode "rofi"
 
 # media control mode
 mode "media" {
@@ -203,18 +206,14 @@ mode "rofi" {
     bindsym Escape mode "default"
 }
 
+bindsym $mod+Shift+Escape exec brightness_control toggle
+
 mode "mic-on" {
     bindsym Return exec bash -c "mic-muter off; pkill -SIGRTMIN+1 waybar"; mode "default"
     bindsym Escape exec bash -c "mic-muter off; pkill -SIGRTMIN+1 waybar"; mode "default"
 }
 
-bindsym $mod+m mode "media"
-bindsym $mod+c mode "config"
-bindsym $mod+y mode "copy"
-bindsym $mod+r mode "rofi"
 bindsym $alt+space exec bash -c "mic-muter on; pkill -SIGRTMIN+1 waybar"; mode "mic-on"
-
-bindsym $mod+Shift+Escape exec brightness_control toggle
 
 # default floating window
 for_window [class="Blueman-manager"] floating enable
@@ -225,11 +224,16 @@ for_window [class="UXTerm"] floating enable
 # open apps on default workspaces
 assign [class="microsoft teams - preview"] workspace $w0
 
+assign [class="Gvim"] workspace $w2
+
 assign [app_id="firefox"] workspace $w3
 
-assign [app_id="telegramdesktop"] workspace $w4
+assign [app_id="TelegramDesktop"] workspace $w4
 assign [class="discord"] workspace $w4
+assign [class="Slack"] workspace $w4
 assign [class="Zulip"] workspace $w4
+
+for_window [class="Spotify"] move to workspace 5
 
 # bindsym Control+w nop Disable_Ctrl_W_for_tests
 
@@ -245,9 +249,10 @@ input type:touchpad {
 titlebar_border_thickness 1
 titlebar_padding 5 1
 
-bindsym $mod+p exec "pkill -SIGUSR1 waybar"
-
 include /etc/sway/config.d/*
+
+# control mic
+bindsym $alt+m exec bash -c "mic-muter; pkill -SIGRTMIN+1 waybar"
 
 exec /usr/lib/xdg-desktop-portal -r
 exec /usr/lib/xdg-desktop-portal-wlr
