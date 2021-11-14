@@ -9,7 +9,6 @@
 
 window#waybar {
     background: @background;
-    /* border-bottom: 4px solid red; */
 }
 
 /*
@@ -57,12 +56,12 @@ window#waybar {
 
 #custom-right-arrow-dark,
 #custom-left-arrow-dark {
-	color: @active-ws-bg;
+    color: @active-ws-bg;
 }
 #custom-right-arrow-light,
 #custom-left-arrow-light {
-	color: @background;
-	background: @active-ws-bg;
+    color: @background;
+    background: @active-ws-bg;
 }
 
 #battery.good {

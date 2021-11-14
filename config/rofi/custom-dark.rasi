@@ -1,62 +1,71 @@
 * {
-    bg: #181818;
+    bg    : #181818;
     bg-sel: #2f2f2f;
-    fg: #eeeeee;
-    sep: #007acc;
+    fg    : #eeeeee;
+    sep   : #007acc;
 }
 
 window {
     background-color: @bg;
-    height: 50%;
-    width: 33%;
+    height          : 45%;
+    width           : 40%;
 }
 
 mainbox {
-    children: [ inputbar, listview ];
+    children        : [ inputbar, listview ];
     background-color: @bg;
-    border: 0;
+    border          : 0;
+}
+
+inputbar {
+    padding         : 8;
+    children        : [entry];
+    background-color: @bg;
+}
+
+entry {
+    padding         : 8;
+    background-color: @bg-sel;
+    color           : @fg;
+    border          : 0 0 0 4;
+    border-color    : @sep;
 }
 
 listview {
-    padding: 8;
+    padding         : 8;
     background-color: @bg;
-    columns: 3;
+    columns         : 5;
 }
 
 element {
-    border: 0;
-    padding: 10;
+    border          : 0;
+    padding         : 10;
     background-color: @bg;
-    color: @fg;
+    color           : @fg;
+    orientation     : vertical;
+    padding         : 2% 0% 2% 0%;
 }
 
 element selected {
     background-color: @bg-sel;
 }
 
-inputbar {
-    padding: 8;
-    children: [entry];
-    background-color: @bg;
-}
-
-entry {
-    padding: 8;
-    background-color: @bg-sel;
-    color: @fg;
-    border: 0 0 0 4;
-    border-color: @sep;
-}
-
 element-text, element-icon {
     background-color: inherit;
-    text-color:       inherit;
+    text-color      : inherit;
+    horizontal-align: 0.5;
+    vertical-align  : 0.5;
 }
 
 element-icon {
-    size: 24;
-    margin: 0 10 0 0;
-    vertical-align: 0.5;
+    size  : 64px;
+    border: 0;
+}
+
+element-text {
+    expand: true;
+    margin: 0.5% 0.5% -0.5% 0.5%;
+    font  : "JetBrainsMono Nerd Font 12";
 }
 
 /* vim: ft=css

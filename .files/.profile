@@ -24,9 +24,9 @@ export CHROME_EXECUTABLE=google-chrome-stable
 eval `ssh-agent`
 ssh-add
 
-if [ $(tty) = "/dev/tty1" ]; then
+if [ $(tty) = "/dev/tty2" ]; then
     startx
-elif [ $(tty) = "/dev/tty2" ]; then
+elif [ $(tty) = "/dev/tty1" ]; then
     # use wayland wherever possible
     export QT_QPA_PLATFORM=wayland
     # export GDK_BACKEND=wayland

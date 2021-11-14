@@ -66,11 +66,16 @@
     },
     "network#1": {
         "interface": "eno1",
-        "format": "{ifname} {ipaddr}"
+        "format": "{ipaddr}",
+        "format-disconnected": "-",
+        "on-click": "dunstify -a ip[eno1] `curl --interface eno1 -fsSL ifconfig.me` -u low"
     },
     "network#2": {
         "interface": "wlo1",
-        "format": "{ifname} {essid} {ipaddr}"
+        "format": "{essid} {ipaddr}",
+        "format-disconnected": "-",
+        "tooltip-format": "💪 {signalStrength}%",
+        "on-click": "dunstify -a ip[wlo1] `curl --interface wlo1 -fsSL ifconfig.me` -u low"
     },
     "battery": {
         "states": {
@@ -79,6 +84,8 @@
             "critical": 15
         },
         "format": "{icon} {capacity}%",
+        "format-charging": "⚡ {icon} {capacity}%",
+        "format-time": "{H}h {M}m",
         "format-icons": [
             "",
             "",
@@ -90,6 +97,7 @@
     "tray": {
         "icon-size": 24
     },
+
     "custom/left-arrow-dark": {
         "format": "",
         "tooltip": false
