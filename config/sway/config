@@ -11,7 +11,8 @@ font pango:JetBrainsMono Nerd Font 14
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec "i3-sensible-terminal"
+# bindsym $mod+Return exec "i3-sensible-terminal"
+bindsym $mod+Return exec "MESA_LOADER_DRIVER_OVERRIDE=iris __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json kitty -1"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -111,7 +112,7 @@ exec_always ~/bin/launch_waybar
 exec /usr/bin/gammastep-indicator -l 22.5:88.36 -m wayland
 
 # dropdown term
-exec_always kitti3 -p LB -s 1.0 0.45 -n dropdown -- -o tab_bar_edge=top
+exec_always MESA_LOADER_DRIVER_OVERRIDE=iris __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json kitti3 -p LB -s 1.0 0.45 -n dropdown -- -o tab_bar_edge=top -1 --instance-group dropdown
 bindsym $alt+slash nop dropdown
 
 # save dbus session address
