@@ -1,57 +1,10 @@
-set runtimepath^=~/.vim
-let &packpath = &runtimepath
-
-" vim-plug stuff {{{
-call plug#begin(stdpath('data') . '/plugged')
-
-Plug 'vim-airline/vim-airline'
-Plug 'srcery-colors/srcery-vim'
-
-Plug 'windwp/nvim-autopairs'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'mattn/efm-langserver'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'onsails/lspkind-nvim'
-
-Plug 'tmhedberg/SimpylFold'
-
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'rmagatti/auto-session'
-Plug 'mattn/emmet-vim'
-Plug 'lervag/vimtex'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-Plug 'thosakwe/vim-flutter'
-
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'cespare/vim-toml'
-Plug 'evanleck/vim-svelte', {'branch': 'main'}
-
-Plug 'L3MON4D3/LuaSnip'
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'rafamadriz/friendly-snippets'
-
-Plug 'ActivityWatch/aw-watcher-vim'
-
-call plug#end()
-" }}}
-
 " {{{ internal vim packages
 packadd matchit
+packadd packer.nvim
 " }}}
+
+" lua config
+lua require("init")
 
 " Basic vim settings {{{
 " line numbers and relative line numbers
@@ -72,7 +25,6 @@ set hlsearch incsearch ignorecase smartcase
 " nice persistent undo
 set undolevels=999 history=999
 set undofile
-set undodir=~/.vim/undodir
 
 " theme
 set t_Co=256
@@ -120,6 +72,9 @@ set signcolumn=number
 nnoremap <F7> :setlocal spell! spelllang=en<CR>
 inoremap <C-l> <c-g>u<Esc>[s1z=`]i<c-g>u
 
+nnoremap <Up> <nop>
+nnoremap <Down> <nop>
+
 " for split navigation
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -141,8 +96,8 @@ nnoremap L $
 nnoremap <leader><space> :noh<cr>
 
 " fzf
-nnoremap <F2> <cmd>Buffers<cr>
-nnoremap <leader>l <cmd>Files<cr>
+nnoremap <F2> <cmd>Telescope buffers<cr>
+nnoremap <leader>l <cmd>Telescope find_files<cr>
 
 " edit init.vim
 nnoremap <leader>ev :vs ~/.config/nvim/init.vim<cr>
@@ -160,21 +115,9 @@ nnoremap <silent> - :m .-2<CR>==
 vnoremap <silent> + :m '>+1<CR>gv=gv
 vnoremap <silent> - :m '<-2<CR>gv=gv
 
-" for tab navigation
-nnoremap ]t :tabn<cr>
-nnoremap [t :tabp<cr>
-nnoremap ]T :tabl<cr>
-nnoremap [T :tabr<cr>
-tnoremap ]t <C-\><C-n>:tabn<cr>
-tnoremap [t <C-\><C-n>:tabp<cr>
-tnoremap ]T <C-\><C-n>:tabl<cr>
-tnoremap [T <C-\><C-n>:tabr<cr>
-
 " for buffer navigation
 nnoremap ]b :bn!<cr>
 nnoremap [b :bp!<cr>
-nnoremap ]B :bfirst!<cr>
-nnoremap ]B :blast!<cr>
 tnoremap ]b <C-\><C-n>:bn!<cr>
 tnoremap [b <C-\><C-n>:bp!<cr>
 tnoremap ]B <C-\><C-n>:bfirst!<cr>
@@ -194,6 +137,12 @@ nnoremap ]L :llast<cr>
 
 " make escape work inside terminal
 tnoremap <Esc> <C-\><C-n>
+
+" debugging
+nnoremap <leader>b :lua require'dap'.toggle_breakpoint()<cr>
+nnoremap <leader>d :lua require'dap'.continue()<cr>
+nnoremap <leader>c :lua require'dap'.step_over()<cr>
+nnoremap <leader>s :lua require'dap'.step_into()<cr>
 " }}}
 
 "  AirLine {{{
@@ -210,15 +159,6 @@ let g:user_emmet_settings = {
 \      'extends' : 'jsx',
 \  },
 \}
-" }}}
-
-" UltiSnips {{{
-let g:UltiSnipsSnippetDirectories = ['~/.UltiSnips']
-let g:UltiSnipsEditSplit="vertical"
-
-let g:UltiSnipsExpandTrigger = "<C-j>"
-let g:UltiSnipsJumpForwardTrigger = "<C-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 " }}}
 
 " vimtex {{{
@@ -260,20 +200,26 @@ if has("autocmd")
         autocmd BufWritePost init.vim source %
     augroup end
 
-    " augroup completion
-    "     au!
-    "     autocmd VimEnter * COQnow
-    " augroup end
+    augroup orgmode
+        au!
+        autocmd BufWritePost *.org silent! !emacs -nw --batch --visit=% --funcall=org-latex-export-to-pdf
+    augroup end
+
+    augroup jsx
+        au!
+        autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+    augroup end
+
+    augroup packer_user_config
+        autocmd!
+        autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+    augroup end
 endif
 " }}}
 
 " live markdown preview {{{
-" let g:mkdp_browser = '/home/yog/bin/fnewwin'
 let g:mkdp_browser = 'qutebrowser'
 " }}}
-
-" lua config
-lua require("init")
 
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
