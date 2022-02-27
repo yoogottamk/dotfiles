@@ -85,6 +85,7 @@
         },
         "format": "{icon} {capacity}%",
         "format-charging": "⚡ {icon} {capacity}%",
+        "format-unknown": "❗ {icon} {capacity}%",
         "format-time": "{H}h {M}m",
         "format-icons": [
             "",
