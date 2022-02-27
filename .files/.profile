@@ -21,6 +21,8 @@ export ANDROID_SDK_ROOT="/opt/android-sdk"
 
 export CHROME_EXECUTABLE=google-chrome-stable
 
+export LOG4J_FORMAT_MSG_NO_LOOKUPS=true
+
 eval `ssh-agent`
 ssh-add
 
