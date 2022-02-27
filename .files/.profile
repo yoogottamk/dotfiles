@@ -30,7 +30,9 @@ if [ $(tty) = "/dev/tty2" ]; then
     startx
 elif [ $(tty) = "/dev/tty1" ]; then
     # use wayland wherever possible
+
     export QT_QPA_PLATFORM=wayland
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
     # export GDK_BACKEND=wayland
     export CLUTTER_BACKEND=wayland
     export SDL_VIDEODRIVER=wayland
@@ -40,5 +42,7 @@ elif [ $(tty) = "/dev/tty1" ]; then
     export MOZ_ENABLE_WAYLAND=1
     export MOZ_DBUS_REMOTE=1
 
-    exec sway
+    export _JAVA_AWT_WM_NONREPARENTING=1
+
+    sway
 fi
