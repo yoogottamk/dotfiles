@@ -21,8 +21,6 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec "rofi -show drun -modi drun"
 # recent files
 bindsym $mod+s exec recent
-# emoji!
-bindsym $mod+g exec "rofi -show emoji -modi emoji -columns 1 -sort true -levenshtein-sort true -matching normal"
 # edit whatever in vim
 bindsym $mod+q exec vimedit
 
@@ -137,6 +135,8 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86MonBrightnessUp exec brightness_control inc 5
 bindsym XF86MonBrightnessDown exec brightness_control dec 5
 
+bindsym XF86Calculator exec kitty -1 python -i /home/yog/.pyload/load-numpy.py
+
 # locking
 bindsym $mod+Control+l exec swaylock_cool
 exec swayidle -w \
@@ -148,10 +148,9 @@ exec swayidle -w \
 output * bg ~/Pictures/wall.jpg fill
 
 # screenshot!
-bindsym --release Print exec grim -g "$(slurp)" - | wl-copy
-# bindsym --release Control+Print exec "maim -u --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
-# bindsym --release Mod1+Print exec maim -sku ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
-# bindsym --release Shift+Print exec maim -u ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
+bindsym --release Print exec grimshot --notify copy area
+bindsym --release Shift+Print exec grimshot --notify copy output
+bindsym --release Control+Print exec grimshot --notify copy window
 
 # notifs
 exec dunst
@@ -238,6 +237,7 @@ assign [class="Zulip"] workspace $w4
 for_window [class="Spotify"] move to workspace 5
 
 # bindsym Control+w nop Disable_Ctrl_W_for_tests
+bindsym $mod+Shift+minus move scratchpad
 
 input type:keyboard {
     xkb_options caps:swapescape
@@ -260,5 +260,15 @@ exec /usr/lib/xdg-desktop-portal -r
 exec /usr/lib/xdg-desktop-portal-wlr
 
 # activitywatch
-exec aw-qt
-exec aw-watcher-window-wayland
+# exec aw-qt
+# exec aw-watcher-window-wayland
+
+# gnome theme
+set $gnome-schema org.gnome.desktop.interface
+
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'vimix-dark'
+    # gsettings set $gnome-schema icon-theme 'Your icon theme'
+    # gsettings set $gnome-schema cursor-theme 'Your cursor Theme'
+    # gsettings set $gnome-schema font-name 'Your font name'
+}
