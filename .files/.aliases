@@ -74,7 +74,8 @@ alias numpy='python -i $HOME/.pyload/load-numpy.py'
 alias ldp='ldapsearch -H ldap://10.4.20.173 -b "ou=Users,dc=iiit,dc=ac,dc=in" -x'
 
 # pipe something here to copy to clipboard
-alias cbcp='xclip -selection clipboard'
+# alias cbcp='xclip -selection clipboard'
+alias cbcp='wl-copy'
 
 alias i='yay -S'
 alias up='yay -Syu'
@@ -100,3 +101,5 @@ alias teams-mute='pactl set-sink-input-mute `pactl list sink-inputs | grep -E "^
 
 # ls hyperlinks
 alias ls="ls --color=tty --hyperlink=auto"
+
+alias colorpicker='grim -g "$(slurp -p)" -t ppm - | convert - -format "%[pixel:p{0,0}]" txt:- | tail -n 1 | cut -d" " -f 4'
