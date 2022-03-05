@@ -1,17 +1,69 @@
 #!/bin/bash
 
-file=`mktemp`
+[[ $XDG_SESSION_TYPE = wayland ]] && session_type=wayland || session_type=x11
+
+# copy text {{{
+declare -A keyboard_copy
+function x_keyboard_copy {
+    xdotool key ctrl+c
+}
+function wayland_keyboard_copy {
+    wtype -M ctrl c -m ctrl
+}
+keyboard_copy[x11]=x_keyboard_copy
+keyboard_copy[wayland]=wayland_keyboard_copy
+# }}}
+
+# paste text {{{
+declare -A keyboard_paste
+function x_keyboard_paste {
+    xdotool key ctrl+v
+}
+function wayland_keyboard_paste {
+    wtype -M ctrl v -m ctrl
+}
+keyboard_paste[x11]=x_keyboard_paste
+keyboard_paste[wayland]=wayland_keyboard_paste
+# }}}
+
+# print clipboard content {{{
+declare -A print_clipboard
+function x_print_clipboard {
+    xclip -selection clipboard -o > "$1"
+}
+function wayland_print_cliboard {
+    wl-paste > "$1"
+}
+print_clipboard[x11]=x_print_clipboard
+print_clipboard[wayland]=wayland_print_cliboard
+# }}}
+
+# put content to clipboard {{{
+declare -A put_clipboard
+function x_put_clipboard {
+    xclip -selection clipboard -i < "$1"
+}
+function wayland_put_clipboard {
+    wl-copy < "$1"
+}
+put_clipboard[x11]=x_put_clipboard
+put_clipboard[wayland]=wayland_put_clipboard
+# }}}
+
+file=$(mktemp)
+
+${keyboard_copy[$session_type]}
 
 sleep 0.5s
 
-xdotool key ctrl+c
-
-xclip -selection clipboard -o > $file
+${print_clipboard[$session_type]} "$file"
 uxterm -e "$EDITOR +AirlineToggle +'set nonu nornu' $file"
-xclip -selection clipboard -i < $file
+${put_clipboard[$session_type]} "$file"
 
 sleep 0.1s
 
-xdotool key ctrl+v
+${keyboard_paste[$session_type]}
 
-rm $file
+rm "$file"
+
+# vim: fdm=marker
