@@ -12,7 +12,7 @@ return packer.startup(function(use)
     use 'theHamsta/nvim-dap-virtual-text'
 
     use {'tami5/lspsaga.nvim', branch = 'nvim6.0'}
-    use {'ray-x/lsp_signature.nvim'}
+    use 'ray-x/lsp_signature.nvim'
 
     -- completion and snippets
     use 'hrsh7th/cmp-nvim-lsp'
@@ -28,7 +28,7 @@ return packer.startup(function(use)
 
     -- alternate completion and snippets
     use {'ms-jpq/coq_nvim', branch = 'coq'}
-    use {'ms-jpq/coq.artifacts', branch= 'artifacts'}
+    use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
 
     -- themes
     use 'vim-airline/vim-airline'
@@ -45,6 +45,8 @@ return packer.startup(function(use)
         'nvim-orgmode/orgmode',
         config = function() require('orgmode').setup {} end
     }
+
+    use 'moll/vim-bbye'
 
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'

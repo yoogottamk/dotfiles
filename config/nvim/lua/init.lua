@@ -1,4 +1,4 @@
-USE_COQ =true
+USE_COQ = false
 
 require "plugins"
 require "lsp"

@@ -35,6 +35,7 @@ let g:srcery_italic = 1
 let g:srcery_transparent_background = 1
 set termguicolors
 hi Normal guibg=NONE ctermbg=NONE
+hi Comment gui=italic
 
 " airline already shows this
 set noshowmode
@@ -69,7 +70,7 @@ set signcolumn=number
 
 "  maps {{{
 " for spellings
-nnoremap <F7> :setlocal spell! spelllang=en<CR>
+nnoremap <F7> :setlocal spell! spelllang=en<cr>
 inoremap <C-l> <c-g>u<Esc>[s1z=`]i<c-g>u
 
 nnoremap <Up> <nop>
@@ -86,42 +87,41 @@ tnoremap <C-h> <C-w>h
 " tnoremap <C-l> <C-w>l
 
 " for doing some things faster
-nnoremap <leader>q :bd<CR>
-nnoremap <leader>x :x<CR>
-nnoremap <leader>w :w<CR>
+nnoremap <leader>q :Bdelete<cr>
+nnoremap <leader>x :x<cr>
+nnoremap <leader>w :w<cr>
 
 " Useful
 nnoremap H ^
 nnoremap L $
 nnoremap <leader><space> :noh<cr>
 
-" fzf
+" telescope
 nnoremap <F2> <cmd>Telescope buffers<cr>
 nnoremap <leader>l <cmd>Telescope find_files<cr>
+nnoremap <leader>k <cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>
 
 " edit init.vim
 nnoremap <leader>ev :vs ~/.config/nvim/init.vim<cr>
 
 " make commenting easier
 nnoremap <leader>/ :Commentary<cr>
-vnoremap <leader>/ :Commentary<CR>
+vnoremap <leader>/ :Commentary<cr>
 
 " cd to dir containing this file
 nnoremap <leader>cd :cd %:p:h<cr>
 
 " move (selected) line(s) up or down
-nnoremap <silent> + :m .+1<CR>==
-nnoremap <silent> - :m .-2<CR>==
-vnoremap <silent> + :m '>+1<CR>gv=gv
-vnoremap <silent> - :m '<-2<CR>gv=gv
+nnoremap <silent> + :m .+1<cr>==
+nnoremap <silent> - :m .-2<cr>==
+vnoremap <silent> + :m '>+1<cr>gv=gv
+vnoremap <silent> - :m '<-2<cr>gv=gv
 
 " for buffer navigation
 nnoremap ]b :bn!<cr>
 nnoremap [b :bp!<cr>
 tnoremap ]b <C-\><C-n>:bn!<cr>
 tnoremap [b <C-\><C-n>:bp!<cr>
-tnoremap ]B <C-\><C-n>:bfirst!<cr>
-tnoremap ]B <C-\><C-n>:blast!<cr>
 
 " quickfix maps
 nnoremap ]q :cnext<cr>
@@ -223,5 +223,3 @@ let g:mkdp_browser = 'qutebrowser'
 
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
-
-set guifont=Fira\ Code:h10
