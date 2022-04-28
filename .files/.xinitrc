@@ -53,6 +53,6 @@ xinput --set-prop "$pointer_device" "libinput Tapping Enabled" 1
 # disable that awful beep
 xset -b
 
-picom -b
+picom -b --experimental-backends
 
 exec i3

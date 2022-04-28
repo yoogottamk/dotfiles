@@ -8,6 +8,7 @@ require "debugger"
 require "telescope_config"
 
 require "bufferline_config"
+require "statusline_config"
 
 require('orgmode').setup_ts_grammar()
 require('orgmode').setup()

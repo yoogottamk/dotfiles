@@ -29,7 +29,6 @@ set undofile
 " theme
 set t_Co=256
 set background=dark
-let g:airlinetheme="srcery"
 colo srcery
 let g:srcery_italic = 1
 let g:srcery_transparent_background = 1
@@ -37,7 +36,7 @@ set termguicolors
 hi Normal guibg=NONE ctermbg=NONE
 hi Comment gui=italic
 
-" airline already shows this
+" statusline already shows this
 set noshowmode
 
 set showcmd
@@ -97,6 +96,7 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <F2> <cmd>Telescope buffers<cr>
 nnoremap <leader>l <cmd>Telescope find_files<cr>
 nnoremap <leader>k <cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>
+nnoremap <leader>j <cmd>lua require('telescope.builtin').diagnostics()<cr>
 
 " edit init.vim
 nnoremap <leader>ev :vs ~/.config/nvim/init.vim<cr>
@@ -141,11 +141,6 @@ nnoremap <leader>d :lua require'dap'.continue()<cr>
 nnoremap <leader>c :lua require'dap'.step_over()<cr>
 nnoremap <leader>s :lua require'dap'.step_into()<cr>
 " }}}
-
-"  AirLine {{{
-" let g:airline#extensions#tabline#enabled=1
-let g:airline_powerline_fonts=1
-"  }}}
 
 " Emmet {{{
 let g:user_emmet_leader_key=','

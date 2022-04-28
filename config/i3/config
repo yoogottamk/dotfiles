@@ -129,6 +129,7 @@ exec_always echo $DBUS_SESSION_BUS_ADDRESS > ~/.dbusaddr
 # managing networks
 exec nm-applet
 exec blueman-applet
+exec kdeconnect-indicator
 
 exec_always calcurse --daemon
 

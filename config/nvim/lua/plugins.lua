@@ -27,7 +27,10 @@ return packer.startup(function(use)
     use 'rafamadriz/friendly-snippets'
 
     -- themes
-    use 'vim-airline/vim-airline'
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    }
     use {'srcery-colors/srcery-vim', as = 'srcery'}
 
     -- utility

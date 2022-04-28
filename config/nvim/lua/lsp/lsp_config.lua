@@ -1,16 +1,5 @@
 local nvim_lsp = require("lspconfig")
 
-local format_on_attach = function(client)
-    if client.server_capabilities.documentFormattingProvider then
-        vim.cmd([[
-        augroup Format
-            autocmd! * <buffer>
-            autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting_sync(nil, 3000)
-        augroup END
-        ]])
-    end
-end
-
 local get_on_attach = function(disable_formatting)
     -- Use an on_attach function to only map the following keys
     -- after the language server attaches to the current buffer
@@ -33,9 +22,13 @@ local get_on_attach = function(disable_formatting)
         buf_set_keymap("gd",
                        "<cmd>lua require'telescope.builtin'.lsp_definitions()<cr>",
                        opts)
-        buf_set_keymap("gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+        buf_set_keymap("gi",
+                       "<cmd>lua require'telescope.builtin'.lsp_implementations()<cr>",
+                       opts)
         buf_set_keymap("<leader>r", ":Lspsaga rename<cr>", opts)
-        buf_set_keymap("gr", "<cmd>lua require'telescope.builtin'.lsp_references()<cr>", opts)
+        buf_set_keymap("gr",
+                       "<cmd>lua require'telescope.builtin'.lsp_references()<cr>",
+                       opts)
         buf_set_keymap("M", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
         buf_set_keymap("[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
         buf_set_keymap("]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts)
@@ -46,7 +39,7 @@ local get_on_attach = function(disable_formatting)
             client.server_capabilities.documentRangeFormattingProvider = false
         end
 
-        format_on_attach(client)
+        Format_on_attach(client)
     end
 end
 
