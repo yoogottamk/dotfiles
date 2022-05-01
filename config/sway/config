@@ -221,12 +221,9 @@ for_window [app_id="blueman-manager"] floating enable
 for_window [class="SimpleScreenRecorder"] floating enable
 for_window [instance="nm-connection-editor" class="Nm-connection-editor"] floating enable
 for_window [class="UXTerm"] floating enable
+for_window [class="feh" instance="feh"] floating enable
 
 # open apps on default workspaces
-assign [class="microsoft teams - preview"] workspace $w0
-
-assign [class="Gvim"] workspace $w2
-
 assign [app_id="firefox"] workspace $w3
 for_window [title="Firefox — Sharing Indicator"] floating enable
 

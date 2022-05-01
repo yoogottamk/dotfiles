@@ -26,20 +26,29 @@ return packer.startup(function(use)
     use 'saadparwaiz1/cmp_luasnip'
     use 'rafamadriz/friendly-snippets'
 
-    -- alternate completion and snippets
-    use {'ms-jpq/coq_nvim', branch = 'coq'}
-    use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
-
     -- themes
     use 'vim-airline/vim-airline'
     use {'srcery-colors/srcery-vim', as = 'srcery'}
 
     -- utility
+    use 'lewis6991/nvim-treesitter-context'
+    use {
+        'akinsho/bufferline.nvim',
+        tag = "*",
+        requires = 'kyazdani42/nvim-web-devicons'
+    }
     use 'windwp/nvim-autopairs'
     use 'tpope/vim-commentary'
-    use {'ibhagwan/fzf-lua', requires = {'kyazdani42/nvim-web-devicons'}}
     use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+    use {
+        'tzachar/cmp-fuzzy-buffer',
+        requires = {'hrsh7th/nvim-cmp', 'tzachar/fuzzy.nvim'}
+    }
+    use {
+        'tzachar/cmp-fuzzy-path',
+        requires = {'hrsh7th/nvim-cmp', 'tzachar/fuzzy.nvim'}
+    }
     use 'rmagatti/auto-session'
     use {
         'nvim-orgmode/orgmode',

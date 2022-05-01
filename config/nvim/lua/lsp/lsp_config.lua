@@ -1,7 +1,7 @@
 local nvim_lsp = require("lspconfig")
 
 local format_on_attach = function(client)
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.documentFormattingProvider then
         vim.cmd([[
         augroup Format
             autocmd! * <buffer>
@@ -30,18 +30,20 @@ local get_on_attach = function(disable_formatting)
 
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         buf_set_keymap("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-        buf_set_keymap("gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+        buf_set_keymap("gd",
+                       "<cmd>lua require'telescope.builtin'.lsp_definitions()<cr>",
+                       opts)
         buf_set_keymap("gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
         buf_set_keymap("<leader>r", ":Lspsaga rename<cr>", opts)
-        buf_set_keymap("gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+        buf_set_keymap("gr", "<cmd>lua require'telescope.builtin'.lsp_references()<cr>", opts)
         buf_set_keymap("M", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
         buf_set_keymap("[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
         buf_set_keymap("]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts)
         buf_set_keymap("<leader>ca", ":Lspsaga code_action<cr>", opts)
 
         if disable_formatting then
-            client.resolved_capabilities.document_formatting = false
-            client.resolved_capabilities.document_range_formatting = false
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
         end
 
         format_on_attach(client)
@@ -50,12 +52,7 @@ end
 
 -- enable snippets
 local basic_capabilities = vim.lsp.protocol.make_client_capabilities()
-local cap
-if USE_COQ then
-    cap = require("coq").lsp_ensure_capabilities(basic_capabilities)
-else
-    cap = require("cmp_nvim_lsp").update_capabilities(basic_capabilities)
-end
+local cap = require("cmp_nvim_lsp").update_capabilities(basic_capabilities)
 cap.textDocument.completion.completionItem.snippetSupport = true
 
 -- servers with default config

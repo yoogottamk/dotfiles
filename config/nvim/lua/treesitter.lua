@@ -1,15 +1,13 @@
-local parser_config = require'nvim-treesitter.parsers'.get_parser_configs()
-parser_config.org = {
-    install_info = {
-        url = 'https://github.com/milisims/tree-sitter-org',
-        revision = 'f110024d539e676f25b72b7c80b0fd43c34264ef',
-        files = {'src/parser.c', 'src/scanner.cc'}
-    },
-    filetype = 'org'
-}
-
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained",
+    ensure_installed = {
+        "bash", "bibtex", "c", "cmake", "comment", "cpp", "css", "dart",
+        "dockerfile", "dot", "gdscript", "go", "godot_resource", "gomod",
+        "gowork", "hjson", "html", "http", "java", "javascript", "jsdoc",
+        "json", "json5", "jsonc", "julia", "kotlin", "latex", "llvm", "lua",
+        "make", "markdown", "ninja", "nix", "perl", "php", "python", "rasi",
+        "regex", "ruby", "rust", "scss", "toml", "tsx", "typescript", "vim",
+        "yaml"
+    },
     highlight = {
         enable = true,
         disable = {'org'},
@@ -25,4 +23,19 @@ require'nvim-treesitter.configs'.setup {
         }
     },
     indent = {enable = false}
+}
+
+require'treesitter-context'.setup {
+    enable = true,
+    throttle = true,
+    max_lines = 0,
+    patterns = {
+        default = {
+            'class', 'function', 'method', 'for', 'while', 'if', 'switch',
+            'case'
+        },
+        python = {
+            'with',
+        }
+    },
 }

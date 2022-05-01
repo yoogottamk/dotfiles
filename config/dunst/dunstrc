@@ -20,11 +20,10 @@
     word_wrap = yes
     ignore_newline = no
     # 35: polybar height
-    # geometry = "400x5-0-35"
     width = 400
     height = 300
-    # offset = 0x35
-    offset = 0x0
+    offset = 0x35
+    # offset = 0x0
     origin = bottom-right
     transparency = 0
 

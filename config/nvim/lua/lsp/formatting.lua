@@ -1,7 +1,7 @@
 local null_ls = require("null-ls")
 
 local format_on_attach = function(client)
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.documentFormattingProvider then
         vim.cmd([[
         augroup Format
             autocmd! * <buffer>

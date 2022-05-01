@@ -63,7 +63,7 @@ let g:python3_host_prog='/usr/bin/python'
 set inccommand=nosplit
 
 set completeopt=menuone,noselect,noinsert,preview
-set updatetime=300
+set updatetime=750
 
 set signcolumn=number
 " }}}
@@ -72,9 +72,6 @@ set signcolumn=number
 " for spellings
 nnoremap <F7> :setlocal spell! spelllang=en<cr>
 inoremap <C-l> <c-g>u<Esc>[s1z=`]i<c-g>u
-
-nnoremap <Up> <nop>
-nnoremap <Down> <nop>
 
 " for split navigation
 nnoremap <C-j> <C-w>j
@@ -146,7 +143,7 @@ nnoremap <leader>s :lua require'dap'.step_into()<cr>
 " }}}
 
 "  AirLine {{{
-let g:airline#extensions#tabline#enabled=1
+" let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
 "  }}}
 
@@ -202,7 +199,9 @@ if has("autocmd")
 
     augroup orgmode
         au!
-        autocmd BufWritePost *.org silent! !emacs -nw --batch --visit=% --funcall=org-latex-export-to-pdf
+        autocmd BufWritePost *.org call jobstart(['emacs', '-nw', '--batch', '--eval', '(setq org-confirm-babel-evaluate nil)', '--visit=' . expand('%'), '-f', 'org-latex-export-to-pdf'])
+        autocmd CursorHold *.org if &modified | w | call jobstart(['emacs', '-nw', '--batch', '--eval', '(setq org-confirm-babel-evaluate nil)', '--visit=' . expand('%'), '-f', 'org-latex-export-to-pdf']) | endif
+        autocmd CursorHoldI *.org if &modified | w | call jobstart(['emacs', '-nw', '--batch', '--eval', '(setq org-confirm-babel-evaluate nil)', '--visit=' . expand('%'), '-f' ,'org-latex-export-to-pdf']) | endif
     augroup end
 
     augroup jsx
@@ -218,7 +217,7 @@ endif
 " }}}
 
 " live markdown preview {{{
-let g:mkdp_browser = 'qutebrowser'
+" let g:mkdp_browser = 'qutebrowser'
 " }}}
 
 set foldmethod=expr

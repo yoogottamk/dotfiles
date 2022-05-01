@@ -7,6 +7,7 @@ alias gb='git branch'
 alias gbd='git branch -d'
 alias gc='git checkout'
 alias gcam='git commit -a -m'
+alias gcom='git commit -m'
 alias gcb='git checkout -b'
 alias gcm='git checkout master'
 alias gcmsg='git commit -m'
@@ -74,25 +75,13 @@ alias numpy='python -i $HOME/.pyload/load-numpy.py'
 alias ldp='ldapsearch -H ldap://10.4.20.173 -b "ou=Users,dc=iiit,dc=ac,dc=in" -x'
 
 # pipe something here to copy to clipboard
-# alias cbcp='xclip -selection clipboard'
-alias cbcp='wl-copy'
+alias cbcp='xclip -selection clipboard'
+# alias cbcp='wl-copy'
 
 alias i='yay -S'
 alias up='yay -Syu'
 
 alias kk='kubectl --kubeconfig /home/yog/.kube/k3s'
-
-function shh {
-    if grep @ <<< "$1" 2>&1 >/dev/null; then
-        user="$( awk -F'@' '{ print $1 }' <<< "$1" )"
-        host="$( awk -F'@' '{ print $2 }' <<< "$1" )"
-    else
-        user=
-        host="$1"
-    fi
-
-    ssh "${user:+${user}@}$( dig +short "${host}.iiit.ac.in" @10.4.20.222 )"
-}
 
 # colors
 alias ip='ip -color=auto'

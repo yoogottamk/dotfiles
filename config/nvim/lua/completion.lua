@@ -7,6 +7,7 @@ local has_words_before = function()
 end
 
 local cmp = require 'cmp'
+local compare = require 'cmp.config.compare'
 local lspkind = require 'lspkind'
 local luasnip = require 'luasnip'
 
@@ -35,7 +36,7 @@ cmp.setup({
             else
                 fallback()
             end
-        end, {'i', 's'}),
+        end, {'i', 's', 'c'}),
         ['<S-Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
@@ -44,17 +45,40 @@ cmp.setup({
             else
                 fallback()
             end
-        end, {'i', 's'})
+        end, {'i', 's', 'c'})
     },
     sources = cmp.config.sources({
-        {name = 'nvim_lsp'}, {name = 'luasnip'}, {name = 'buffer'},
-        {name = 'path'}
+        {name = 'nvim_lsp'}, {name = 'luasnip'}, {
+            name = 'fuzzy_buffer',
+            option = {
+                get_bufnrs = function()
+                    local bufs = {}
+                    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+                        local buftype = vim.api.nvim_buf_get_option(buf,
+                                                                    'buftype')
+                        if buftype ~= 'nofile' and buftype ~= 'prompt' then
+                            bufs[#bufs + 1] = buf
+                        end
+                    end
+                    return bufs
+                end
+            }
+        }, {name = 'fuzzy_path'}
     }, {name = 'orgmode'}),
-    experimental = {ghost_text = true}
+    experimental = {ghost_text = true},
+    sorting = {
+        priority_weight = 2,
+        comparators = {
+            require('cmp_fuzzy_buffer.compare'),
+            require('cmp_fuzzy_path.compare'), compare.offset, compare.exact,
+            compare.score, compare.recently_used, compare.kind,
+            compare.sort_text, compare.length, compare.order
+        }
+    }
 })
 
-cmp.setup.cmdline('/', {sources = {{name = 'buffer'}}})
+cmp.setup.cmdline('/', {sources = {{name = 'fuzzy_buffer'}}})
 
 cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({{name = 'path'}}, {{name = 'cmdline'}})
+    sources = cmp.config.sources({{name = 'fuzzy_path'}}, {{name = 'cmdline'}})
 })

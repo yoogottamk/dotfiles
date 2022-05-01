@@ -23,12 +23,12 @@ export CHROME_EXECUTABLE=google-chrome-stable
 
 export LOG4J_FORMAT_MSG_NO_LOOKUPS=true
 
-eval `ssh-agent`
+eval $( ssh-agent )
 ssh-add
 
-if [ $(tty) = "/dev/tty2" ]; then
+if [ "$(tty)" = "/dev/tty1" ]; then
     startx
-elif [ $(tty) = "/dev/tty1" ]; then
+elif [ "$(tty)" = "/dev/tty2" ]; then
     # use wayland wherever possible
 
     export QT_QPA_PLATFORM=wayland

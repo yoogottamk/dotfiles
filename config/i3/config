@@ -21,8 +21,6 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec "rofi -show drun -modi drun,window"
 # recent files
 bindsym $mod+s exec recent
-# emoji!
-bindsym $mod+g exec "rofi -show emoji -modi emoji -columns 1 -sort true -levenshtein-sort true -matching normal"
 # edit whatever in vim
 bindsym $mod+q exec vimedit
 
@@ -104,10 +102,10 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Tab workspace next_on_output
 bindsym $mod+Shift+Tab workspace prev_on_output
 
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# restart i3 inplace
 bindsym $mod+Shift+r restart
 
-# exit i3 (logs you out of your X session)
+# exit i3
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Quit i3?' -b 'Yes' 'i3-msg exit'"
 
 # toggle polybar visibility
@@ -122,12 +120,8 @@ exec_always launch_polybar
 exec redshift-gtk -l 22.5:88.36
 
 # dropdown term
-exec_always --no-startup-id kitti3 -p LB -s 1.0 0.45
-bindsym $alt+slash nop kitti3
-
-# swap escape and capslock
-exec_always setxkbmap -option caps:swapescape
-exec xkbset ma 60 10 10 5 2
+exec_always MESA_LOADER_DRIVER_OVERRIDE=iris __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json kitti3 -p LB -s 1.0 0.45 -n dropdown -- -o tab_bar_edge=top -1 --instance-group dropdown
+bindsym $alt+slash nop dropdown
 
 # save dbus session address
 exec_always echo $DBUS_SESSION_BUS_ADDRESS > ~/.dbusaddr
@@ -153,6 +147,8 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86MonBrightnessUp exec brightness_control inc 5
 bindsym XF86MonBrightnessDown exec brightness_control dec 5
 
+bindsym XF86Calculator exec kitty -1 python -i /home/yog/.pyload/load-numpy.py
+
 # locking
 bindsym $mod+Control+l exec i3lock_cool
 exec xautolock -time 15 -locker '~/bin/i3lock_cool' -detectsleep
@@ -162,9 +158,7 @@ exec_always feh --bg-fill ~/Pictures/wall.jpg
 
 # screenshot!
 bindsym --release Print exec "maim -sku --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
-bindsym --release Control+Print exec "maim -u --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
-bindsym --release Mod1+Print exec maim -sku ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
-bindsym --release Shift+Print exec maim -u ~/Pictures/Screenshot_`date +%Y%m%d_%H%M%S`.png
+bindsym --release Shift+Print exec "maim -u --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
 
 # notification control
 bindsym $mod+x exec dunstctl close
@@ -226,19 +220,15 @@ for_window [class="Blueman-manager"] floating enable
 for_window [class="SimpleScreenRecorder"] floating enable
 for_window [instance="nm-connection-editor" class="Nm-connection-editor"] floating enable
 for_window [class="UXTerm"] floating enable
+for_window [class="feh"] floating enable
 
 # open apps on default workspaces
-assign [class="microsoft teams - preview"] workspace $w0
-
-assign [class="Gvim"] workspace $w2
-
 assign [class="firefox"] workspace $w3
 
 assign [class="TelegramDesktop"] workspace $w4
-assign [class="discord"] workspace $w4
-assign [class="Slack"] workspace $w4
-assign [class="Zulip"] workspace $w4
 
-for_window [class="Spotify"] move to workspace 5
+# swap escape and capslock
+exec_always setxkbmap -option caps:swapescape
+exec xkbset ma 60 10 10 5 2
 
 # bindsym Control+w nop Disable_Ctrl_W_for_tests
