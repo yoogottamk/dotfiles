@@ -1,0 +1,72 @@
+* {
+    bg    : #181818;
+    bg-sel: #2f2f2f;
+    fg    : #eeeeee;
+}
+
+window {
+    background-color: @bg;
+    height          : 43%;
+    width           : 40%;
+    border-radius   : 25px;
+    padding         : 15px;
+}
+
+mainbox {
+    children        : [ inputbar, listview ];
+    background-color: @bg;
+    border          : 0;
+}
+
+inputbar {
+    padding         : 8;
+    children        : [entry];
+    background-color: @bg;
+}
+
+entry {
+    padding         : 8;
+    background-color: @bg-sel;
+    color           : @fg;
+    border-radius   : 10px;
+}
+
+listview {
+    padding         : 8;
+    background-color: @bg;
+    columns         : 5;
+}
+
+element {
+    border          : 0;
+    padding         : 10;
+    background-color: @bg;
+    color           : @fg;
+    orientation     : vertical;
+    padding         : 2% 0 2% 0;
+}
+
+element selected {
+    background-color: @bg-sel;
+    border-radius: 25px;
+}
+
+element-text, element-icon {
+    background-color: inherit;
+    text-color      : inherit;
+    horizontal-align: 0.5;
+    vertical-align  : 0.5;
+}
+
+element-icon {
+    size  : 64px;
+    border: 0;
+}
+
+element-text {
+    expand: true;
+    margin: 0.5% 0.5% -0.5% 0.5%;
+    font  : "Ubuntu 12";
+}
+
+/* vim: ft=css

@@ -1,0 +1,149 @@
+@define-color bar-bg #3c3836;
+@define-color bar-fg white;
+
+@define-color ws-bg #202020;
+@define-color ws-fg #7c6f64;
+@define-color active-ws-fg #BDBDBD;
+
+@define-color mic-bg white;
+@define-color mic-fg #202020;
+
+@define-color audio-bg #FFAF00;
+@define-color audio-fg #202020;
+
+@define-color nw-bg #9CFFD3;
+@define-color nw-fg #202020;
+
+@define-color battery-bg #00DFFF;
+@define-color battery-fg #202020;
+/* @define-color battery-fg white; */
+
+@define-color tray-bg #202020;
+@define-color tray-fg #EBDBB2;
+
+* {
+    font-size: 16px;
+    font-family: "FiraCode Nerd Font";
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#waybar {
+    background: @bar-bg;
+    color: @bar-fg;
+}
+
+/* workspace+mode */
+#workspaces button {
+    padding: 0 7px;
+    background: @ws-bg;
+    color: @ws-fg;
+}
+#workspaces button.focused {
+    color: @active-ws-fg;
+}
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#mode {
+    padding: 0 10px;
+    background: @ws-bg;
+}
+
+#custom-arrow-ws {
+    color: @ws-bg;
+    background: transparent;
+}
+
+/* clock */
+#clock {
+    background: @ws-bg;
+    padding: 0 5px;
+}
+
+#custom-arrow-clock-l,
+#custom-arrow-clock-r {
+    background: @bar-bg;
+    color: @ws-bg;
+}
+
+/* mic-muter */
+#custom-mic-muter {
+    background: @mic-bg;
+    color: @mic-fg;
+    padding: 0 5px;
+}
+#custom-arrow-mic {
+    background: @bar-bg;
+    color: @mic-bg;
+}
+
+/* audio */
+#pulseaudio {
+    background: @audio-bg;
+    color: @audio-fg;
+    padding: 0 5px;
+}
+#custom-arrow-audio {
+    background: @mic-bg;
+    color: @audio-bg;
+}
+
+/* network */
+#network {
+    background: @nw-bg;
+    color: @nw-fg;
+    padding: 0 5px;
+}
+#custom-arrow-nw {
+    background: @audio-bg;
+    color: @nw-bg;
+}
+
+/* battery */
+#battery {
+    background: @battery-bg;
+    color: @battery-fg;
+    padding: 0 5px;
+}
+#custom-arrow-bat {
+    color: @battery-bg;
+    background: @nw-bg;
+}
+
+/* tray, etc */
+#tray, #idle_inhibitor, #custom-notifications {
+    background: @tray-bg;
+    color: @tray-fg;
+    padding: 0 5px;
+}
+#idle_inhibitor {
+    padding-right: 10px;
+}
+
+#custom-arrow-tray {
+    color: @tray-bg;
+    background: @battery-bg;
+}
+
+#custom-arrow-ws,
+#custom-arrow-clock-l,
+#custom-arrow-clock-r,
+#custom-arrow-mic,
+#custom-arrow-audio,
+#custom-arrow-nw,
+#custom-arrow-bat,
+#custom-arrow-tray {
+    font-size: 28px;
+    padding: 0;
+}
+
+/* notifications */
+#custom-notifications {
+    padding-right: 10px;
+}

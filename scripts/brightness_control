@@ -1,0 +1,63 @@
+#!/bin/bash
+
+old_brightness="/tmp/.old_brightness"
+brightness_file="/sys/class/backlight/amdgpu_bl0/brightness"
+
+current_brightness="$( cat "$brightness_file" )"
+
+# if type of change is not specified, quit
+if [[ "$1" != "inc" && "$1" != "dec" && "$1" != "toggle" ]]; then
+    exit
+fi
+
+if [[ "$1" == "toggle" ]]; then
+    if [[ -f "$old_brightness" ]]; then
+        # restore old brightness
+        new_brightness="$( cat "$old_brightness" )"
+        echo "$new_brightness" > "$brightness_file"
+
+        # remove this file
+        rm "$old_brightness"
+    else
+        echo "$current_brightness" > "$old_brightness"
+        echo "0" > "$brightness_file"
+    fi
+
+    exit
+fi
+
+# if change in brightness is not passed, quit
+[ -z "$2" ] && exit
+
+# if change in brightness is not a number, quit
+regex='^\d+$'
+if ! [[ "$( echo "$2" | grep -P "$regex" )" ]]; then
+    exit
+fi
+
+max_brightness="$( cat /sys/class/backlight/amdgpu_bl0/max_brightness )"
+current_percentage="$( echo "(${current_brightness}/${max_brightness})*100" | bc  -l | cut -d. -f1 )"
+
+if [[ "$1" = "inc" ]]; then
+    new_percentage="$( echo "${current_percentage}+${2}" | bc )"
+    new_brightness="$( echo "(${new_percentage}/100)*${max_brightness}" | bc -l | cut -d. -f1 )"
+
+    if (( new_brightness > max_brightness )); then
+        new_brightness="$max_brightness"
+        new_percentage=100
+    fi
+else
+    new_percentage="$( echo "${current_percentage}-${2}" | bc )"
+    new_brightness="$( echo "(${new_percentage}/100)*${max_brightness}" | bc -l | cut -d. -f1 )"
+
+    if (( new_brightness < 0 )); then
+        new_brightness="0"
+        new_percentage=0
+    fi
+fi
+
+echo "$new_brightness" > "$brightness_file"
+
+common_flags="-h string:x-canonical-private-synchronous:brightness -i /usr/share/icons/Papirus-Dark/48x48/categories/brightness-systray.svg -e"
+
+notify-send -u low -h "int:value:$new_percentage" $common_flags Brightness "${new_percentage}%"

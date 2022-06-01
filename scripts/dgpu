@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Modified version of https://github.com/hyphone/asus-x13-gpu-switching
+
+function disable_dgpu {
+    # kill procs using the gpu
+    lsof /dev/nvidia* | tail -n +2 | awk '{ print $2 }' | sort -u | xargs kill
+
+    # removing nvidia kernel modules
+    rmmod nvidia_uvm
+    rmmod nvidia_drm
+    rmmod nvidia_modeset
+    rmmod nvidia
+
+    sleep 1
+
+    # acpi_call to power off the dGPU
+    echo 1 | tee /sys/bus/pci/devices/0000:01:00.0/remove
+}
+
+function enable_dgpu {
+    # acpi_call to power on the dGPU
+    echo 1 | tee /sys/bus/pci/rescan
+    sleep 1
+
+    # loading nvidia kernel modules
+    modprobe nvidia_uvm
+    modprobe nvidia_drm
+    modprobe nvidia_modeset
+    modprobe nvidia
+
+    # setting nvidia power/control auto
+    echo auto | tee /sys/bus/pci/devices/0000:01:00.0/power/control
+}
+
+[[ $EUID != 0 ]] && exec sudo bash "$0" "$@"
+
+if [ "$1" == disable ]; then
+    disable_dgpu & disown
+elif [ "$1" == enable ]; then
+    enable_dgpu & disown
+else
+    echo "Usage: $0 disable|enable"
+fi

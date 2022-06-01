@@ -1,0 +1,29 @@
+#!/bin/bash
+
+battery_status="$( cat /sys/class/power_supply/BAT0/status )"
+
+function powersave {
+    # run at 60Hz
+    swaymsg output eDP-1 mode '1920x1200@60.003Hz'
+
+    # power saving mode
+    powerprofilesctl set power-saver
+    sudo /usr/bin/cpupower frequency-set -g powersave
+}
+
+function performance {
+    # run at 120Hz
+    swaymsg output eDP-1 mode '1920x1200@120.003Hz'
+
+    # performance mode
+    powerprofilesctl set performance
+    sudo /usr/bin/cpupower frequency-set -g ondemand
+}
+
+export SWAYSOCK="$( ls /run/user/1000/sway-ipc.* | head -1 )"
+
+if [[ "$battery_status" == Discharging ]]; then
+    powersave
+else
+    performance
+fi

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+path_dirs=(
+    "$HOME/bin"
+    "$HOME/.local/bin"
+    "$HOME/go/bin"
+    "$HOME/perl5/bin"
+    "$HOME/.cargo/bin"
+    "$HOME/.local/share/gem/ruby/3.0.0/bin"
+)
+
+appended_path=$(IFS=":$IFS"; printf "%s" "${path_dirs[*]}")
+
+export PATH="$PATH:$appended_path"

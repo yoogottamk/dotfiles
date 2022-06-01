@@ -1,0 +1,161 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 35,
+
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode",
+        "custom/arrow-ws",
+    ],
+
+    "modules-center": [
+        "custom/arrow-clock-l",
+        "clock",
+        "custom/arrow-clock-r",
+    ],
+
+    "modules-right": [
+        "custom/arrow-mic",
+        "custom/mic-muter",
+        "custom/arrow-audio",
+        "pulseaudio",
+        "custom/arrow-nw",
+        "network",
+        "custom/arrow-bat",
+        "battery",
+        "custom/arrow-tray",
+        "tray",
+        "idle_inhibitor",
+        "custom/notifications"
+    ],
+
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "format": "{name}"
+    },
+
+    "clock": {
+        "interval": 1,
+        "format": "{:%H:%M:%S}",
+        "tooltip": true,
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "custom/mic-muter": {
+        "format": "{}",
+        "interval": "once",
+        "exec": "[[ $( pamixer --default-source --get-mute ) == 'true' ]] && echo  || echo ",
+        "tooltip": false,
+        "signal": 1,
+        "on-click": "mic-toggle",
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume:2}%",
+        "format-bluetooth": "{icon} {volume}% ",
+        "format-muted": " ",
+        "format-icons": {
+            "headphones": " ",
+            "default": [
+                "",
+                " "
+            ]
+        },
+        "scroll-step": 5,
+        "on-click": "pavucontrol"
+    },
+
+    "network": {
+        "interface": "wlp6s0",
+        "format": "{essid} {ipaddr}",
+        "format-disconnected": "-",
+        "tooltip-format": "💪 {signalStrength}%",
+        "on-click": "dunstify -a ip[wlo1] `curl --interface wlp6s0 -fsSL ifconfig.me` -u low"
+    },
+
+    "battery": {
+        "states": {
+            "good": 85,
+            "warning": 40,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {icon} {capacity}%",
+        "format-unknown": " {icon} {capacity}%",
+        "format-time": "{H}h {M}m",
+        "format-icons": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+        ]
+    },
+
+    "tray": {
+        "icon-size": 24
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+    "custom/notifications": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+    "custom/arrow-ws": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow-clock-l": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/arrow-clock-r": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow-mic": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/arrow-audio": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/arrow-nw": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/arrow-bat": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/arrow-tray": {
+        "format": "",
+        "tooltip": false
+    }
+}
+
+// vim: ft=json

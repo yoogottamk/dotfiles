@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# git {{{
+alias g=git
+alias ga='git add'
+alias gb='git branch'
+alias gbd='git branch -d'
+alias gc='git checkout'
+alias gcam='git commit -a -m'
+alias gcom='git commit -m'
+alias gcb='git checkout -b'
+alias gcm='git checkout master'
+alias gd='git diff'
+alias gl='git log'
+alias glo='git log --oneline --decorate'
+alias gr='git remote'
+alias gst='git status'
+alias grev='git checkout HEAD --'
+alias gps='git push'
+alias gpl='git pull'
+# }}}
+
+# quiet! {{{
+alias octave='octave -q'
+alias gdb='gdb -q'
+alias bc='bc -q'
+# }}}
+
+function mkcd { mkdir -p "$1" && cd "$1"; }
+alias mx="chmod +x"
+alias xo='xdg-open'
+
+alias upa='source $HOME/.aliases'
+alias upp='source $HOME/.path_dirs'
+
+alias mirror='ffplay -f video4linux2 -i /dev/video0 -video_size 640x480 -fflags nobuffer'
+
+# better ssh sessions
+alias ssh='TERM=xterm-256color ssh'
+
+# using nvim
+alias vim='nvim'
+
+# package manager related
+alias i='yay -S'
+alias up='yay -Syu'
+
+# colors
+alias ip='ip -color=auto'
+
+# ls hyperlinks
+alias ls="ls --color=tty --hyperlink=auto"
+
+alias colorpicker='grim -g "$(slurp -p)" -t ppm - | convert - -format "%[pixel:p{0,0}]" txt:- | tail -n 1 | cut -d" " -f 4'
+
+alias kg='kitty +kitten hyperlinked_grep'
+
+# vim: fdm=marker

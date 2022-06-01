@@ -1,0 +1,12 @@
+require "plugins"
+require "lsp"
+require "completion"
+require "autopairs"
+require "treesitter"
+require "snippets"
+require "debugger"
+require "diagnostics_config"
+require "telescope_config"
+
+require "bufferline_config"
+require "statusline_config"

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+pamixer --default-source -t
+pkill -SIGRTMIN+1 waybar

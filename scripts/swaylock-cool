@@ -1,0 +1,2 @@
+#!/bin/bash
+swaylock-fancy -t "Locked at $(date +%H:%M)" -f JetBrains-Mono-Bold-Italic-Nerd-Font-Complete

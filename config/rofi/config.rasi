@@ -1,0 +1,14 @@
+configuration {
+	font: "Ubuntu 14";
+	show-icons: true;
+	terminal: "kitty";
+	icon-theme: "Papirus-Dark";
+	drun-display-format: "{i}{name}";
+	sort: true;
+	sorting-method: "fzf";
+	matching: "fuzzy";
+	window-format: "{i}{t}";
+}
+@theme "custom-dark"
+
+/* vim: ft=css

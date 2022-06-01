@@ -1,0 +1,28 @@
+set selection-clipboard clipboard
+
+set zoom-step 10
+set scroll-step 100
+
+set incremental-search true
+
+set scroll-page-aware true
+
+set font "FiraCode Nerd Font 16"
+
+set default-bg "#181a1b"
+set default-fg "#d5d2be"
+set inputbar-bg "#3f3f3f"
+set inputbar-fg "#d5d2be"
+set statusbar-bg "#2b2b2b"
+set statusbar-fg "#d5d2be"
+
+set index-bg "#3f3f3f"
+set index-fg "#d5d2be"
+set index-active-bg "#4f4f4f"
+set index-active-fg "#d5d2be"
+
+set recolor true
+set recolor-lightcolor "#111111"
+set recolor-darkcolor "#eeeeee"
+
+set guioptions none
