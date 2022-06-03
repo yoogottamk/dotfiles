@@ -12,20 +12,34 @@ local lspkind = require 'lspkind'
 local luasnip = require 'luasnip'
 
 cmp.setup({
+    enabled = function()
+        if vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt' then
+            return false
+        end
+        -- disable completion in comments
+        local context = require 'cmp.config.context'
+        -- keep command mode completion enabled when cursor is in a comment
+        if vim.api.nvim_get_mode().mode == 'c' then
+            return true
+        else
+            return not context.in_treesitter_capture("comment") and
+                       not context.in_syntax_group("Comment")
+        end
+    end,
+    view = {entries = {name = 'custom', selection_order = 'near_cursor'}},
     formatting = {
         format = lspkind.cmp_format({with_text = false, maxwidth = 50})
+    },
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered()
     },
     snippet = {
         expand = function(args) require'luasnip'.lsp_expand(args.body) end
     },
     mapping = {
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
-        ['<CR>'] = cmp.mapping.confirm({
-            cmp.ConfirmBehavior.Insert,
-            select = false
-        }),
-        ['<Up>'] = cmp.mapping.scroll_docs(-4),
-        ['<Down>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<CR>'] = cmp.mapping.confirm({select = true}),
         ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -48,7 +62,10 @@ cmp.setup({
         end, {'i', 's', 'c'})
     },
     sources = cmp.config.sources({
-        {name = 'nvim_lsp'}, {name = 'luasnip'}, {
+        {name = 'nvim_lsp_signature_help'}, {name = 'nvim_lsp'},
+        {name = 'luasnip'}
+    }, {
+        {
             name = 'fuzzy_buffer',
             option = {
                 get_bufnrs = function()
@@ -63,14 +80,13 @@ cmp.setup({
                     return bufs
                 end
             }
-        }, {name = 'fuzzy_path'}
+        }
     }),
     experimental = {ghost_text = true},
     sorting = {
         priority_weight = 2,
         comparators = {
-            require('cmp_fuzzy_buffer.compare'),
-            require('cmp_fuzzy_path.compare'), compare.offset, compare.exact,
+            require('cmp_fuzzy_buffer.compare'), compare.offset, compare.exact,
             compare.score, compare.recently_used, compare.kind,
             compare.sort_text, compare.length, compare.order
         }
@@ -80,5 +96,5 @@ cmp.setup({
 cmp.setup.cmdline('/', {sources = {{name = 'fuzzy_buffer'}}})
 
 cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({{name = 'fuzzy_path'}}, {{name = 'cmdline'}})
+    sources = cmp.config.sources({{name = 'path'}, {name = 'cmdline'}})
 })

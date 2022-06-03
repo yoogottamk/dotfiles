@@ -61,7 +61,8 @@ let g:python3_host_prog='/usr/bin/python'
 " for live-previewing effects of commands, mostly for :s
 set inccommand=nosplit
 
-set completeopt=menuone,noselect,noinsert,preview
+set completeopt=menu,menuone,noselect,noinsert,preview
+set sessionoptions+=winpos,terminal,folds
 set updatetime=250
 
 set signcolumn=number

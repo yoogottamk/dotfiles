@@ -11,14 +11,12 @@ return packer.startup(function(use)
     use 'rcarriga/nvim-dap-ui'
     use 'theHamsta/nvim-dap-virtual-text'
 
-    use 'ray-x/lsp_signature.nvim'
-
     -- completion and snippets
     use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-nvim-lsp-signature-help'
     use 'onsails/lspkind-nvim'
 
     use 'L3MON4D3/LuaSnip'
@@ -51,13 +49,9 @@ return packer.startup(function(use)
     use 'tpope/vim-commentary'
     use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
-    use 'nvim-telescope/telescope-ui-select.nvim'
+    use 'stevearc/dressing.nvim'
     use {
         'tzachar/cmp-fuzzy-buffer',
-        requires = {'hrsh7th/nvim-cmp', 'tzachar/fuzzy.nvim'}
-    }
-    use {
-        'tzachar/cmp-fuzzy-path',
         requires = {'hrsh7th/nvim-cmp', 'tzachar/fuzzy.nvim'}
     }
     use 'rmagatti/auto-session'
@@ -84,23 +78,20 @@ return packer.startup(function(use)
     use {'tmhedberg/SimpylFold', ft = {'python'}}
 
     -- -- java
-    use {'mfussenegger/nvim-jdtls'}
+    -- use {'mfussenegger/nvim-jdtls'}
 
     -- -- dart / flutter
     use {'dart-lang/dart-vim-plugin', ft = {'dart'}}
     use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
 
     -- -- js and family
-    use {
-        'peitalin/vim-jsx-typescript',
-        requires = {'leafgarland/typescript-vim'},
-        ft = {'typescriptreact'}
-    }
-    use {'MaxMEllon/vim-jsx-pretty', ft = {'typescriptreact'}}
-    use {
-        'mattn/emmet-vim',
-        ft = {'html', 'css', 'php', 'javascript.jsx', 'typescriptreact'}
-    }
+    -- use {
+    --     'peitalin/vim-jsx-typescript',
+    --     requires = {'leafgarland/typescript-vim'},
+    --     ft = {'typescriptreact'}
+    -- }
+    -- use {'MaxMEllon/vim-jsx-pretty', ft = {'typescriptreact'}}
+    use 'mattn/emmet-vim'
 
     -- -- rust
     use 'simrat39/rust-tools.nvim'
