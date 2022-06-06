@@ -16,10 +16,6 @@ export CHROME_EXECUTABLE=google-chrome-stable
 # disable log4j lookups globally
 export LOG4J_FORMAT_MSG_NO_LOOKUPS=true
 
-# start ssh-agent
-eval $( ssh-agent )
-ssh-add
-
 # QT apps UI too small
 export QT_SCALE_FACTOR=1.25
 
@@ -36,4 +32,10 @@ export MOZ_DBUS_REMOTE=1
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-sway --unsupported-gpu
+if [[ $(tty) == /dev/tty1 ]]; then
+    # start ssh-agent
+    eval $( ssh-agent )
+    ssh-add
+
+    sway --unsupported-gpu
+fi
