@@ -53,80 +53,6 @@
     }
 }
 
-
-/* Windows specific styles */
-@media (-moz-platform: windows-win10) {
-    /* Hide main tabs toolbar */
-    :root[tabsintitlebar]{
-        --uc-window-control-width: 138px; /* Space at the right of nav-bar for window controls */
-        /* --uc-window-drag-space-width: 24px; */  /* To add extra window drag space in nav-bar */
-    }
-
-    #nav-bar{
-        border-inline: var(--uc-window-drag-space-width,0px) solid var(--toolbar-bgcolor) ;
-        border-inline-style: solid !important;
-        border-right-width: calc(var(--uc-window-control-width,0px) + var(--uc-window-drag-space-width,0px));
-
-        padding-top: 0px !important;
-        margin-left: -80px; /* Removes the space left when hiding .titlebar-buttonbox-container */
-    }
-
-    :root {
-        --uc-toolbar-height: 32px;
-        --chrome-content-separator-color: none !important;
-    }
-
-    :root:not([uidensity="compact"]) {
-        --uc-toolbar-height: 38px;
-    }
-
-    #TabsToolbar {
-        visibility: collapse !important;
-    }
-
-    /* Hide the Windows controls on the left side. */
-    #TabsToolbar .titlebar-buttonbox-container {
-        visibility: hidden !important;
-    }
-    /* Line up the Windows controls with the rest of the icons in the toolbar. */
-    .titlebar-buttonbox-container {
-        margin-top: 7px;
-    }
-
-    :root:not([inFullscreen]) #nav-bar {
-        margin-top: calc(0px - var(--uc-toolbar-height));
-    }
-
-    #toolbar-menubar {
-        min-height: unset !important;
-        height: var(--uc-toolbar-height) !important;
-        position: relative;
-    }
-
-    #main-menubar {
-        -moz-box-flex: 1;
-        background-color: var(--toolbar-bgcolor,--toolbar-non-lwt-bgcolor);
-        background-clip: padding-box;
-        border-right: 30px solid transparent;
-        border-image: linear-gradient(to left, transparent, var(--toolbar-bgcolor,--toolbar-non-lwt-bgcolor) 30px) 20 / 30px;
-    }
-
-    #toolbar-menubar:not([inactive]) {
-        z-index: 2;
-    }
-
-    #toolbar-menubar[inactive] > #menubar-items {
-        opacity: 0;
-        pointer-events: none;
-        margin-left: var(--uc-window-drag-space-width,0px);
-    }
-
-    :root[inFullscreen] #nav-bar {
-        border-inline: none !important;
-    }
-}
-
-
 /* General styles */
 #browser {
     position: relative;
@@ -263,12 +189,6 @@
     transition: opacity 0.15s ease;
 }
 
-/* Search Bar #2b2b2bd1 262626ed #1E1E1EBF*/
-#urlbar {
-    --autocomplete-popup-highlight-background: transparent !important;
-    /*  --autocomplete-popup-highlight-background: #313131ad;*/
-}
-
 #urlbar-container {
     border-radius: 10px 10px 10px 10px !important;
     /* padding-top: 0px !important;
@@ -302,16 +222,19 @@
 #urlbar:not(.megabar):not([focused="true"]):-moz-lwtheme:hover {
     border-color: transparent;
 }
+
+/* Search Bar #2b2b2bd1 262626ed #1E1E1EBF*/
 #urlbar {
+    --autocomplete-popup-highlight-background: transparent !important;
+    /*  --autocomplete-popup-highlight-background: #313131ad;*/
+
     border: 0 !important;
     border-bottom: 1px solid #ffffff30 !important;
     border-radius: 10px 10px 10px 10px !important;
     background-color: rgba(0, 0, 0, 0.35);
-}
-
-#urlbar {
     box-shadow: none !important;
 }
+
 #tracking-protection-icon-container {
     border-inline-end: none !important;
     border-image: none !important;
@@ -348,4 +271,11 @@
 
 #wrapper-urlbar-container #urlbar{
     height: var(--urlbar-height) !important;
+}
+
+.urlbarView-row {
+    border-radius: 5px;
+}
+.urlbarView-row[aria-selected = "true"] {
+    background-color: #ffffff30;
 }
