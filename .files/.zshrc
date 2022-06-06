@@ -26,6 +26,25 @@ add-zsh-hook -Uz chpwd (){ [ -f .env ] && source .env; [ -d venv ] && source ven
 
 # automatically send SIGCONT to disown'd child
 setopt AUTO_CONTINUE
+
+# expand alias
+globalias() {
+   zle _expand_alias
+   zle expand-word
+   zle self-insert
+}
+zle -N globalias
+
+# space expands all aliases, including global
+bindkey -M emacs " " globalias
+bindkey -M viins " " globalias
+
+# control-space to make a normal space
+bindkey -M emacs "^ " magic-space
+bindkey -M viins "^ " magic-space
+
+# normal space during searches
+bindkey -M isearch " " magic-space
 # }}}
 
 # completion {{{
@@ -52,9 +71,6 @@ compdef _rg kg
 # aliases
 source ~/.aliases
 
-# fasd
-eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"  >> /dev/null 2>&1
-
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_COMPLETION_TRIGGER=';;'
@@ -66,6 +82,7 @@ export PYTHONSTARTUP=~/.pyrc
 export LESS="-F -X $LESS"
 export COMPOSE_DOCKER_CLI_BUILD=1
 export GPG_TTY=`tty`
+export BORG_PASSCOMMAND='pass show me/borg'
 # }}}
 
 # vim: fdm=marker
