@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# Packs / unpacks the config files
+# packs / unpacks the config files
 # Pack:
-#   link the files in this repo to the ones on the system
+#   link the files from the system into this repo
 # Unpack:
-#   link the files in the system to the ones in this repo
+#   copy the files from the repo to the ones on the system
+# By default, links are hardlink. You can edit that with $FLAG.
 
 USAGE=$( cat <<-EOF
 Usage: $0 [pack|unpack]
@@ -13,13 +14,15 @@ EOF
 
 [[ "$#" != 1 ]] && { echo "$USAGE"; exit 1; }
 
+FLAG="--force"
+
 if [[ "$1" == "pack" ]]; then
     echo Linking config...
     cd config
     for d in *; do
         cd "$d"
         for f in *; do
-            ln -f "$HOME/.config/$d/$f"
+            ln $FLAG "$HOME/.config/$d/$f"
         done
         cd ..
     done
@@ -28,14 +31,14 @@ if [[ "$1" == "pack" ]]; then
     echo Linking scripts...
     cd scripts
     for f in *; do
-        ln -f "$HOME/bin/$f"
+        ln $FLAG "$HOME/bin/$f"
     done
     cd ..
 
     echo Linking vim ftplugins...
     cd vim_ftplugin
     for f in *; do
-        ln -f "$HOME/.vim/ftplugin/$f"
+        ln $FLAG "$HOME/.vim/ftplugin/$f"
     done
     cd ..
 
@@ -45,7 +48,7 @@ if [[ "$1" == "pack" ]]; then
     echo Linking .files...
     cd .files
     for f in *; do
-        ln -f "$HOME/$f"
+        ln $FLAG "$HOME/$f"
     done
     cd ..
 
