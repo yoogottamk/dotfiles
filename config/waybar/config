@@ -67,11 +67,12 @@
     },
 
     "network": {
-        "interface": "wlp6s0",
-        "format": "{essid} {ipaddr}",
+        "interval": 1,
+        "format-wifi": "{essid}",
+        "format-ethernet": "{ifname}  {bandwidthDownBytes}  {bandwidthUpBytes}",
         "format-disconnected": "-",
-        "tooltip-format": "💪 {signalStrength}%",
-        "on-click": "dunstify -a ip[wlo1] `curl --interface wlp6s0 -fsSL ifconfig.me` -u low"
+        "tooltip-format-ethernet": "{ipaddr}",
+        "tooltip-format-wifi": "{ipaddr}  {signalStrength}%"
     },
 
     "battery": {
