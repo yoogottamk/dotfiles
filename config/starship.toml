@@ -1,0 +1,50 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+
+format = """
+[](#103541)$status$jobs$directory\
+[](fg:#00DFFF bg:#9CFFD3)$git_branch$git_status\
+[](fg:#9CFFD3 bg:#FFAF00)$python\
+[](fg:#FFAF00) \
+"""
+
+[status]
+disabled = false
+symbol = " "
+style = "bold red bg:#103541"
+format = "[$symbol]($style)"
+
+[jobs]
+symbol = " "
+format = "[$symbol]($style)"
+style = "bold blue bg:#103541"
+symbol_threshold = 1
+
+[directory]
+style = "bg:#00DFFF fg:black"
+format = "[ $path ]($style)"
+repo_root_format = "[ $before_root_path]($style)[$repo_root]($repo_root_style)[$path ]($style)"
+truncation_length = 8
+truncate_to_repo = false
+repo_root_style = "underline bold bg:#00DFFF fg:black"
+
+[directory.substitutions]
+"Documents" = " "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+[git_branch]
+symbol = " "
+format = "[ $symbol$branch ]($style)"
+style = "black bg:#9CFFD3"
+
+[git_status]
+style = "bg:#9CFFD3 fg:black"
+format = '([$all_status$ahead_behind ]($style))'
+
+[python]
+format = '[  $virtualenv](bold $style)[ $version ]($style)'
+version_format = '${major}.${minor}'
+style = "bg:#FFAF00 fg:black"

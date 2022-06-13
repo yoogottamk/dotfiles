@@ -1,32 +1,32 @@
 [[ -o login ]] && source ~/.profile
 
-# base {{{
-export ZSH="/home/yog/.oh-my-zsh"
+# prompt
+# putting it early because my chpwd hook messes up some modules
+eval "$( starship init zsh )"
 
-ZSH_THEME="agnoster"
-DISABLE_AUTO_UPDATE="true"
-COMPLETION_WAITING_DOTS="true"
+# zsh settings {{{
+# history
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
 
-plugins=(
-    vi-mode
-    zsh-syntax-highlighting
-    zsh-autosuggestions
-    docker
-    docker-compose
-    zsh-autopair
-)
+setopt autocd extendedglob nomatch notify AUTO_CONTINUE
+unsetopt beep
 
-source $ZSH/oh-my-zsh.sh
+autoload -Uz compinit
+compinit
 # }}}
 
-# zsh/plugin settings {{{
+# antigen {{{
+source /usr/share/zsh/share/antigen.zsh
+antigen init ~/.config/antigen/antigenrc
+# }}}
+
+# plugin settings {{{
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
 
 # automatically source venv on cd
 add-zsh-hook -Uz chpwd (){ [ -f .env ] && source .env; [ -d venv ] && source venv/bin/activate }
-
-# automatically send SIGCONT to disown'd child
-setopt AUTO_CONTINUE
 # }}}
 
 # completion {{{
@@ -43,7 +43,7 @@ compctl -K _pip_completion pip3
 
 # kubectl
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
-complete -F __start_kubectl k
+compctl -K __start_kubectl k
 
 # kitty grep
 compdef _rg kg
@@ -61,12 +61,11 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # per-app settings
 export PYTHONSTARTUP=~/.pyrc
-export LESS="-F -X $LESS"
 export COMPOSE_DOCKER_CLI_BUILD=1
-export GPG_TTY=`tty`
+export GPG_TTY="$( tty )"
 export BORG_PASSCOMMAND='pass show me/borg'
-# }}}
 
 task
+# }}}
 
 # vim: fdm=marker
