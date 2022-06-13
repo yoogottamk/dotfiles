@@ -80,7 +80,7 @@ cmp.setup({
                     return bufs
                 end
             }
-        }
+        }, {name = 'path'}
     }),
     experimental = {ghost_text = true},
     sorting = {
