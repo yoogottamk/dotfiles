@@ -10,11 +10,13 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
-setopt autocd extendedglob nomatch notify AUTO_CONTINUE
+setopt autocd extendedglob nomatch notify auto_continue hist_ignore_space extended_history hist_ignore_all_dups
 unsetopt beep
 
 autoload -Uz compinit
 compinit
+
+zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
 # }}}
 
 # antigen {{{
