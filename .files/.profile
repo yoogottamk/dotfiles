@@ -32,10 +32,12 @@ export MOZ_DBUS_REMOTE=1
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-if [[ $(tty) == /dev/tty1 ]]; then
+current_tty=$(tty)
+if [[ $current_tty =~ /dev/tty* ]]; then
     # start ssh-agent
     eval $( ssh-agent )
     ssh-add
 
-    sway --unsupported-gpu
+    [[ $current_tty == /dev/tty1 ]] && WLR_DRM_DEVICES=/dev/dri/card0 sway
+    [[ $current_tty == /dev/tty2 ]] && Hyprland
 fi
