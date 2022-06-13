@@ -48,11 +48,14 @@ alias up='yay -Syu'
 # colors
 alias ip='ip -color=auto'
 
-# ls hyperlinks
+# ls
 alias ls="ls --color=tty --hyperlink=auto"
+alias ll="ls -lh"
+alias la="ls -alh"
+
+# sudo
+alias _=sudo
 
 alias colorpicker='grim -g "$(slurp -p)" -t ppm - | convert - -format "%[pixel:p{0,0}]" txt:- | tail -n 1 | cut -d" " -f 4'
-
-alias kg='kitty +kitten hyperlinked_grep'
 
 # vim: fdm=marker
