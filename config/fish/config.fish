@@ -1,8 +1,12 @@
+status --is-login && source ~/.profile
+
 # remove greeting
 set -g fish_greeting
 
 # theme
 fish_config theme choose 'ayu Mirage'
+set fish_pager_color_selected_background --background=brblack
+set fish_color_selection --background=brblack
 
 # prompt
 starship init fish | source
@@ -29,7 +33,7 @@ function auto_env_venv --on-variable PWD --description \
 end
 
 # per-app settings
-set -Ux PYTHONSTARTUP ~/.pyrc
-set -Ux COMPOSE_DOCKER_CLI_BUILD 1
-set -Ux GPG_TTY "$( tty )"
-set -Ux BORG_PASSCOMMAND 'pass show me/borg'
+set -x PYTHONSTARTUP ~/.pyrc
+set -x COMPOSE_DOCKER_CLI_BUILD 1
+set -x GPG_TTY "$( tty )"
+set -x BORG_PASSCOMMAND 'pass show me/borg'
