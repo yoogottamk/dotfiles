@@ -26,7 +26,6 @@ cmp.setup({
                        not context.in_syntax_group("Comment")
         end
     end,
-    view = {entries = {name = 'custom', selection_order = 'near_cursor'}},
     formatting = {
         format = lspkind.cmp_format({with_text = false, maxwidth = 50})
     },
