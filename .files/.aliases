@@ -1,42 +1,43 @@
-#!/bin/bash
+#!/bin/fish
 
 # git {{{
-alias g=git
-alias ga='git add'
-alias gb='git branch'
-alias gbd='git branch -d'
-alias gc='git checkout'
-alias gcam='git commit -a -m'
-alias gcom='git commit -m'
-alias gcb='git checkout -b'
-alias gcm='git checkout master'
-alias gd='git diff'
-alias gl='git log'
-alias glo='git log --oneline --decorate'
-alias gr='git remote'
-alias gst='git status'
-alias grev='git checkout HEAD --'
-alias gps='git push'
-alias gpl='git pull'
+abbr -a g    git
+abbr -a ga   git add
+abbr -a gb   git branch
+abbr -a gbd  git branch -d
+abbr -a gc   git checkout
+abbr -a gcam git commit -a -m
+abbr -a gcom git commit -m
+abbr -a gcb  git checkout -b
+abbr -a gcm  git checkout master
+abbr -a gd   git diff
+abbr -a gl   git log
+abbr -a glo  git log --oneline --decorate
+abbr -a gr   git remote
+abbr -a gst  git status
+abbr -a grev git checkout HEAD --
+abbr -a gps  git push
+abbr -a gpl  git pull
 # }}}
 
 # quiet! {{{
-alias octave='octave -q'
 alias gdb='gdb -q'
 alias bc='bc -q'
 # }}}
 
-function mkcd { mkdir -p "$1" && cd "$1"; }
-alias mx="chmod +x"
+function mkcd
+    mkdir -p $argv[1] && cd $argv[1]
+end
+
+alias mx='chmod +x'
 alias xo='xdg-open'
 
 alias upa='source $HOME/.aliases'
-alias upp='source $HOME/.path_dirs'
 
 alias mirror='ffplay -f video4linux2 -i /dev/video0 -video_size 640x480 -fflags nobuffer'
 
 # better ssh sessions
-alias ssh='TERM=xterm-256color ssh'
+alias ssh='TERM=xterm-256color command ssh'
 
 # using nvim
 alias vim='nvim'
@@ -49,12 +50,7 @@ alias up='yay -Syu'
 alias ip='ip -color=auto'
 
 # ls
-alias ls="ls --color=tty --hyperlink=auto"
-alias ll="ls -lh"
-alias la="ls -alh"
-
-# sudo
-alias _=sudo
+alias ls='ls --color=tty --hyperlink=auto'
 
 alias colorpicker='grim -g "$(slurp -p)" -t ppm - | convert - -format "%[pixel:p{0,0}]" txt:- | tail -n 1 | cut -d" " -f 4'
 

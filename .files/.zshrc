@@ -16,7 +16,13 @@ unsetopt beep
 autoload -Uz compinit
 compinit
 
+# do completion by matching stuff from middle
+# https://unix.stackexchange.com/a/259511
 zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
+
+# ctrl-w removes whole arg, add delimeters
+# https://stackoverflow.com/a/11200998
+export WORDCHARS='*?_[]~=&;!#$%^(){}<>'
 # }}}
 
 # antigen {{{
@@ -53,7 +59,7 @@ compdef _rg kg
 
 # misc {{{
 # aliases
-source ~/.aliases
+# source ~/.aliases
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
