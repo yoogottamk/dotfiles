@@ -6,8 +6,9 @@ abbr -ga ga   git add
 abbr -ga gb   git branch
 abbr -ga gbd  git branch -d
 abbr -ga gc   git checkout
-abbr -ga gcam git commit -a -m
+abbr -ga gco  git commit
 abbr -ga gcom git commit -m
+abbr -ga gcam git commit -a -m
 abbr -ga gcb  git checkout -b
 abbr -ga gcm  git checkout master
 abbr -ga gd   git diff
