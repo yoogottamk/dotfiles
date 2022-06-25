@@ -25,6 +25,14 @@ function fish_hybrid_key_bindings --description \
 end
 set -g fish_key_bindings fish_hybrid_key_bindings
 
+function scroll-and-clear-screen
+    printf '\n%.0s' (seq 2 $LINES)
+    clear
+    commandline -f repaint
+end
+bind \cl scroll-and-clear-screen
+bind -M insert \cl scroll-and-clear-screen
+
 # chpwd hook
 function auto_env_venv --on-variable PWD --description \
 "source .env or activate python venv in current directory"
