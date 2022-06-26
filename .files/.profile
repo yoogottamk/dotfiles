@@ -17,7 +17,7 @@ set -x QT_QPA_PLATFORMTHEME gtk2
 set -x EDITOR nvim
 set -x VISUAL nvim
 set -x TERMINAL kitty
-set -x ANDROID_SDK_ROOT /opt/android-sdk
+set -x ANDROID_HOME /opt/android-sdk
 set -x CHROME_EXECUTABLE google-chrome-stable
 
 # disable log4j lookups globally
