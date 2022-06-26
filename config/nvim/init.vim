@@ -221,3 +221,5 @@ set foldexpr=nvim_treesitter#foldexpr()
 
 set exrc
 set secure
+
+set shell=/usr/bin/bash
