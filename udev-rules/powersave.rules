@@ -1,3 +1,2 @@
-KERNEL=="BAT0", SUBSYSTEM=="power_supply", ATTR{status}=="Not charging", RUN+="/home/yog/bin/manage-power"
 KERNEL=="BAT0", SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", RUN+="/home/yog/bin/manage-power"
 KERNEL=="BAT0", SUBSYSTEM=="power_supply", ATTR{status}=="Charging", RUN+="/home/yog/bin/manage-power"

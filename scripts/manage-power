@@ -1,6 +1,6 @@
 #!/bin/bash
 
-battery_status="$( cat /sys/class/power_supply/BAT0/status )"
+adapter_status="$( acpi -a | awk -F': ' '{ print $2 }' )"
 
 function powersave {
     # run at 60Hz
@@ -22,7 +22,7 @@ function performance {
 
 export SWAYSOCK="$( ls /run/user/1000/sway-ipc.* | head -1 )"
 
-if [[ "$battery_status" == Discharging ]]; then
+if [[ "$adapter_status" == off-line ]]; then
     powersave
 else
     performance
