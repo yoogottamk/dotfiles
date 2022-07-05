@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# wait for adapter status to update
+sleep 1
+
 adapter_status="$( acpi -a | awk -F': ' '{ print $2 }' )"
 
 function powersave {
