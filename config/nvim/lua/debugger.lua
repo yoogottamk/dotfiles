@@ -74,7 +74,7 @@ dap.adapters.dart = {
     type = "executable",
     command = "node",
     args = {
-        os.getenv("HOME") .. "/custom-builds/Dart-Code/out/dist/debug.js",
+        os.getenv("HOME") .. "/prog/custom-builds/Dart-Code/out/dist/debug.js",
         "flutter"
     }
 }
