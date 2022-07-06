@@ -13,7 +13,7 @@ titlebar_border_thickness 1
 titlebar_padding 5 1
 
 # wallpaper
-output * bg ~/Pictures/wall.jpg fill
+exec_always time-wallpaper
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

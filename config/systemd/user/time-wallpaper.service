@@ -1,0 +1,6 @@
+[Unit]
+Description=Update wallpaper based on current time
+
+[Service]
+Type=simple
+ExecStart=/home/yog/bin/time-wallpaper

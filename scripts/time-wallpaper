@@ -1,0 +1,17 @@
+#!/bin/bash
+
+WALLPAPER_DIR=~/Pictures/wallpapers
+cd "$WALLPAPER_DIR" || exit
+
+time_h_now="$( date +%H )"
+
+for image in *; do
+    image_time="$( echo "$image" | cut -d. -f1 )"
+
+    if [[ $( bc <<< "$time_h_now >= $image_time" ) = 1 ]]; then
+        wallpaper="$WALLPAPER_DIR/$image"
+    fi
+done
+
+killall swaybg
+swaybg -i "$wallpaper" -m fill -o eDP-1
